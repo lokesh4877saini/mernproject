@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+#footer{
+    display: flex;
+    background-color: #242424;
+    color: #f1f1f1;
+    gap: 50px;
+    padding: 2rem;
+    font-size: 0.8rem;
+    align-items: center;
+    justify-content:space-around;
+}
+ .leftFooter .img{
+    max-width: 100px;
+    max-height: 100px;
+}
+.leftFooter .img img{
+    width: 100%;
+    cursor: pointer;
+    height: 100%;
+}
+.midFooter h2,.leftFooter h2 span{
+    font-family: "Style Script", cursive;
+    font-size: 2rem;
+    font-family: "Style Script", cursive;
+}
+.leftFooter,.midFooter{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+}
+.rightFooter{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 226, 0);
+    font-size: 2rem;    
+}
+.rightFooter h4{
+    font-size: 1.4rem;
+}
+.rightFooter svg{
+    fill: rgb(231, 245, 212);
+}
+@media screen and (max-width:900px) {
+    #footer{
+        display: flex;
+        flex-direction: column;
+    }
+    .leftFooter,h2{
+        font-size: 1rem;
+    }
+    .leftFooter,.midFooter{
+        display: flex;
+        width: 80%;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.13);
+        padding: 1rem;
+        gap: 15px;
+        align-items: center;
+        flex-direction: column;
+    }
+    .rightFooter{
+        display: flex;
+        margin-top: 2rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        color: rgb(0, 226, 0);
+        font-size: 2rem;    
+    }
+}

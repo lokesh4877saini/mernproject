@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+
+nav {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    background-color: #00ff15d7;
+}
+
+.menu {
+    display: flex;
+    background-color: #242424;
+    color: #00ff15;
+    padding: 2rem;
+    width: 100%;
+    font-weight: 500;
+    color: #ffff;
+    gap: 70px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.logo {
+    width: 10%;
+    font-size: 2rem;
+    cursor: pointer;
+    font-family: "Style Script", cursive;
+}
+
+nav {
+    position: relative;
+
+    >.w900>button {
+        border: none;
+        outline: none;
+        border-radius: 100%;
+        margin: 0.4rem 2rem;
+        padding: 0.4rem;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.8);
+
+        &:hover {
+            background-color: #462200;
+            box-shadow: 1px 1px 10px 3px rgb(241, 158, 57);
+            animation: easyScale 0.3s ease-in forwards alternate;
+        }
+    }
+}
+
+nav .production {
+    width: 60%;
+
+    >ul {
+        >a {
+            color: #ffff;
+            font-weight: 700;
+        
+            position: relative;
+            transition: all .3s ease-in;
+            &::before{
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+                z-index: 2;
+                background-color: red;
+            }
+            &:hover {
+                color: #9dff00fd;
+                animation: borderAnime 1s ease-in;
+            }
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+nav .MenuModel {
+    background-color: rgba(0, 0, 0, 0.733);
+    backdrop-filter: blur(13px);
+    position: absolute;
+    padding: 2rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    top: 65px;
+    left: 25px;
+    transition: all 0.3s ease-in-out;
+    color: white;
+    margin: 0 1rem;
+    border-radius: 10px;
+    width: 50%;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+
+    >.Model_logo {
+        font-size: 3rem;
+        width: 100%;
+        cursor: pointer;
+        font-family: "Style Script", cursive;
+    }
+
+    >.Model_production {
+        width: 100%;
+
+        ul {
+            display: flex;
+            width: 80%;
+            margin: 0 auto;
+            gap: 50px;
+            background-color: #28ff3abd;
+            border-radius: 20px 30px 30px 20px / 30px 50px 10px 30px;
+            font-size: 1.2rem;
+            flex-wrap: wrap;
+            transition: all 0.1s ease-in;
+            backdrop-filter: blur(1px);
+            padding: 3rem;
+
+            >a {
+                color: #ffff;
+                font-weight: 700;
+                transition: all 0.3s ease-in;
+
+                &:hover {
+                    color: #3a5e00fd;
+                }
+            }
+
+        }
+    }
+
+    >.Model_action {
+        width: 100%;
+
+        >ul {
+            display: flex;
+            gap: 50px;
+            border-radius: 20px 30px 30px 20px / 30px 50px 10px 30px;
+            width: 100%;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            background-color: #000000;
+            padding: 1rem;
+
+            >a {
+                transition: all 0.4s ease;
+
+                &:hover {
+                    transform: scale(1.29);
+                }
+            }
+        }
+    }
+}
+
+.MenuModel.none {
+    display: none;
+}
+
+.MenuModel.animateMe {
+    animation: scaleAnime 0.3s ease-in-out;
+}
+
+nav .action {
+    width: 40%;
+
+    >ul {
+        >a {
+            color: #ffff;
+            font-weight: 500;
+            border-width: 0%;
+
+
+            &:hover {
+                color: #ff1ff1;
+
+            }
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+.Btnnone {
+    display: none;
+}
+
+@keyframes easyScale {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+
+}
+
+@keyframes scaleAnime {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+
+}
+
+// @keyframes borderAnime {
+//     from {
+//         border-width: 0%;
+//     }
+//     to {
+//         border-width: 100%;
+//         border-bottom:2px solid white;
+//     }
+
+// }
+
+.w900 {
+    display: none;
+}
+
+@media screen and (max-width:900px) {
+    .Btnblock {
+        display: block;
+    }
+
+    .w900 {
+        display: block;
+    }
+
+    .none {
+        display: none;
+    }
+}

@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+
+nav {
+    padding: 0.5rem;
+    background-color: #000000af;
+    // background: linear-gradient(to left, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
+    box-shadow: 1px 1px 15px 5px rgba(1,1,1,0.2);
+}
+
+.menu {
+    display: flex;
+    color: #00ff15;
+    box-shadow:inset 1px 1px 5px 1px rgba(0, 0, 0, 0.747);
+    padding: 1rem;
+    max-width: 1250px;
+    background-color: #0000002a;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 10px;
+    font-weight: 500;
+    color: #ffff;
+    transition: all 0.3s ease;
+    gap: 70px;
+    transform: scale(.99);
+    align-items: center;
+    justify-content: space-around;
+    &:hover{
+        transform: scale(1);
+    }
+}
+
+.logo {
+    width: 10%;
+    font-size: 2rem;
+    cursor: pointer;
+    position: relative;
+    font-family: "Style Script", cursive;
+}
+.logo::after{
+    content: '';
+    width: 75px;
+    border: 1px solid red;
+    left: 0px;
+    position: absolute;
+    top: 43px;
+    background-color: red;
+}
+
+nav {
+    position: relative;
+
+    >.w900>button {
+        border: none;
+        outline: none;
+        border-radius: 100%;
+        margin: 0.4rem 2rem;
+        padding: 0.4rem;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.8);
+
+        &:hover {
+            background-color: #462200;
+            box-shadow: 1px 1px 5px 3px rgb(241, 158, 57);
+            animation: easyScale 0.3s ease-in forwards alternate;
+        }
+    }
+}
+
+nav .production {
+    width: 60%;
+
+    >ul {
+
+        >a {
+            color: #ffff;
+            font-weight: 700;
+            position: relative;
+            transition: all .3s ease-in;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                z-index: 2;
+                opacity: 0.5;
+                bottom: -8px;
+                border-width: 0px;
+                transition: all .3s ease-in;
+            }
+
+            &:hover {
+                color: #9dff00fd;
+            }
+
+            &:hover::before {
+                transition: all .3s ease-in;
+                opacity: 1;
+                border-width: 100px;
+                border: 1px solid red;
+            }
+        }
+
+        display: flex;
+        align-items: center;
+        position: relative;
+        justify-content: space-around;
+    }
+    ul::after{
+        content: '';
+        position: absolute;
+        width: 3px;
+        right: -30px;
+        background-color: rgba(41, 41, 41, 0.529);
+        height: 45px;
+    }
+    ul::before{
+        content: '';
+        position: absolute;
+        width: 3px;
+        left: -30px;
+        background-color: rgba(41, 41, 41, 0.529);
+        height: 45px;
+    }
+}
+
+nav .MenuModel {
+    background-color: rgba(0, 0, 0, 0.733);
+    backdrop-filter: blur(13px);
+    position: absolute;
+    padding: 2rem;
+    display: flex;
+    z-index: 1000;
+    text-align: center;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    top: 73px;
+    left: 35px;
+    transition: all 0.3s ease-in-out;
+    color: white;
+    margin: 0 1rem;
+    border-radius: 5px;
+    width: 50%;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+
+    >.Model_logo {
+        font-size: 3rem;
+        width: 100%;
+        cursor: pointer;
+        font-family: "Style Script", cursive;
+    }
+
+    >.Model_production {
+        width: 100%;
+
+        ul {
+            display: flex;
+            width: 80%;
+            margin: 0 auto;
+            gap: 50px;
+            background-color: #0000002a;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            flex-wrap: wrap;
+            transition: all 0.1s ease-in;
+            padding: 3rem;
+
+            >a {
+                color: #ffff;
+                border: 1px solid transparent;
+                font-weight: 700;
+                transition: all 0.3s ease-in;
+
+                &:hover {
+                    border-bottom: 1px solid red;
+                    color: #9dff00fd;
+                }
+            }
+
+        }
+    }
+
+    >.Model_action {
+        width: 100%;
+
+        >ul {
+            display: flex;
+            gap: 50px;
+            border-radius: 20px 30px 30px 20px / 30px 50px 5px 30px;
+            width: 100%;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            background-color: #0000002a;
+            padding: 1rem;
+
+            >a {
+                transition: all 0.4s ease;
+
+                &:hover {
+                    border-bottom: 1px solid red;
+                    transform: scale(1.29);
+                }
+            }
+        }
+    }
+}
+
+.menu.animateMe {
+    animation: scaleAnime 0.3s ease-in-out;
+}
+
+.MenuModel.none {
+    display: none;
+}
+
+.MenuModel.animateMe {
+    animation: scaleAnime 0.3s ease-in-out;
+}
+
+.changeBg{
+    pointer-events: none;
+    animation:changeBg 5s ease-in-out alternate;
+    color: rgb(19, 19, 19);
+    >.production ul a{
+        pointer-events: all;
+        color: rgb(19, 19, 19);
+    }
+}
+nav .action {
+    width: 40%;
+
+    >ul {
+        >a {
+            color: #ffff;
+            font-weight: 500;
+            border-width: 0%;
+            border:1px solid transparent;
+            transition: all 0.3s ease-in;      
+            &:hover {
+                color: #ff1ff1;
+                border-bottom:1px solid red;
+
+            }
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+.Btnnone {
+    display: none;
+}
+
+@keyframes easyScale {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+
+}
+@keyframes changeBg {
+    0%{
+        background: linear-gradient(to left, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
+    }
+    35%{
+        
+        background: linear-gradient(90deg, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
+    }
+    65%{
+        background: linear-gradient(270deg, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
+        
+    }
+    100%{
+        background: linear-gradient(to left, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
+
+    }
+}
+@keyframes scaleAnime {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+
+}
+
+@keyframes borderAnime {
+    from {
+        border-width: 0%;
+    }
+
+    to {
+        border-width: 100%;
+    }
+
+}
+
+.w900 {
+    display: none;
+}
+
+@media screen and (max-width:900px) {
+    .Btnblock {
+        display: block;
+    }
+
+    .w900 {
+        display: block;
+    }
+
+    .none {
+        display: none;
+    }
+}

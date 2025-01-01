@@ -1,0 +1,41 @@
+.loading {
+    width: 100vw;
+    height: 100vh;
+    background-color: whitesmoke;
+    display: grid;
+    place-items: center;
+    max-width: 100%;
+
+    >div {
+        width: 10vmax;
+        height: 10vmax;
+        border-bottom: 5px solid rgba(80, 80, 80);
+        border-radius: 50%;
+        border-image-repeat: repeat;
+        animation: loadingRotate 700ms linear infinite;
+    }
+}
+
+@keyframes loadingRotate {
+    0% {
+        transform: rotateZ(0deg) scale(1.01);
+        border-bottom: 5px solid rgb(255 255 85);
+    }
+    
+    25% {
+        transform:scale(1.25) rotateZ(90deg);
+        border-bottom: 5px solid rgb(117 251 76);
+    }
+    50%{
+        transform:scale(1.25) rotateZ(180deg);
+        border-bottom: 5px solid rgb(113 238 240);
+    }
+    75%{
+        transform:scale(1.01) rotateZ(270deg);
+        border-bottom: 5px solid rgba(80, 80, 80);
+    }
+    100%{
+        transform:scale(1) rotateZ(360deg);
+        border-bottom: 5px solid tomato;
+    }
+}

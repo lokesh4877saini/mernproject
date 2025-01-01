@@ -1,0 +1,30 @@
+.productsHeading{
+    text-align: center;
+    padding: 2vmax;
+    background-color: rgb(255, 250, 243);
+    box-shadow:inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+    width: 20%;
+    transition: all 1.3s ease;
+    border-radius: 20px;
+    &:hover{
+        box-shadow: none;
+    }
+    margin: 3vmax auto;
+}
+.products{
+    text-align: center;
+    border-radius: 20px;
+    width: 88%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin: 2vmax auto;
+    gap: 10px;
+    transition: all 1.3s ease;
+    &:hover{
+        border-radius: 40px;
+        box-shadow: none;
+    }
+    padding: 2vmax;
+    background-color: rgb(255, 250, 243);
+    box-shadow:inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+}

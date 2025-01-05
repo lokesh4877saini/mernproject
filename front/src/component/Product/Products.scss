@@ -28,3 +28,47 @@
     background-color: rgb(255, 250, 243);
     box-shadow:inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
 }
+
+.paginationBox{
+    display: flex;
+    justify-content: center;
+    margin: 6vmax;
+    .pagination{
+        display: flex;
+        justify-content: center;
+        padding: 0;
+    }
+    .page-item{
+        background-color: rgb(255, 250, 243);
+        list-style: none;
+        border: 1px solid rgba(0, 0, 0, 0.336);
+        padding: 1vmax 1.9vmax;
+        transition: all 0.3s;
+        cursor: pointer;
+        &:first-child{
+            border-radius: 20px 0 0 20px;
+        }
+        &:last-child{
+            border-radius: 0 20px 20px 0;
+        }
+        &:hover{
+            background-color: rgba(230,230,230);
+        }
+        .page-link{
+            text-decoration: none;
+            font-size: 1.2vmax;
+            color: rgba(80,80,80);
+            transition: all 0.3s;
+            
+        }
+        &:hover .page-link{
+            color: rgb(253, 173, 0);
+        }
+    }
+    .pageItemActive{
+        background-color: tomato;
+    }
+    .pageLinkActive{
+        // background-color: rgba(255, 255, 255, 0.336);
+    }
+}

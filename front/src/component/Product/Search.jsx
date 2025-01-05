@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import './search.scss';
-const Search = ({history}) => {
+import {useNavigate} from 'react-router-dom'
+const Search = () => {
+  const history = useNavigate();
     const [keyword, setKeyword] = useState("")
     const searchSubmitHandler = (e)=>{
         e.preventDefault();
         if(keyword.trim()){
-            history.push(`/products/${keyword}`)
+            history(`/products/${keyword}`)
         }else{
-            history.push('/products')
+            history('/products')
         }
     };
   return (

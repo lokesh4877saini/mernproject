@@ -27,6 +27,11 @@
     padding: 2vmax;
     background-color: rgb(255, 250, 243);
     box-shadow:inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+    >h1{
+        margin: 0 auto;
+        font-size: 1.2rem;
+        text-align: center;
+    }
 }
 
 .paginationBox{

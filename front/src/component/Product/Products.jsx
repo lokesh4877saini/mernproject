@@ -30,9 +30,23 @@ const Products = () => {
       <> 
       <h2 className="productsHeading">Products</h2>
       <div className="products">
-        {products && products.map((product,index)=>(
-          <ProductCard key={index} product={product} />
-        ))}
+       {
+      products === undefined ? (<></>
+        ):(
+          <>
+        {
+          Object.keys(products).length === 0 ? (
+            <h1>no products available contact to your admin for add some products </h1>
+          ):(<>
+             {
+          products && products.map((product,index)=>(
+            <ProductCard key={index} product={product} />
+          ))}
+            </>)
+        }
+        </>
+        )
+       }
       </div>
      {
       resultPerPage < productsCount &&  <div className="paginationBox">

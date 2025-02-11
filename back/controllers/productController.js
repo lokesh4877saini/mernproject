@@ -76,17 +76,50 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 exports.getAllproducts = catchAsyncErrors(async (req, res,next) => {
    // test => // return next(new ErrorHandler("This is my temp error",500))
    const resultPerPage = 8;
+   let filteredProductsCount = 0;
    const productCount = await Product.countDocuments();  // -- product count for admin dashboard
-   // console.log(productCount)
-   const apifeature = new ApiFeatures(Product.find(), req.query).search().filter().pagination(resultPerPage);
-   const products = await apifeature.query;
+   const apifeature = new ApiFeatures(Product.find(), req.query)
+   .search()
+   .filter()
+   let products =  await apifeature.query;
+   console.log(products)
+   filteredProductsCount = products.length;
+   apifeature.pagination(resultPerPage);
    res.status(200).json({
       success: true,
       products,
       productCount,
-      resultPerPage
+      resultPerPage,
+      filteredProductsCount
    })
 })
+
+// exports.getAllproducts = catchAsyncErrors(async (req, res, next) => {
+//    const resultPerPage = 8;
+//    const productCount = await Product.countDocuments(); // Total product count
+
+//    // Initialize ApiFeatures with the base query
+//    const apifeature = new ApiFeatures(Product.find(), req.query)
+//        .search()
+//        .filter()
+//        .pagination(resultPerPage)
+//        .buildQuery(); // Apply filters before executing the query
+
+//    // Pagination is applied after building the query
+//    // apifeature.pagination(resultPerPage);
+
+//    // Execute the query only once
+//    const products = await apifeature.query;
+//    filteredProductsCount = products.length;
+//    res.status(200).json({
+//        success: true,
+//        products,
+//        productCount,
+//        resultPerPage,
+//        filteredProductsCount
+//    });
+// });
+
 
 // Get Product Details
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {

@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ClearErros, getProductDetails } from '../../store/actions/productActions';
 import ReviewCard from './ReviewCard';
 import Loader from '../layout/loader/Loader';
+import MetaData from '../layout/MetaData'
 import {useAlert} from 'react-alert'
 const ProductDetails = () => {
     const { id } = useParams();
@@ -33,6 +34,7 @@ const ProductDetails = () => {
         <Fragment>
             {
                 loading ? (<Loader />) : (<>
+                <MetaData title={`${product.name}`} />
                     <div className="ProductDetails">
                         <div>
                             <div className="img-div">

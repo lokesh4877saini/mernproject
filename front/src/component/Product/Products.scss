@@ -1,17 +1,23 @@
-.productsHeading{
+.productsHeading {
     text-align: center;
     padding: 2vmax;
     background-color: rgb(255, 250, 243);
-    box-shadow:inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
-    width: 20%;
+    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+    width: 70%;
     transition: all 1.3s ease;
     border-radius: 20px;
-    &:hover{
+
+    &:hover {
         box-shadow: none;
     }
+
     margin: 3vmax auto;
 }
-.products{
+main {
+    
+    display: flex;
+    flex-direction: row-reverse;
+    .products{
     text-align: center;
     border-radius: 20px;
     width: 85%;
@@ -19,56 +25,161 @@
     grid-template-columns: auto auto auto;
     margin: 2vmax auto;
     gap: 10px;
-    transition: all 1.3s ease;
-    &:hover{
-        border-radius: 40px;
-        box-shadow: none;
+        transition: all 1.3s ease;
+        padding: 2vmax;
+        background-color: rgb(255, 250, 243);
+        box-shadow:inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+        >h1 {
+            margin: 0 auto;
+            font-size: 1.2rem;
+            text-align: center;
+        }
     }
-    padding: 2vmax;
+    >aside{
     background-color: rgb(255, 250, 243);
-    box-shadow:inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+    padding: 1vmax;
+    width: 30%;
+    margin:  2vmax;
+    transition: all 1.3s ease;
+    border-radius: 20px;
+        width: 16vmax;
+        .filterBox {
+            position: sticky;
+            top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap:15px;
+            margin: 0 1rem;
+            >.priceBox{
+               p{
+                font-weight: 550;
+                font-size: 1.8rem;
+                font-family: "Style Script", cursive;
+                margin-bottom: 0.3rem;
+               } 
+            }
+            >.categoryBox{
+                p{
+                    font-size: 1.8rem;
+                    font-weight: 550;
+                    font-family: "Style Script", cursive;
+                    margin-bottom: 0.3rem;
+                   } 
+                >ul{
+                    list-style: none;
+                    text-align: center;
+                    >li{
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        margin-bottom: 0.3rem;
+                        padding: 0.4rem;
+                        transform: scale(.9);
+                        &:hover{
+                            background-color: rgba(0, 0, 0, 0.336);
+                            border-radius: 20px;
+                            transform: scale(1);
+                        }
+                    }
+                }
+            }
+            .ratings{
+                >fieldset{
+                    padding: 0.8rem;
+                    >legend{
+                        font-family: "Style Script", cursive;
+                        padding: 0.2rem;
+                        font-weight: 550;
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+        }
+    }
 }
 
-.paginationBox{
+.paginationBox {
     display: flex;
     justify-content: center;
     margin: 6vmax;
-    .pagination{
+
+    .pagination {
         display: flex;
         justify-content: center;
         padding: 0;
     }
-    .page-item{
+
+    .page-item {
         background-color: rgb(255, 250, 243);
         list-style: none;
         border: 1px solid rgba(0, 0, 0, 0.336);
         padding: 1vmax 1.9vmax;
         transition: all 0.3s;
         cursor: pointer;
-        &:first-child{
+
+        &:first-child {
             border-radius: 20px 0 0 20px;
         }
-        &:last-child{
+
+        &:last-child {
             border-radius: 0 20px 20px 0;
         }
-        &:hover{
-            background-color: rgba(230,230,230);
+
+        &:hover {
+            background-color: rgba(230, 230, 230);
         }
-        .page-link{
+
+        .page-link {
             text-decoration: none;
             font-size: 1.2vmax;
-            color: rgba(80,80,80);
+            color: rgba(80, 80, 80);
             transition: all 0.3s;
-            
+
         }
-        &:hover .page-link{
+
+        &:hover .page-link {
             color: rgb(253, 173, 0);
         }
     }
-    .pageItemActive{
+
+    .pageItemActive {
         background-color: tomato;
     }
-    .pageLinkActive{
+
+    .pageLinkActive {
         // background-color: rgba(255, 255, 255, 0.336);
+    }
+}
+@media screen and (max-width:980px) {
+    main{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    >aside{
+        width: 70%;
+        padding: 2vmax;
+        .filterBox{
+            .priceBox{
+                p{
+                    font-size: 1.3rem;
+                    margin: 1rem 0.3rem;
+                }
+            }
+            .categoryBox{
+                p{
+                    font-size: 1.3rem;
+                    margin: 1rem 0.3rem;
+                }
+            }
+            >.ratings{
+                >fieldset{
+                    >legend{
+                        font-size: 1.3rem;
+                    margin: 1rem 0.3rem;
+                    }
+                }
+            }
+        }
+    }
     }
 }

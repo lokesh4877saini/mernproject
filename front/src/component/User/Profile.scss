@@ -1,0 +1,81 @@
+.profileContainer {
+    display: flex;
+    justify-content: center;
+    margin: 5vmax auto;
+    max-width: 88%;
+    > div:first-child {
+        padding: 2vmax;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        border-right: 4px solid rgba($color: #454545, $alpha: 0.7);
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        h1 {
+            font-family: "Style Script", cursive;
+            letter-spacing: 2px;
+        }
+        img {
+            width: 250px;
+            height: 250px;
+            border-radius: 100%;
+            object-fit: cover;
+        }
+        a {
+            color: tomato;
+            cursor: pointer;
+            padding: 0.5vmax 2vmax;
+            border-radius: 20px;
+            font-weight: 800;
+            background-color: #454545;
+        }
+    }
+    > div:last-child {
+        padding: 2vmax;
+        text-align: center;
+        h1 > {
+            font-family: "Style Script", cursive;
+        }
+        display: grid;
+        gap: 50px;
+        width: 50%;
+        > div {
+            display: flex;
+            padding: 2vmax;
+            width: 95%;
+            align-items: flex-start;
+            gap: 50px;
+            > h4 {
+                text-align: left;
+                width: 50%;
+            }
+            p {
+                width: 50%;
+                text-align: left;
+            }
+        }
+        .order_updatepass {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            gap: 30px;
+            flex-direction: column;
+            > button {
+                width: 50%;
+                border: none;
+                outline: none;
+                padding: 0.5vmax 0.5vmax;
+                background-color: #454545;
+                border-radius: 20px;
+                cursor: pointer;
+                a {
+                    cursor: pointer;
+                    color: tomato;
+                    border-radius: 20px;
+                    font-weight: 800;
+                }
+            }
+        }
+    }
+}

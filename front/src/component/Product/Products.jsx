@@ -14,13 +14,19 @@ const Products = () => {
   const setCurrentPageNo = (e)=>{
     setCurrentPage(e);
   }
+
+  // Separate useEffect for handling errors
   useEffect(() => {
-    if(error){
-      alert.error(error)
-      useDispatch(ClearErros())
+    if (error) {
+      alert(error);
+      dispatch(ClearErros());
     }
-    dispatch(getProduct(keyword,currentPage));
-  }, [dispatch,keyword,currentPage])
+  }, [error, dispatch]);
+
+  // Main useEffect for fetching products
+  useEffect(() => {
+    dispatch(getProduct(keyword, currentPage));
+  }, [dispatch, keyword, currentPage]);
   return (
     <>
     {

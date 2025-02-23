@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Style+Script&display=swap");
 
 nav {
     padding: 0.5rem;
     background-color: #000000af;
-    // background: linear-gradient(to left, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
-    box-shadow: 1px 1px 15px 5px rgba(1,1,1,0.2);
+    z-index: 2;
+    box-shadow: 1px 1px 15px 5px rgba(1, 1, 1, 0.2);
 }
 
 .menu {
     display: flex;
     color: #00ff15;
-    box-shadow:inset 1px 1px 5px 1px rgba(0, 0, 0, 0.747);
+    box-shadow: inset 1px 1px 5px 1px rgba(0, 0, 0, 0.747);
     padding: 1rem;
     max-width: 1250px;
     background-color: #0000002a;
@@ -21,10 +21,10 @@ nav {
     color: #ffff;
     transition: all 0.3s ease;
     gap: 70px;
-    transform: scale(.99);
+    transform: scale(0.99);
     align-items: center;
     justify-content: space-around;
-    &:hover{
+    &:hover {
         transform: scale(1);
     }
 }
@@ -36,8 +36,8 @@ nav {
     position: relative;
     font-family: "Style Script", cursive;
 }
-.logo::after{
-    content: '';
+.logo::after {
+    content: "";
     width: 75px;
     border: 1px solid red;
     left: 0px;
@@ -48,8 +48,7 @@ nav {
 
 nav {
     position: relative;
-
-    >.w900>button {
+    > .w900 > button {
         border: none;
         outline: none;
         border-radius: 100%;
@@ -70,23 +69,22 @@ nav {
 nav .production {
     width: 60%;
 
-    >ul {
-
-        >a {
+    > ul {
+        > a {
             color: #ffff;
             font-weight: 700;
             position: relative;
-            transition: all .3s ease-in;
+            transition: all 0.3s ease-in;
 
             &::before {
-                content: '';
+                content: "";
                 position: absolute;
                 width: 100%;
                 z-index: 2;
                 opacity: 0.5;
                 bottom: -8px;
                 border-width: 0px;
-                transition: all .3s ease-in;
+                transition: all 0.3s ease-in;
             }
 
             &:hover {
@@ -94,7 +92,7 @@ nav .production {
             }
 
             &:hover::before {
-                transition: all .3s ease-in;
+                transition: all 0.3s ease-in;
                 opacity: 1;
                 border-width: 100px;
                 border: 1px solid red;
@@ -106,16 +104,16 @@ nav .production {
         position: relative;
         justify-content: space-around;
     }
-    ul::after{
-        content: '';
+    ul::after {
+        content: "";
         position: absolute;
         width: 3px;
         right: -30px;
         background-color: rgba(41, 41, 41, 0.529);
         height: 45px;
     }
-    ul::before{
-        content: '';
+    ul::before {
+        content: "";
         position: absolute;
         width: 3px;
         left: -30px;
@@ -147,29 +145,27 @@ nav .MenuModel {
         transform: scale(1.01);
     }
 
-    >.Model_logo {
+    > .Model_logo {
         font-size: 3rem;
         width: 100%;
         cursor: pointer;
         font-family: "Style Script", cursive;
     }
 
-    >.Model_production {
+    > .Model_production {
         width: 100%;
 
         ul {
             display: flex;
-            width: 80%;
-            margin: 0 auto;
+            justify-content: center;
             gap: 50px;
-            background-color: #0000002a;
             border-radius: 10px;
             font-size: 1.2rem;
             flex-wrap: wrap;
             transition: all 0.1s ease-in;
             padding: 3rem;
 
-            >a {
+            > a {
                 color: #ffff;
                 border: 1px solid transparent;
                 font-weight: 700;
@@ -180,14 +176,13 @@ nav .MenuModel {
                     color: #9dff00fd;
                 }
             }
-
         }
     }
 
-    >.Model_action {
+    > .Model_action {
         width: 100%;
 
-        >ul {
+        > ul {
             display: flex;
             gap: 50px;
             border-radius: 20px 30px 30px 20px / 30px 50px 5px 30px;
@@ -197,7 +192,7 @@ nav .MenuModel {
             background-color: #0000002a;
             padding: 1rem;
 
-            >a {
+            > a {
                 transition: all 0.4s ease;
 
                 &:hover {
@@ -221,11 +216,11 @@ nav .MenuModel {
     animation: scaleAnime 0.3s ease-in-out;
 }
 
-.changeBg{
+.changeBg {
     pointer-events: none;
-    animation:changeBg 5s ease-in-out alternate;
+    animation: changeBg 5s ease-in-out alternate;
     color: rgb(19, 19, 19);
-    >.production ul a{
+    > .production ul a {
         pointer-events: all;
         color: rgb(19, 19, 19);
     }
@@ -233,17 +228,16 @@ nav .MenuModel {
 nav .action {
     width: 40%;
 
-    >ul {
-        >a {
+    > ul {
+        > a {
             color: #ffff;
             font-weight: 500;
             border-width: 0%;
-            border:1px solid transparent;
-            transition: all 0.3s ease-in;      
+            border: 1px solid transparent;
+            transition: all 0.3s ease-in;
             &:hover {
                 color: #ff1ff1;
-                border-bottom:1px solid red;
-
+                border-bottom: 1px solid red;
             }
         }
 
@@ -265,23 +259,19 @@ nav .action {
     to {
         transform: scale(1.1);
     }
-
 }
 @keyframes changeBg {
-    0%{
+    0% {
         background: linear-gradient(to left, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
     }
-    35%{
-        
+    35% {
         background: linear-gradient(90deg, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
     }
-    65%{
+    65% {
         background: linear-gradient(270deg, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
-        
     }
-    100%{
+    100% {
         background: linear-gradient(to left, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
-
     }
 }
 @keyframes scaleAnime {
@@ -292,7 +282,6 @@ nav .action {
     to {
         transform: scale(1);
     }
-
 }
 
 @keyframes borderAnime {
@@ -303,18 +292,16 @@ nav .action {
     to {
         border-width: 100%;
     }
-
 }
 
 .w900 {
     display: none;
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width: 900px) {
     .Btnblock {
         display: block;
     }
-
     .w900 {
         display: block;
     }

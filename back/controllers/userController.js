@@ -1,18 +1,25 @@
 const User = require('../models/userModel');
 const ErrorHandler = require('../utils/errorHandler');
+require('dotenv').config({path:"back/config/config.env"})
 const catchAsyncErrors = require('../middleware/catchAsyncError');
 const sendToken = require('../utils/jwtToken');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
+const cloudinary = require('cloudinary');
 // Register a new User
-exports.registerUser = catchAsyncErrors(
-    async (req, res, next) => {
+exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+        const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar,{
+            folder:"UsersAvatar",
+            width:150,
+            crop:"scale",
+            api_secret:process.env.CLOUDINARY_API_SECRET,
+        });
         const { name, email, password } = req.body;
         const user = await User.create({
             name, email, password,
             avatar: {
-                public_id: "This is a simple id",
-                url: "ProfileURl"
+                public_id: myCloud.public_id,
+                url: myCloud.secure_url,
             }
         });
         // const token = user.generateJWT();
@@ -26,13 +33,11 @@ exports.registerUser = catchAsyncErrors(
 exports.loginUser = catchAsyncErrors(
     async (req, res, next) => {
         const { email, password } = req.body;
-        console.log(email, password);
         //ckecking )if user has given password and email both
         if (!email || !password) {
             return next(new ErrorHandler("Please Enter Email & Password", 400));
         }
         const user = await User.findOne({ email }).select("+password")
-        // console.log(user.password);
         if (!user) {
             return next(new ErrorHandler("Invalid Email & Password", 401));
         }
@@ -40,11 +45,6 @@ exports.loginUser = catchAsyncErrors(
         if (!isPasswordMatch) {
             return next(new ErrorHandler("Invalid Email & Password", 401));
         }
-        // const token = user.generateJWT();
-        // res.status(200).json({
-        //     success: true,
-        //     token
-        // })
         sendToken(user, 200, res);
     }
 )
@@ -62,14 +62,12 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
 )
 // forgot password
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
-    // console.log(req.body.email)
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
         return next(new ErrorHandler("User not found", 404));
     }
     // Get ResetPassword token
     const resetToken = await user.getResetPasswordToken();
-    // console.log(resetToken);
     await user.save({ validateBeforeSave: false });
     const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
     const message = `Your Password rest token is :- \n\n ${resetPasswordUrl} \n\nif you have not requested this email then,Please ignore it`;
@@ -98,7 +96,6 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findOne({
         resetPasswordToken, resetPasswordExpire: { $gt: Date.now() }
     })
-    console.log("reset User=> ", user)
     if (!user) {
         return next(new ErrorHandler("Reset Password Token is invalid or has been expired", 400));
     }

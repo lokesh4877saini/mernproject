@@ -31,17 +31,15 @@ const Products = () => {
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   }
-  const priceHandler = (e, newPrice) => {
-    setPrice(newPrice);
-  }
   useEffect(() => {
     if (error) {
-      alert.error(error)
-      useDispatch(ClearErros())
+      alert(error);
+      dispatch(ClearErros());
     }
-    dispatch(getProduct(keyword, currentPage, price,category,ratings));
-  }, [dispatch, keyword, currentPage, price,category,ratings,alert,error])
-  let count = filteredProductsCount;
+  }, [error, dispatch]);
+  useEffect(() => {
+    dispatch(getProduct(keyword, currentPage));
+  }, [dispatch, keyword, currentPage]);
   return (
     <>
       {

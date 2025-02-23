@@ -2,15 +2,19 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 const errorMiddleware = require('./middleware/error')
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors())
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(fileUpload());
 
 
 // Route import 
 // for product
-const product = require("./routes/productRoute")
+const product = require("./routes/productRoute") 
 app.use("/api/v1",product);
 
 

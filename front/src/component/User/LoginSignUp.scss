@@ -1,0 +1,240 @@
+.LSContainer {
+    width: 88%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2vmax auto;
+    gap: 10px;
+    padding: 2vmax;
+
+    .LSBox {
+        border-radius: 20px;
+        transition: all 1.3s ease;
+        padding: 3vmax;
+        overflow: hidden;
+        background-color: rgb(255, 250, 243);
+        box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+
+        > div {
+            margin: 2vmax 0;
+            .login_singUp_toggle {
+                justify-content: center;
+                display: flex;
+                align-items: center;
+
+                > p {
+                    color: tomato;
+                    cursor: pointer;
+                    padding: 0.8vmax 4vmax;
+                    text-align: center;
+                    border-right: none;
+                    // border-bottom:1px solid rgb(255, 250, 243);
+                    transition: all 0.4s ease;
+
+                    &:last-child,
+                    &:first-child {
+                        width: 50%;
+                    }
+
+                    &:hover {
+                        color: #232323;
+                        background-color: rgba(182, 63, 42, 0.108);
+                    }
+
+                    &:active {
+                        background-color: rgba(182, 63, 42, 0.108);
+                    }
+                }
+            }
+            button {
+                background-color: tomato;
+                height: 2px;
+                width: 50%;
+                border: none;
+                transition: all 0.4s;
+            }
+        }
+
+        > .loginForm {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            gap:30px;
+            background-color: rgb(255, 250, 243);
+            transition: all 0.2s ease;
+            .loginEmail,
+            .loginPassword {
+                display: flex;
+                gap: 30px;
+                align-items: center;
+
+                > svg {
+                    color: tomato;
+                    font-size: 1.8vmax;
+                }
+
+                > input {
+                    border-bottom: 1px solid tomato;
+                    outline: none;
+                    border-top: none;
+                    border-left: none;
+                    width: 100%;
+                    background-color: rgb(255, 250, 243);
+                    border-right: none;
+                    padding: 0.5vmax 1vmax;
+                    transition: all 0.4s ease;
+
+                    &::placeholder {
+                        color: tomato;
+                    }
+
+                    &:focus {
+                        color: #232323;
+                        background-color: rgba(182, 63, 42, 0.108);
+                    }
+                }
+            }
+
+            a {
+                color: gray;
+                text-align: right;
+                font-size: 0.9vmax;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    color: black;
+                }
+            }
+
+            input {
+                &[type="submit"] {
+                    border: none;
+                    outline: none;
+                    width: 100%;
+                    background-color: tomato;
+                    box-shadow: 0 0 5px rgba(255, 255, 255, 0.822);
+                    color: white;
+                    padding: 1.2vmax 2.2vmax;
+                    cursor: pointer;
+                    transition: all 0.4s ease;
+
+                    &:hover {
+                        background-color: rgb(182, 63, 42);
+                    }
+                }
+            }
+        }
+        .singUpForm {
+            display: flex;
+            width: 100%;
+            transition: all 0.2s ease;
+            flex-direction: column;
+            gap: 30px;
+            background-color: rgb(255, 250, 243);
+            .signUpName,
+            .signUpEmail,
+            .signUpPassword {
+                display: flex;
+                gap: 40px;
+                align-items: center;
+                > svg {
+                    color: tomato;
+                    font-size: 1.8vmax;
+                }
+                > input {
+                    border-bottom: 1px solid tomato;
+                    outline: none;
+                    border-top: none;
+                    border-left: none;
+                    width: 100%;
+                    background-color: rgb(255, 250, 243);
+                    border-right: none;
+                    padding: 0.5vmax 1vmax;
+                    transition: all 0.4s ease;
+
+                    &::placeholder {
+                        color: tomato;
+                    }
+
+                    &:focus {
+                        color: #232323;
+                        background-color: rgba(182, 63, 42, 0.108);
+                    }
+                }
+            }
+            input {
+                &[type="submit"] {
+                    border: none;
+                    outline: none;
+                    width: 100%;
+                    background-color: tomato;
+                    box-shadow: 0 0 5px rgba(255, 255, 255, 0.822);
+                    color: white;
+                    padding: 1.2vmax 2.2vmax;
+                    cursor: pointer;
+                    transition: all 0.4s ease;
+
+                    &:hover {
+                        background-color: rgb(182, 63, 42);
+                    }
+                }
+            }
+        }
+    }
+}
+.singUpForm{
+    transform: translateY(-50%) translateX(-120%);
+}
+.loginForm{
+    transform: translateY(59px);
+}
+#signUpImage {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    svg {
+        color: tomato;
+    }
+    img {
+        width: 3vmax;
+        border: 100%;
+    }
+    input[type="file"] {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        &::-webkit-file-upload-button {
+            cursor: pointer;
+            width: 100%;
+            z-index: 2;
+            height: 5vh;
+            text-align: center;
+            border: none;
+            margin: 0;
+            transition: all 0.5s ease;
+            padding: 1vmax 1.5vmax 1.5vmax 1vmax;
+            color: tomato;
+            background-color: rgb(255, 250, 243);
+            &:hover {
+                color: #232323;
+                background-color: rgba(182, 63, 42, 0.108);
+            }
+        }
+    }
+}
+.shiftToLeft {
+    transform: translateX(-120%) translateY(57px);
+}
+
+.shiftToNeutral {
+    transform: translateX(0%);
+}
+
+.shiftToNeutralForm {
+    transform: translateX(0%) translateY(-51%) ;
+}
+
+.shiftToRight {
+    transform: translateX(100%);
+}

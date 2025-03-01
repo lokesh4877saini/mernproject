@@ -33,13 +33,15 @@ const Products = () => {
   }
   useEffect(() => {
     if (error) {
-      alert(error);
+      alert.error(error)
       dispatch(ClearErros());
     }
-  }, [error, dispatch]);
-  useEffect(() => {
-    dispatch(getProduct(keyword, currentPage));
-  }, [dispatch, keyword, currentPage]);
+    dispatch(getProduct(keyword, currentPage, price,category,ratings));
+  }, [dispatch, keyword, currentPage, price,category,ratings,alert,error])
+  const priceHandler = (e, newPrice) => {
+    setPrice(newPrice);
+  }
+  let count = filteredProductsCount;
   return (
     <>
       {

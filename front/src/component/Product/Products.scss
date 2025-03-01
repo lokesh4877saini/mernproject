@@ -18,13 +18,14 @@ main {
     display: flex;
     flex-direction: row-reverse;
     .products{
-    text-align: center;
-    border-radius: 20px;
-    width: 85%;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    margin: 2vmax auto;
-    gap: 10px;
+        text-align: center;
+        border-radius: 20px;
+        width: 65%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 2vmax auto;
+        gap: 5px;
         transition: all 1.3s ease;
         padding: 2vmax;
         background-color: rgb(255, 250, 243);
@@ -144,10 +145,6 @@ main {
 
     .pageItemActive {
         background-color: tomato;
-    }
-
-    .pageLinkActive {
-        // background-color: rgba(255, 255, 255, 0.336);
     }
 }
 @media screen and (max-width:980px) {

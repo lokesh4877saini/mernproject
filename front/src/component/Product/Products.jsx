@@ -36,7 +36,7 @@ const Products = () => {
   }
   useEffect(() => {
     if (error) {
-      alert(error);
+      alert.error(error)
       dispatch(ClearErros());
     }
   }, [error, dispatch]);

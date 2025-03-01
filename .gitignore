@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
+# Ignore environment files
+back/config/config.env
+front/.env

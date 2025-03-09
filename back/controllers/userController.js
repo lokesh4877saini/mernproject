@@ -22,11 +22,6 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
                 url: myCloud.secure_url,
             }
         });
-        // const token = user.generateJWT();
-        // res.status(201).json({
-        //     success: true,
-        //     token
-        // })
         sendToken(user, 201, res)
     }
 )
@@ -116,7 +111,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 // Get user Details
 
 exports.getUserDetails = catchAsyncErrors(
-    async (req, res, next) => {
+    async (req, res, next) => {  
         const user = await User.findById(req.user.id);
         res.status(200).json({
             success: true,
@@ -147,8 +142,21 @@ exports.updateProfile = catchAsyncErrors(
         const newUserData = {
             name:req.body.name,
             email:req.body.email,
+        }      
+        if (req.body.avatar !== "") {
+            const user = await User.findById(req.user.id);
+            await cloudinary.v2.uploader.destroy(user.avatar.public_id);
+            const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+                folder: "UsersAvatar",
+                width: 150,
+                crop: "scale",
+                api_secret:process.env.CLOUDINARY_API_SECRET,
+            });
+            newUserData.avatar = {
+                public_id: myCloud.public_id,
+                url: myCloud.secure_url,
+            };
         }
-        // we will add cloudinary later
         const user  = await User.findByIdAndUpdate(req.user.id,newUserData,{
             new:true,
             runValidators:true,

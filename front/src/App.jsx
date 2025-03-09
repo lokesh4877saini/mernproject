@@ -12,17 +12,19 @@ import {useSelector} from 'react-redux'
 import Account from './component/User/Account';
 import Contact from './component/Home/Contact';
 import About from './component/Home/About';
-import UserOptions from './component/User/UserOptions.jsx';
+import UserOptions from './component/User/UserOptions';
 import store from './store/store';
+import EditProfile from './component/User/EditProfile';
 import Cart from './component/Product/Cart';
 import { loadUser } from './store/actions/userActions';
+import UpdatePassword from './component/User/UpdatePassword'
 function App() {
   React.useEffect(()=>{
     store.dispatch(loadUser());
   },[]);
   const {isAuthenticated,user} = useSelector(state => state.user);
   return (
-    <Router>
+    <Router basename="/mernproject/">
       <Header />
         {isAuthenticated && <UserOptions user={user}/>}
       <Routes>
@@ -36,6 +38,8 @@ function App() {
         <Route path='/about' Component={About} />
         <Route path='/contact' Component={Contact} />
         <Route path='/orders' Component={Cart} />
+        <Route path='/me/update'  element = {isAuthenticated ? <EditProfile/>:<Navigate to="/login"/>}/>
+        <Route path="/password/update" element = {isAuthenticated ? <UpdatePassword/>:<Navigate to="/login"/>} />
       </Routes>
       <Footer/>
     </Router>

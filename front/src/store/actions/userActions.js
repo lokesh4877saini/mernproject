@@ -10,11 +10,17 @@ LOAD_USER_SUCCESS,
 REGISTER_SUCCESS,
 LOGOUT_USER_SUCCESS,
 LOGOUT_USER_FAIL,
-REGISTER_FAIL,  
-CLEAR_ERRORS
+REGISTER_FAIL,
+UPDATE_USER_FAIL,
+UPDATE_USER_REQUEST,
+UPDATE_USER_SUCCESS,  
+CLEAR_ERRORS,
+USER_PASSWORD_UPDATE_FAIL,
+USER_PASSWORD_UPDATE_REQUEST,
+USER_PASSWORD_UPDATE_SUCCESS
 } from "../constants/userConstants";
 import axios from 'axios';
-const preUrl  = "http://localhost:4000"
+const preUrl = import.meta.env.VITE_SERVER_URL;
 
 // login
 export const login = (email,password) => async(dispatch) =>{
@@ -24,9 +30,8 @@ export const login = (email,password) => async(dispatch) =>{
         const {data} = await axios.post(
             `${preUrl}/api/v1/login`,
             {email,password},
-            config
+            {...config,withCredentials:true}
         );
-        localStorage.setItem("token",data.token)
          dispatch({type:LOGIN_SUCCESS,payload:data.user});
      } catch (error) {
         dispatch({type:LOGIN_FAIL,payload:error.response.data.message})
@@ -48,7 +53,9 @@ export const register = (userData) => async(dispatch) =>{
 export const loadUser = () => async (dispatch)=>{
     try {
         dispatch({type:LOAD_USER_REQUEST});
-        const {data} = await axios.get( `${preUrl}/api/v1/me`);
+        const {data} = await axios.get( `${preUrl}/api/v1/me`,{
+            withCredentials:true,
+        });
          dispatch({type:LOAD_USER_SUCCESS,payload:data.user});
      } catch (error) {
         dispatch({type:LOAD_USER_FAIL,payload:error.response.data.message})
@@ -63,26 +70,45 @@ export const logout = () => async (dispatch)=>{
         dispatch({type:LOGOUT_USER_FAIL,payload:error.message})
      }
 }
-// export const loadUser = () => async (dispatch) => {
-//     try {
-//       dispatch({ type: LOAD_USER_REQUEST });
-  
-//       // ✅ Get token from localStorage
-//       const token = localStorage.getItem("token");
-  
-//       // ✅ Send token in headers if available
-//       const config = token
-//         ? { headers: { Authorization: `Bearer ${token}` } }
-//         : {};
-  
-//       const { data } = await axios.get(`${preUrl}/api/v1/me`, config);
-  
-//       dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
-//     console.log(data);
-//     } catch (error) {
-//       dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
-//     }
-//   };
+// ProfileUpdate
+export const updateProfile = (userData) => async(dispatch) =>{
+    try {
+       dispatch({type:UPDATE_USER_REQUEST});
+       const config = {headers:{"Content-Type":"multipart/form-data"}};
+       const {data}= await axios.put(`${preUrl}/api/v1/me/update`,
+       userData,
+       {...config,withCredentials:true})
+       dispatch({type:UPDATE_USER_SUCCESS,payload:data.success });
+       if(data){
+        setTimeout(() => {
+            dispatch(loadUser());
+        }, 3000);
+       }
+    }
+    catch(error){
+        dispatch({type:UPDATE_USER_FAIL,payload:error.response.data.message})
+    }
+}
+
+// Update Password
+export const updatePassword = (userData) => async(dispatch)=>{
+    try{
+        console.log("password",userData.get("oldPassword"))
+        dispatch({type:USER_PASSWORD_UPDATE_REQUEST});
+        const config = {headers:{"Content-Type":"application/json"}};
+        const {data}= await axios.put(`${preUrl}/api/v1/password/update`,
+        userData,
+        {...config,withCredentials:true})
+        dispatch({type:USER_PASSWORD_UPDATE_SUCCESS,payload:data.success });
+        if(data){
+         setTimeout(() => {
+             dispatch(loadUser());
+         }, 3000);
+        }
+    }catch(e){
+        dispatch({type:USER_PASSWORD_UPDATE_FAIL,payload:e.response.data.message})
+    }
+}
 // Clearing Errors
 export const ClearErros = () => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });

@@ -17,7 +17,10 @@ UPDATE_USER_SUCCESS,
 CLEAR_ERRORS,
 USER_PASSWORD_UPDATE_FAIL,
 USER_PASSWORD_UPDATE_REQUEST,
-USER_PASSWORD_UPDATE_SUCCESS
+USER_PASSWORD_UPDATE_SUCCESS,
+FORGOT_PASSWORD_REQUEST,
+FORGOT_PASSWORD_SUCCESS,
+FORGOT_PASSWORD_FAIL
 } from "../constants/userConstants";
 import axios from 'axios';
 const preUrl = import.meta.env.VITE_SERVER_URL;
@@ -93,7 +96,6 @@ export const updateProfile = (userData) => async(dispatch) =>{
 // Update Password
 export const updatePassword = (userData) => async(dispatch)=>{
     try{
-        console.log("password",userData.get("oldPassword"))
         dispatch({type:USER_PASSWORD_UPDATE_REQUEST});
         const config = {headers:{"Content-Type":"application/json"}};
         const {data}= await axios.put(`${preUrl}/api/v1/password/update`,
@@ -107,6 +109,20 @@ export const updatePassword = (userData) => async(dispatch)=>{
         }
     }catch(e){
         dispatch({type:USER_PASSWORD_UPDATE_FAIL,payload:e.response.data.message})
+    }
+}
+
+// forgot Password
+export const forgotPassword = (email) => async(dispatch)=>{
+    try{
+        dispatch({type:FORGOT_PASSWORD_REQUEST});
+        const config = {headers:{"Content-Type":"application/json"}};
+        const {data}= await axios.post(`${preUrl}/api/v1/password/forgot`,
+        email,
+        {...config,withCredentials:true})
+        dispatch({type:FORGOT_PASSWORD_SUCCESS,payload:data.message });
+    }catch(e){
+        dispatch({type:FORGOT_PASSWORD_FAIL,payload:e.response.data.message})
     }
 }
 // Clearing Errors

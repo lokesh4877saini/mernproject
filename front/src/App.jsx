@@ -17,7 +17,9 @@ import store from './store/store';
 import EditProfile from './component/User/EditProfile';
 import Cart from './component/Product/Cart';
 import { loadUser } from './store/actions/userActions';
-import UpdatePassword from './component/User/UpdatePassword'
+import UpdatePassword from './component/User/UpdatePassword';
+import ForgotPassword from './component/User/ForgotPassword';
+import ResetPassword from './component/User/ResetPassword';
 function App() {
   React.useEffect(()=>{
     store.dispatch(loadUser());
@@ -40,6 +42,8 @@ function App() {
         <Route path='/orders' Component={Cart} />
         <Route path='/me/update'  element = {isAuthenticated ? <EditProfile/>:<Navigate to="/login"/>}/>
         <Route path="/password/update" element = {isAuthenticated ? <UpdatePassword/>:<Navigate to="/login"/>} />
+        <Route path="/password/forgot" element = {<ForgotPassword/>} />
+        <Route path="/password/reset/:token" element = {<ResetPassword/>} />
       </Routes>
       <Footer/>
     </Router>

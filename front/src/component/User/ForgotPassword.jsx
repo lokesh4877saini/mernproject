@@ -1,7 +1,7 @@
-import { Lock, PasswordTwoTone, LocalDrink, LockClockTwoTone, LockOutlined, MarkEmailReadSharp } from '@mui/icons-material'
+import {MarkEmailReadSharp } from '@mui/icons-material'
 import Loader from '../layout/loader/Loader';
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { useAlert } from 'react-alert';
 // import Loader from '../layout/loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ const ForgotPassword = () => {
     const history = useNavigate();
     const alert = useAlert();
     const  [email,setEmail] = useState("");
-    const {message,error,loading} = useSelector((state)=>state.forgotPassword)
+    const {message,error,loading} = useSelector((state)=>state.forgotPassword);
     const dispatch = useDispatch();
     useEffect(() => {
         if(message){

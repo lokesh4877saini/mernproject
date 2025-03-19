@@ -21,7 +21,6 @@ const UpdatePassword = () => {
     const { OldPassword, NewPassword, ConfirmPassword } = user;
     const dispatch = useDispatch();
     const registerDataChange = (e) => {
-        console.log(e.target.name, e.target.value)
         setUser({ ...user, [e.target.name]: e.target.value });
     }
     useEffect(() => {
@@ -37,10 +36,6 @@ const UpdatePassword = () => {
     }, [dispatch, error, alert, history, isUpdated, loading]);
     const UpdateSubmit = (e) => {
         e.preventDefault();
-        console.log("OldPassword:", OldPassword);
-        console.log("NewPassword:", NewPassword);
-        console.log("ConfirmPassword:", ConfirmPassword);
-
         if (!OldPassword || !NewPassword || !ConfirmPassword) {
             alert.error("All fields are required");
             return;

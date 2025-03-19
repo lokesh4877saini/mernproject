@@ -26,4 +26,3 @@ process.on('unhandledRejection',err=>{
         process.exit(1);
     });
 })
-// CLOUDINARY_URL=cloudinary://926268379723749:0TF2m3YPZvPW9mWLwHZzgvTq1oU@dgplvci3g

@@ -20,7 +20,6 @@ module.exports = (err,req,res,next)=>{
     } else {
         // Handle other types of errors, if necessary
         // You might want to log or rethrow the error
-        console.log(err.keyvalue)
     }
     // wrong JWT error
     if(err.name === "JsonWebTokenError"){

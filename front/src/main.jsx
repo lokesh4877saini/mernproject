@@ -11,11 +11,9 @@ const options  = {
   transitions:transitions.FADE
 }
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <Provider store={store}>
       <AlterProvider template={AlertTemplate} {...options}>
         <App />
       </AlterProvider>
     </Provider>
-  </StrictMode>,
 )

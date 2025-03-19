@@ -6,6 +6,7 @@ import Loader from '../layout/loader/Loader';
 import { useNavigate } from "react-router-dom";
 import {useAlert} from 'react-alert'
 import {useDispatch,useSelector} from 'react-redux';
+import MetaData from '../layout/MetaData'
 import {ClearErros,login,register} from '../../store/actions/userActions';
 const LoginSignUp = () => {
     const history = useNavigate();

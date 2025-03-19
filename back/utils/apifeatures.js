@@ -10,7 +10,6 @@ class ApiFeatures {
                 $options: "i",
             }
         } : {};
-        // console.log(keyword)
         this.query = this.query.find({ ...keyword })
         return this;
     }
@@ -29,10 +28,8 @@ class ApiFeatures {
         return this
     }
     pagination(resultPerPage){
-        // console.log("Pagination called")
         const currentPage = Number(this.queryStr.page) || 1; 
         const skip = resultPerPage * (currentPage - 1)
-        // console.log(skip)
         this.query = this.query.limit(resultPerPage).skip(skip);
         return this;
     }

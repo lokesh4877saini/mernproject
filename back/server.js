@@ -8,7 +8,7 @@ connection();
 cloudinary.config({
     cloud_name:process.env.CLOUDINARY_NAME,
     api_key:process.env.CLOUDINARY_API_KEY,
-    api_SECRET:process.env.CLOUDINARY_API_SECRET
+    api_secret:process.env.CLOUDINARY_API_SECRET
 })
 app.get('/',(req,res)=>{
     res.send("okey");
@@ -26,4 +26,3 @@ process.on('unhandledRejection',err=>{
         process.exit(1);
     });
 })
-// CLOUDINARY_URL=cloudinary://926268379723749:0TF2m3YPZvPW9mWLwHZzgvTq1oU@dgplvci3g

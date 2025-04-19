@@ -10,7 +10,6 @@ const ReviewCard = ({review}) => {
         value: review.rating,
         inHalf: true,
     }
-    console.log(review)
   return (
     <>
         <div className="reviewCard">

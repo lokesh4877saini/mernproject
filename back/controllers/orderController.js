@@ -5,7 +5,6 @@ const catchAsyncErrors = require('../middleware/catchAsyncError');
 
 // Create new Order
 exports.newOrder = catchAsyncErrors(async (req, res, next) => {
-    // console.log(req.body.user._id)
     const { shippingInfo,
         orderItems,
         paymentInfo,
@@ -34,7 +33,6 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
 exports.getSignleOrder = catchAsyncErrors(async (req, res, next) => {
     // const order = await Order.findById(req.params.id).populate("user","name email");
     const order = await Order.findById(req.params.id).populate("user", "name email");
-    console.log("order => " , order);
     if (!order) {
         return next(new ErrorHandler("Order not found with this id", 404));
     }
@@ -66,7 +64,6 @@ exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
 // update Order Status -- Admin
 exports.updateOrderStatus = catchAsyncErrors(async (req, res, next) => {
     const order = await Order.findById(req.params.id);
-    console.log(order)
     if(order.orderStatus === "Delivered"){
         return next(new ErrorHandler("You have already delivered this order",400));
     }

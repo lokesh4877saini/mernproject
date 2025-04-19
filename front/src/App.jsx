@@ -1,25 +1,13 @@
-import React from 'react'
-import './App.css'
-import Header from './component/layout/Header/Header.jsx'
+import React from 'react';
 import {BrowserRouter as Router,Routes,Route,Navigate} from 'react-router-dom'
-import Footer from './component/layout/Footer/Footer'
-import Home from './component/Home/Home';
-import ProductDetails from './component/Product/ProductDetails';
-import Products from './component/Product/Products';
-import Search from './component/Product/Search';
-import LoginSignUp from './component/User/LoginSignUp';
 import {useSelector} from 'react-redux'
-import Account from './component/User/Account';
-import Contact from './component/Home/Contact';
-import About from './component/Home/About';
-import UserOptions from './component/User/UserOptions';
+import './App.css';
+import {Home,About,Contact} from './component/Home/index';
+import {Account,EditProfile,ForgotPassword,LoginSignUp,ResetPassword,UpdatePassword,UserOptions} from './component/User/index';
+import {Header,Footer} from './component/layout/index';
+import {Cart,ProductDetails,Products,Search} from './component/Product/index';
 import store from './store/store';
-import EditProfile from './component/User/EditProfile';
-import Cart from './component/Product/Cart';
 import { loadUser } from './store/actions/userActions';
-import UpdatePassword from './component/User/UpdatePassword';
-import ForgotPassword from './component/User/ForgotPassword';
-import ResetPassword from './component/User/ResetPassword';
 function App() {
   React.useEffect(()=>{
     store.dispatch(loadUser());

@@ -1,7 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
-import { productReducer,productDetailsReducer } from './reducers/productReducer';
+import { productReducer,productDetailsReducer, } from './reducers/productReducer';
 import {forgotPasswordReducer, profileReducer, userReducer} from './reducers/userReducer'
-// import cartSlice from '../store/reducers/productReducer';
+import {cartReducer} from './reducers/cartReducer';
 const store = configureStore({
     reducer:{
         products:productReducer,
@@ -9,7 +9,8 @@ const store = configureStore({
         user:userReducer,
         profile:profileReducer,
         forgotPassword:forgotPasswordReducer,
-    }
+        cart:cartReducer,
+    },
 });
 export default store
 

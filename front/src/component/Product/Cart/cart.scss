@@ -1,0 +1,39 @@
+main{
+    width: 86%;
+    background-color: rgb(255, 250, 243);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336) ;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column !important;
+    >.cartHeader{
+        top:30px;
+        font-weight: 600;
+        z-index: 300;
+        position: sticky;
+        padding: 1rem;
+        border-radius: 20px;
+        p{
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        >p:nth-child(2){
+            margin-right: 7rem;
+        }
+        >p:last-child{
+            text-align: center;
+            padding-right: 0;
+        }
+    }
+    .Cartcontainer{
+        display: grid;
+        grid-template-columns: 1fr;
+        place-content: left;
+        width: 40%;
+        gap: 10px;
+        margin: 3rem 25rem 3rem 0;
+    }
+    .cartSubtotal{}
+}

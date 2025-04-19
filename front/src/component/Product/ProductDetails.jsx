@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect,useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Carousel from 'react-material-ui-carousel'
 import ReactStars from 'react-rating-stars-component'
@@ -9,11 +9,28 @@ import ReviewCard from './ReviewCard';
 import Loader from '../layout/loader/Loader';
 import MetaData from '../layout/MetaData'
 import {useAlert} from 'react-alert'
+import {addItemsToCart} from '../../store/actions/cartActions'
 const ProductDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { product, loading, error } = useSelector(state => state.productDetails)
     const alert = useAlert();
+    const [quantity, setQuantity] = useState(1)
+    const increaseQuantity = ()=>{
+        if(product.stock <= quantity) return;
+        const qty = quantity + 1;
+        setQuantity(qty)
+    }
+    const descreaseQuantity = ()=>{
+       const qty = quantity -1;
+        if(quantity > 1){
+            setQuantity(qty)
+        }
+    }
+    const handleAddToCart = ()=>{
+        dispatch(addItemsToCart(id,quantity));
+        alert.success("Item Added to Cart")
+    }
     useEffect(() => {
         if(error){
             alert.error(error);
@@ -62,11 +79,11 @@ const ProductDetails = () => {
                                 <h1>{`₹${product.price}`}</h1>
                                 <div className="detailsBlock-3-1">
                                     <div className="detailsBlock-3-1-1">
-                                        <button>-</button>
-                                        <input type="number" value={1} />
-                                        <button>+</button>
+                                        <button onClick={descreaseQuantity}>-</button>
+                                        <input type="number" readOnly value={quantity} />
+                                        <button onClick={increaseQuantity}>+</button>
                                     </div>
-                                    <button>Add to Cart</button>
+                                    <button onClick={handleAddToCart}>Add to Cart</button>
                                 </div>
                                 <p>Status: <b
                                     className={product.stock < 1 ? "redColor" : "greenColor"}

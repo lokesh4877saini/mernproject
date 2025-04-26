@@ -1,39 +1,233 @@
-main{
-    width: 86%;
+main {
+    width: 87.6%;
     background-color: rgb(255, 250, 243);
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336) ;
+    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.326);
     margin: 2rem auto;
     display: flex;
     flex-direction: column !important;
-    >.cartHeader{
-        top:30px;
-        font-weight: 600;
-        z-index: 300;
-        position: sticky;
+    header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
         padding: 1rem;
         border-radius: 20px;
-        p{
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        >p:nth-child(2){
-            margin-right: 7rem;
-        }
-        >p:last-child{
-            text-align: center;
-            padding-right: 0;
-        }
+        background-color: rgba(255, 99, 71, 0.712);
+        text-align: center;
+        align-items: center;
+        justify-content: space-around;
     }
-    .Cartcontainer{
+    .Cartcontainer {
         display: grid;
-        grid-template-columns: 1fr;
-        place-content: left;
-        width: 40%;
-        gap: 10px;
-        margin: 3rem 25rem 3rem 0;
+        padding: 1rem;
+        width: -webkit-fill-available;
+        text-align: left;
+        place-items: center;
+        grid-template-columns: 1fr 1fr 1fr;
+        .cartInput {
+            background-color: rgb(255 250 243);
+            box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.35);
+            padding: 0.6rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            > button {
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &:nth-child(1) {
+                    background-color: rgb(250, 57, 57);
+                    > svg {
+                        font-size: 1.3rem;
+                    }
+                }
+                &:nth-child(3) {
+                    background-color: rgb(14, 194, 14);
+                    > svg {
+                        font-size: 1.3rem;
+                    }
+                }
+            }
+            > input {
+                background-color: rgb(29, 29, 29);
+                text-align: center;
+                color: whitesmoke;
+                width: fit-content;
+                border: none;
+                outline: none;
+                width: 60px;
+                height: 28px;
+                padding: 0.2rem;
+            }
+            > button {
+                width: 28px;
+                color: whitesmoke;
+                height: 28px;
+                border-radius: 20px;
+                outline: none;
+                border: none;
+            }
+        }
+        .subTotal {
+            margin-top: 2rem;
+            border-radius: 20px;
+            background-color: rgba(255, 127, 80, 0.2);
+            padding: 0.5rem;
+            width: 50%;
+            > p {
+                font-weight: 800;
+            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
-    .cartSubtotal{}
+    .cartGrossTotal {
+        display: grid;
+        margin-top: 1rem;
+        width: 100%;
+        gap: 10px;
+        grid-template-columns: 1fr 1fr 1fr;
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+        > div:last-child {
+            padding: 1rem;
+            border-radius: 20px;
+            background-color: rgb(67 67 67);
+            box-shadow: inset 1px 1px 5px 1px rgba(0, 0, 0, 0.747);
+            .cartGrossAmount {
+                display: flex;
+                gap: 20px;
+
+                p {
+                    width: 50%;
+                    color: whitesmoke;
+                    font-weight: 900;
+                    &:last-child {
+                        color: #75fb4c;
+                    }
+                }
+                width: 100%;
+            }
+            > button {
+                margin-top: 2.3rem;
+                background-color: tomato;
+                border-radius: 20px;
+                border: none;
+                width: 100%;
+                outline: none;
+                padding: 0.2rem 2rem;
+                border: 1px solid tomato;
+                animation: borderanimation 2s ease-in-out alternate infinite;
+                box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.35);
+            }
+            > button.non-animation {
+                animation: none;
+            }
+        }
+    }
+}
+
+@keyframes borderanimation {
+    0% {
+        border-color: red;
+        box-shadow: 0px 0px 12px 0px rgba(255, 0, 0, 0.35);
+    }
+    25% {
+        border-color: blue;
+        box-shadow: 0px 0px 12px 0px rgba(0, 0, 255, 0.35);
+    }
+    50% {
+        border-color: green;
+        box-shadow: 0px 0px 12px 0px rgba(0, 255, 17, 0.35);
+    }
+    75% {
+        border-color: yellow;
+        box-shadow: 0px 0px 12px 0px rgba(251, 255, 0, 0.35);
+    }
+    100% {
+        border-color: coral;
+        box-shadow: 0px 0px 12px 0px rgba(255, 141, 47, 0.35);
+    }
+}
+@media screen and (max-width: 769px) {
+    main {
+        .Cartcontainer {
+            .cartInput {
+                flex-direction: column;
+                height: 122px;
+                gap: 8px;
+            }
+            .subTotal{
+                height: 122px;
+                padding: 2.9rem;
+            }
+        }
+    }
+}
+@media screen and (max-width:598px) {
+    main {
+        .Cartcontainer {
+            .cartInput {
+                flex-direction: column;
+                height: 172px;
+                gap: 8px;
+            }
+            .subTotal{
+                height: 172px;
+                padding: 2.3rem;
+            }
+            >div:nth-child(2){
+                margin: 2rem 0 0 1.6rem  !important;
+            }
+        }
+        .cartItemCard{
+            flex-direction: column;
+             >div{
+                width: 100%;
+             }
+             .img{
+                width: 70px;
+                height: 70px;
+             }
+        }
+
+    }
+}
+
+@media screen and (max-width:521px) {
+    main {
+        .Cartcontainer {
+            gap: 12px;
+            width: auto;
+            >div:nth-child(2) {
+                margin: 2rem 0 0 0 !important;
+            }
+            .cartInput {
+                flex-direction: column;
+                height: 192px;
+                gap: 8px;
+            }
+            .subTotal{
+                height: 192px;
+                padding: 1.3rem;
+                word-break: break-word;
+            }
+        }
+        .cartItemCard{
+            flex-direction: column;
+             >div{
+                width: 100%;
+             }
+             .img{
+                width: 70px;
+                height: 70px;
+             }
+        }
+
+    }
 }

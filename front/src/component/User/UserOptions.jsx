@@ -3,18 +3,20 @@ import SpeedDialAction from "@mui/material/SpeedDialAction";
 import { useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { logout } from '../../store/actions/userActions';
-import { Person, Dashboard, ExitToApp, ListAltRounded } from '@mui/icons-material';
+import { Person, Dashboard, ExitToApp, ListAltRounded, AddShoppingCartRounded } from '@mui/icons-material';
 import {Backdrop} from '@mui/material'
 const UserOptions = ({ user }) => {
     const dispatch = useDispatch();
     const history = useNavigate();
     const alert = useAlert();
     const [open, setOpen] = useState(true);
+    const { cartItems } = useSelector((state) => state.cart);
     const options = [
         { icon: <ListAltRounded />, name: "Orders", func: orders },
         { icon: <Person />, name: "Profile", func: account },
+        { icon: <AddShoppingCartRounded style={{color:(cartItems.length >=0 ?"unset":"tomato")}} />, name: `${cartItems.length}`, func: cart },
         { icon: <ExitToApp />, name: "LogOut", func: logoutUser },
     ]
     if (user.role === "admin") {
@@ -30,6 +32,9 @@ const UserOptions = ({ user }) => {
     }
     function orders() {
         history('/orders');
+    }
+    function cart() {
+        history('/cart');
     }
     function account() {
         history('/account');
@@ -61,7 +66,8 @@ const UserOptions = ({ user }) => {
                 width: "100%",
                 height: "100%",
                 borderRadius: "100%",
-                objectFit: "cover"
+                objectFit: "cover",
+                
             }} src={user.avatar.url ? user.avatar.url : '/Profile.png'} alt="Profile" />}>
             {options.map((item, i) =>
             (

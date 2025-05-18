@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import {DeleteOutline} from '@mui/icons-material';
 import './CartItemCard.scss';
-const CartItemCard = ({ item }) => {
+const CartItemCard = ({ item ,deleteCartItems}) => {
   return (
     <>
       <div className="cartItemCard">
@@ -15,7 +15,7 @@ const CartItemCard = ({ item }) => {
         <div>
           <Link to={`/product/${item.product}`}>{item.name}</Link>
           <span>{`Price: ₹${item.price}`}</span>
-          <button><DeleteOutline /></button>
+          <button onClick={()=>{deleteCartItems(item.product)}}><DeleteOutline /></button>
         </div>
       </div>
     </>

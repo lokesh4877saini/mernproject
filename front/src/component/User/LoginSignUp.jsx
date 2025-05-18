@@ -1,9 +1,8 @@
 import "./LoginSignUp.scss";
-import { useRef, useState,useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState,useEffect,useMemo } from "react";
+import { Link ,useNavigate,useLocation} from "react-router-dom";
 import {MailOutline,LockOutlined, Mail,Face4Sharp, Lock,Photo} from '@mui/icons-material'
 import Loader from '../layout/loader/Loader';
-import { useNavigate } from "react-router-dom";
 import {useAlert} from 'react-alert'
 import {useDispatch,useSelector} from 'react-redux';
 import MetaData from '../layout/MetaData'
@@ -11,6 +10,7 @@ import {ClearErros,login,register} from '../../store/actions/userActions';
 const LoginSignUp = () => {
     const history = useNavigate();
     const alert = useAlert();
+    const location = useLocation();
     const {error,loading,isAuthenticated} = useSelector((state) => state.user); 
     const dispatch = useDispatch();
     const loginTab = useRef(null);
@@ -30,16 +30,21 @@ const LoginSignUp = () => {
     const loginSubmit = (e) => {
         e.preventDefault();
         dispatch(login(loginEmail,loginPassword ))
-    }
+    }   
+    // Get redirect path SAFELY
+    const redirect = React.useMemo(() => {
+    const searchParams = new URLSearchParams(location.search);
+    return searchParams.get('redirect') || '/account';
+    }, [location.search]);
     useEffect(()=>{
          if(error){
             alert.error(error);
             dispatch(ClearErros());
          }
-         if(isAuthenticated){
-            history('/account')
-         }
-    },[dispatch,error,alert,history,isAuthenticated,loading]); 
+         if (isAuthenticated) {
+            history(redirect, { replace: true });
+          }
+    },[dispatch,error,alert,history,isAuthenticated,loading,redirect]); 
     const switchTabs = (e, tab) => {
         if (tab === "login") {
             switcherTab.current.classList.add("shiftToNeutral");

@@ -64,10 +64,11 @@ export const userReducer = (state = { user: {} }, action) => {
             }
         case LOAD_USER_FAIL:
             return {
+                ...state,
                 loading: false,
                 isAuthenticated: false,
                 user: null,
-                error: action.payload,
+                error: action.payload,  
             }
         case LOGOUT_USER_FAIL:
             return {

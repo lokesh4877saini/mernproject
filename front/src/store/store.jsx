@@ -4,7 +4,8 @@ import {forgotPasswordReducer, profileReducer, userReducer} from './reducers/use
 import {cartReducer} from './reducers/cartReducer';
 let initialstate = {
     cart:{
-        cartItems:localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[]
+        cartItems:localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[],
+        shippingInfo:localStorage.getItem("shippingInfo")?JSON.parse(localStorage.getItem("shippingInfo")):[]
     }
 }
 const store = configureStore({

@@ -22,9 +22,15 @@ const CheckoutSteps = ({activeStep}) => {
             {steps.map((item,index)=>(
                 <Step
                 
-                key={index}>
+                key={index}
+                active ={activeStep === index ? true:false}
+                completed = {activeStep >= index ? true:false}
+                >
                 <StepLabel
                 icon={item.icon}
+                style={{
+                    color:activeStep >= index ? "tomato":"rgba(0,0,0,0.45)"
+                }}
                 >
                     {item.label}
                 </StepLabel>

@@ -6,7 +6,7 @@ import { Home, About, Contact } from './component/Home/index';
 import { Account, EditProfile, ForgotPassword, LoginSignUp, ResetPassword, UpdatePassword, UserOptions } from './component/User/index';
 import { Header, Footer } from './component/layout/index';
 import ProtectedRoute from './component/Route/ProjectedRoute';
-import { Cart, ProductDetails, Products, Search,Shipping } from './component/Product/index';
+import { Cart, ProductDetails, Products, Search,Shipping,Confirm } from './component/Product/index';
 import store from './store/store';
 import { loadUser } from './store/actions/userActions';
 function App() {
@@ -34,6 +34,7 @@ function App() {
         <Route path='/password/forgot' element={<ProtectedRoute element={ForgotPassword} />} />
         <Route path='/password/reset/:token' element={<ProtectedRoute element={ResetPassword} />} />
         <Route path='/shipping' element={<ProtectedRoute element={Shipping} />} />
+        <Route path='/order/confirm' element={<ProtectedRoute element={Confirm} />} />
       </Routes>
       <Footer />
     </Router>

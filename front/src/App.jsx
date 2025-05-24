@@ -1,16 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import React,{useEffect,useState} from 'react';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './App.css';
 import { Home, About, Contact } from './component/Home/index';
 import { Account, EditProfile, ForgotPassword, LoginSignUp, ResetPassword, UpdatePassword, UserOptions } from './component/User/index';
 import { Header, Footer } from './component/layout/index';
 import ProtectedRoute from './component/Route/ProjectedRoute';
-import { Cart, ProductDetails, Products, Search,Shipping,Confirm } from './component/Product/index';
+import { Cart, ProductDetails, Products, Search, Shipping, Confirm,StripeComponent,OrderSuccess} from './component/Product/index';
 import store from './store/store';
 import { loadUser } from './store/actions/userActions';
 function App() {
-  React.useEffect(() => {
+    useEffect(() => {
     store.dispatch(loadUser());
   }, []);
   const { isAuthenticated, user } = useSelector(state => state.user);
@@ -29,12 +29,14 @@ function App() {
         <Route path='/orders' Component={Cart} />
         <Route path='/me/update' element={<ProtectedRoute element={EditProfile} />} />
         <Route path='/account' element={<ProtectedRoute element={Account} />} />
-        <Route path='/login' Component={LoginSignUp}/>
+        <Route path='/login' Component={LoginSignUp} />
         <Route path='/password/update' element={<ProtectedRoute element={UpdatePassword} />} />
         <Route path='/password/forgot' element={<ProtectedRoute element={ForgotPassword} />} />
         <Route path='/password/reset/:token' element={<ProtectedRoute element={ResetPassword} />} />
         <Route path='/shipping' element={<ProtectedRoute element={Shipping} />} />
         <Route path='/order/confirm' element={<ProtectedRoute element={Confirm} />} />
+        <Route path='/order/payment' element={<ProtectedRoute element={StripeComponent} />} />
+        <Route path='/order/success' element={<ProtectedRoute element={OrderSuccess} />} />
       </Routes>
       <Footer />
     </Router>

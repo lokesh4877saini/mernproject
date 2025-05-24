@@ -1,28 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-// import { saveConfirmInfo } from "../../../store/actions/cartActions";
-// import PinDropIcon from '@mui/icons-material/PinDrop';
-// import LocationCityIcon from '@mui/icons-material/LocationCity';
-// import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-// import PublicIcon from '@mui/icons-material/Public';
-// import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import { useNavigate, Link } from 'react-router-dom'
-// import { Country, State } from 'country-state-city';
-// import { HomeOutlined } from '@mui/icons-material';
-// import {useAlert} from 'react-alert'
 import './confirm.scss';
 import CheckoutSteps from '../Cart/CheckoutSteps';
 const Confirm = () => {
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
     const { user } = useSelector((state) => state.user);
-    //   const alert = useAlert();
     const history = useNavigate();
-    //   const dispatch = useDispatch();
     const Subtotal = cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0);
     const ShippingCharges = Subtotal >= 1000 ? 0 : 200;
     const GST = Subtotal * 0.18;
     const totalPrice = Subtotal + ShippingCharges + GST;
     const Address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`
+    const proceedToPayment= () =>{
+        const data = {Subtotal,ShippingCharges,GST,totalPrice};
+        sessionStorage.setItem("orderInfo",JSON.stringify(data));
+        if(data){
+            history("/order/payment")
+        }
+    }
     return (
         <>
             <section className="confirm">
@@ -53,12 +49,11 @@ const Confirm = () => {
                                     <div key={i}>
                                         <div className="img">
                                         <img
-                                        //  src={item.image}
-                                        src="https://i.pinimg.com/736x/fc/2f/d2/fc2fd2d1ce9f17004026e1f6ff67a977.jpg"
+                                         src={item.image}
                                          alt={item.product} />
                                         </div>
                                         <div className="itemDetails">
-                                        <Link to={`/products/${item.product}`}>{item.name}</Link>
+                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
                                         <span>
                                             <p>{item.quantity} X ₹ {item.price}  = {" "}</p>
                                             <b>
@@ -93,7 +88,7 @@ const Confirm = () => {
                             <span>₹{totalPrice}</span>
                         </div>
                         <div>
-                            <button>Proceed To Payment</button>
+                            <button onClick={proceedToPayment}>Proceed To Payment</button>
                         </div>
                     </div>
                 </div>

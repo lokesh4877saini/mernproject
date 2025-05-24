@@ -4,3 +4,6 @@ export { default as Products } from './Products';
 export { default as Search } from './Search';
 export { default as Shipping } from './Shipping/Shipping';
 export { default as Confirm } from './Shipping/Confirm';
+export { default as StripeComponent } from './Shipping/StripeComponent';
+export { default as Payment } from './Shipping/Payment';
+export { default as OrderSuccess } from './Cart/order/OrderSuccess';

@@ -26,7 +26,7 @@ const Header = () => {
       if (nextSibling && !nextSibling.classList.contains("animateMe")) {
         nextSibling.classList.add('animateMe');
       }
-      e.target.parentNode.nextSibling.classList.add('none')
+      e.target.parentNode?.nextSibling?.classList.add('none')
       setIcon(true)
     }
   }

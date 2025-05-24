@@ -18,7 +18,6 @@ const Cart = () => {
     }, [cartItems]);
     const checkouthandler = () => {
         const redirectUrl = "/login?redirect=/shipping";
-        console.log("Navigating to:", redirectUrl); // Debug
         history(redirectUrl);
     };
     const [isAnimated, setIsAnimated] = useState(true)

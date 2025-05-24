@@ -6,10 +6,11 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import PublicIcon from '@mui/icons-material/Public';
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import MetaData from '../../layout/MetaData';
 import { Country, State } from 'country-state-city';
 import { HomeOutlined } from '@mui/icons-material';
-import {useAlert} from 'react-alert'
+import { useAlert } from 'react-alert'
 import './shipping.scss';
 import CheckoutSteps from '../Cart/CheckoutSteps';
 const Shipping = () => {
@@ -25,20 +26,21 @@ const Shipping = () => {
   const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
   const shippingSubmit = (e) => {
     e.preventDefault();
-    if(phoneNo.length < 10 || phoneNo.length > 10){
+    if (phoneNo.length < 10 || phoneNo.length > 10) {
       alert.error("Phone number should be 10 digit Long");
       return;
     }
     dispatch(
-      saveShippingInfo({address,city,country,state,pinCode,phoneNo})
+      saveShippingInfo({ address, city, country, state, pinCode, phoneNo })
     );
-      history("/order/confirm");
+    history("/order/confirm");
 
   }
   return (
     <>
       <section className="shipping">
-      <CheckoutSteps activeStep={0} />
+        <MetaData title={"Shipping"} />
+        <CheckoutSteps activeStep={0} />
         <div className="heading">
           <h2>Shippnig Details</h2>
         </div>
@@ -85,7 +87,7 @@ const Shipping = () => {
                 </div>
               )
             }
-            <input type="submit" value="Continue" className='shippingBtn' disabled={state ? false:true} />
+            <input type="submit" value="Continue" className='shippingBtn' disabled={state ? false : true} />
           </form>
         </div>
       </section>

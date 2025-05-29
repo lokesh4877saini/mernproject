@@ -2,7 +2,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import { productReducer,productDetailsReducer, } from './reducers/productReducer';
 import {forgotPasswordReducer, profileReducer, userReducer} from './reducers/userReducer'
 import {cartReducer} from './reducers/cartReducer';
-import { orderReducer } from './reducers/orderReducer';
+import { myOrdersReducer, NewOrderReducer,oderDetails } from './reducers/orderReducer';
 let initialstate = {
     cart:{
         cartItems:localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[],
@@ -17,7 +17,9 @@ const store = configureStore({
         profile:profileReducer,
         forgotPassword:forgotPasswordReducer,
         cart:cartReducer,
-        order:orderReducer,
+        order:NewOrderReducer,
+        myorders:myOrdersReducer,
+        orderdetails:oderDetails,
     },
     preloadedState: initialstate,
 });

@@ -7,3 +7,5 @@ export { default as Confirm } from './Shipping/Confirm';
 export { default as StripeComponent } from './Shipping/StripeComponent';
 export { default as Payment } from './Shipping/Payment';
 export { default as OrderSuccess } from './Cart/order/OrderSuccess';
+export { default as MyOrder } from './Cart/order/MyOrder';
+export { default as OrderDetails} from './Cart/order/OrderDetails';

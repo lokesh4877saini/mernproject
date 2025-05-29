@@ -6,11 +6,11 @@ import "./order.scss";
 const OrderSuccess = () => {
   return (
     <section className="Order">
-        <MetaData title={"Order Details"} />
+        <MetaData title={"Orders Details"} />
         <div className="heading">
           <CheckCircleOutlineIcon />
           <h2>Your Order has been Placed Successfully </h2>
-          <Link to='/order/me'>View Orders </Link>
+          <Link to='/orders/me'>View Orders </Link>
         </div>
       </section>
   )

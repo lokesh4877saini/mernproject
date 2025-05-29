@@ -16,6 +16,7 @@ const ProductDetails = () => {
     const { product, loading, error } = useSelector(state => state.productDetails)
     const alert = useAlert();
     const [quantity, setQuantity] = useState(1)
+    const [count, setCount] = useState(1)
     const increaseQuantity = ()=>{
         if(product.stock <= quantity) return;
         const qty = quantity + 1;
@@ -29,7 +30,11 @@ const ProductDetails = () => {
     }
     const handleAddToCart = ()=>{
         dispatch(addItemsToCart(id,quantity));
+        if(count === 0){
+            return;
+        }
         alert.success("Item Added to Cart")
+        setCount(count => count -1);
     }
     useEffect(() => {
         if(error){
@@ -83,7 +88,7 @@ const ProductDetails = () => {
                                         <input type="number" readOnly value={quantity} />
                                         <button onClick={increaseQuantity}>+</button>
                                     </div>
-                                    <button onClick={handleAddToCart}>Add to Cart</button>
+                                    <button disabled={product.stock < 1}  onClick={handleAddToCart}>Add to Cart</button>
                                 </div>
                                 <p>Status: <b
                                     className={product.stock < 1 ? "redColor" : "greenColor"}

@@ -1,12 +1,12 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './App.css';
 import { Home, About, Contact } from './component/Home/index';
 import { Account, EditProfile, ForgotPassword, LoginSignUp, ResetPassword, UpdatePassword, UserOptions } from './component/User/index';
 import { Header, Footer } from './component/layout/index';
-import ProtectedRoute from './component/Route/ProjectedRoute';
-import { Cart, ProductDetails, Products, Search, Shipping, Confirm,StripeComponent,OrderSuccess} from './component/Product/index';
+import ProtectedRoute from './component/Route/ProtectedRoute';
+import { Cart, ProductDetails, Products, Search, Shipping, Confirm,StripeComponent,OrderSuccess,MyOrder,OrderDetails} from './component/Product/index';
 import store from './store/store';
 import { loadUser } from './store/actions/userActions';
 function App() {
@@ -37,6 +37,8 @@ function App() {
         <Route path='/order/confirm' element={<ProtectedRoute element={Confirm} />} />
         <Route path='/order/payment' element={<ProtectedRoute element={StripeComponent} />} />
         <Route path='/order/success' element={<ProtectedRoute element={OrderSuccess} />} />
+        <Route path='/orders/me' element={<ProtectedRoute element={MyOrder} />} />
+        <Route path='/order/:id' element={<ProtectedRoute element={OrderDetails} />} />
       </Routes>
       <Footer />
     </Router>

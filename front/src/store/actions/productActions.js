@@ -24,7 +24,7 @@ export const getProduct = (keyword="",currentPage = 1,price=[0,25000],category,r
     } catch (e) {
         dispatch({
             type: ALL_PRODUCT_FAIL,
-            payload: e.response.data.message,
+            payload: e.message,
         })
     }
 }

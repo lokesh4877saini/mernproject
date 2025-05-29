@@ -1,4 +1,4 @@
-import React, {useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -8,16 +8,18 @@ import {
   useStripe,
   useElements
 } from '@stripe/react-stripe-js';
-import { createOrder,ClearErros } from '../../../store/actions/orderActions'
+import { createOrder, ClearErros } from '../../../store/actions/orderActions'
 import { useAlert } from 'react-alert';
 import './payment.scss';
 import { CreditCardOutlined, VpnKeyOutlined, EventAvailable } from '@mui/icons-material';
 import MetaData from '../../layout/MetaData';
 import CheckoutSteps from '../Cart/CheckoutSteps';
+import Loader from '../../layout/loader/Loader';
 import axios from 'axios';
 
 const Payment = () => {
   const preUrl = import.meta.env.VITE_SERVER_URL;
+  const [loading, setLoading] = useState(true);
   const alert = useAlert();
   const stripe = useStripe();
   const dispatch = useDispatch();
@@ -28,21 +30,20 @@ const Payment = () => {
   const { user } = useSelector((state) => state.user);
   const { shippingInfo } = useSelector((state) => state.cart);
   const { cartItems } = useSelector((state) => state.cart);
-  const {error} = useSelector((state)=>state.order);
+  const { error } = useSelector((state) => state.order);
   const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
   const order = {
     shippingInfo,
     orderItems: cartItems,
-    user:user._id,
     itemsPrice: orderInfo.Subtotal,
-    taxPrice:orderInfo.GST,
-    shippingPrice:orderInfo.ShippingCharges,
-    totalPrice:orderInfo.totalPrice,
+    taxPrice: orderInfo.GST,
+    shippingPrice: orderInfo.ShippingCharges,
+    totalPrice: orderInfo.totalPrice,
   }
   const paymentData = {
     amount: Math.round(orderInfo.totalPrice * 100),
   };
-  
+
   const paymentHandler = async (e) => {
     e.preventDefault();
     payBtn.current.disabled = true;
@@ -87,23 +88,29 @@ const Payment = () => {
             id: result.paymentIntent.id,
             status: result.paymentIntent.status,
           }
+          console.log(result.paymentIntent.id,result.paymentIntent.status);
           dispatch(createOrder(order));
           navigate('/order/success');
         } else {
           alert.error('There was an issue with the payment.');
         }
       }
+      console.log(order);
     } catch (error) {
       payBtn.current.disabled = false;
       alert.error(error?.response?.data?.message || error.message);
     }
   };
-  useEffect(()=>{
-    if(error){
+  useEffect(() => {
+    if (error) {
       alert.error(error);
       dispatch(ClearErros());
     }
-  },[dispatch,alert,error])
+    const time = setTimeout(() => {
+      setLoading(false);
+    }, 1000)
+    return () => clearTimeout(time);
+  }, [dispatch, alert, error])
   const cardElementOptions = {
     style: {
       base: {
@@ -123,35 +130,40 @@ const Payment = () => {
 
   return (
     <>
-      <section className="payment">
-        <MetaData title="Payment" />
-        <CheckoutSteps activeStep={2} />
-        <div className="heading">
-          <h2>Payment Details</h2>
-        </div>
-        <div className="paymentContainer">
-          <form onSubmit={paymentHandler}>
-            <div>
-              <CreditCardOutlined />
-              <CardNumberElement options={cardElementOptions} />
-            </div>
-            <div>
-              <EventAvailable />
-              <CardExpiryElement options={cardElementOptions} />
-            </div>
-            <div>
-              <VpnKeyOutlined />
-              <CardCvcElement options={cardElementOptions} />
-            </div>
-            <input
-              type="submit"
-              value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
-              ref={payBtn}
-              className="paymentSubBtn"
-            />
-          </form>
-        </div>
-      </section>
+      {loading ? (<>
+        <Loader />
+      </>)
+        : (
+          <>
+            <section className="payment">
+              <MetaData title="Payment" />
+              <CheckoutSteps activeStep={2} />
+              <div className="heading">
+                <h2>Payment Details</h2>
+              </div>
+              <div className="paymentContainer">
+                <form onSubmit={paymentHandler}>
+                  <div>
+                    <CreditCardOutlined />
+                    <CardNumberElement options={cardElementOptions} />
+                  </div>
+                  <div>
+                    <EventAvailable />
+                    <CardExpiryElement options={cardElementOptions} />
+                  </div>
+                  <div>
+                    <VpnKeyOutlined />
+                    <CardCvcElement options={cardElementOptions} />
+                  </div>
+                  <input
+                    type="submit"
+                    value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
+                    ref={payBtn}
+                    className="paymentSubBtn"
+                  />
+                </form>
+              </div>
+            </section></>)}
     </>
   );
 };

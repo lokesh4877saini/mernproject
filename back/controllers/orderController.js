@@ -20,9 +20,12 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
         paymentInfo,
         itemsPrice,
         taxPrice,
-        paidAt: Date.now(),
+        paymentInfo: {
+            ...paymentInfo,
+            paidAt: Date.now()
+        },
         totalPrice,
-        user: req.body.user._id,
+        user: req.user._id,
     });
     res.status(201).json({
         success: true,
@@ -43,7 +46,7 @@ exports.getSignleOrder = catchAsyncErrors(async (req, res, next) => {
 })
 // get logged in user Order
 exports.myOrder = catchAsyncErrors(async (req, res, next) => {
-    const orders = await Order.find({ user: req.body.user._id })
+    const orders = await Order.find({ user: req.user._id })
     res.status(200).json({
         success: true,
         orders,

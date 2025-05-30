@@ -5,6 +5,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const errorMiddleware = require('./middleware/error')
+const dotenv = require('dotenv');
+dotenv.config({path:"back/config/config.env"});
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
@@ -29,6 +31,11 @@ app.use("/api/v1",User);
 // for order
 const Order = require('./routes/orderRoute');
 app.use('/api/v1',Order);
+
+// for payment
+
+const Payment = require('./routes/paymentRoute');
+app.use('/api/v1',Payment);
 // Middleware for Error
 app.use(errorMiddleware)
 module.exports = app;

@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_TO_CART } from '../constants/CartConstants';
+import { ADD_TO_CART, REMOVE_TO_CART,SAVE_SHIPPING_INFO } from '../constants/CartConstants';
 import axios from 'axios';
 const preUrl = import.meta.env.VITE_SERVER_URL;
 // Add to cart
@@ -24,4 +24,12 @@ export const removeItemToCart = (id) => async (dispatch, getState) => {
         payload: id,
     });
     localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+}
+
+export const saveShippingInfo = (data) => async (dispatch, getState) => {
+    dispatch({
+        type: SAVE_SHIPPING_INFO,
+        payload: data,
+    });
+    localStorage.setItem("shippingInfo", JSON.stringify(data));
 }

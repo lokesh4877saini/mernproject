@@ -1,5 +1,5 @@
 import './cart.scss';
-import { useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
 import CartItemCard from './CartItemCard';
 import { Add, Remove, AddShoppingCart } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
@@ -18,7 +18,6 @@ const Cart = () => {
     }, [cartItems]);
     const checkouthandler = () => {
         const redirectUrl = "/login?redirect=/shipping";
-        console.log("Navigating to:", redirectUrl); // Debug
         history(redirectUrl);
     };
     const [isAnimated, setIsAnimated] = useState(true)
@@ -67,21 +66,33 @@ const Cart = () => {
                         <div className="Cartcontainer">
                             <div>
                                 {cartItems.map((item, i) => (
-                                    <>
-                                        <CartItemCard item={item} key={item.product} deleteCartItems={deleteCartItems} />
+                                    <React.Fragment key={item.product}>
+                                        <CartItemCard item={item} deleteCartItems={deleteCartItems} />
                                         <div className="cartInput">
-                                            <button onClick={() => { descreseItemQuantity(item.product, item.quantity); setGrossTotal(item.quantity * item.price) }} ><Remove /></button>
-                                            <input type="number"
-                                                value={item.quantity}
-                                                readOnly />
-                                            <button onClick={() => { increaseItemQuantity(item.product, item.quantity, item.stock); setGrossTotal(item.quantity * item.price) }}><Add /></button>
+                                            <button
+                                                onClick={() => {
+                                                    descreseItemQuantity(item.product, item.quantity);
+                                                    setGrossTotal(item.quantity * item.price);
+                                                }}
+                                            >
+                                                <Remove />
+                                            </button>
+                                            <input type="number" value={item.quantity} readOnly />
+                                            <button
+                                                onClick={() => {
+                                                    increaseItemQuantity(item.product, item.quantity, item.stock);
+                                                    setGrossTotal(item.quantity * item.price);
+                                                }}
+                                            >
+                                                <Add />
+                                            </button>
                                         </div>
-                                        <div className="subTotal" >
+                                        <div className="subTotal">
                                             <p>{`₹${item.quantity * item.price}`}</p>
                                         </div>
-                                    </>
-
+                                    </React.Fragment>
                                 ))}
+
                             </div>
                         </div>
                         <div className="cartGrossTotal">

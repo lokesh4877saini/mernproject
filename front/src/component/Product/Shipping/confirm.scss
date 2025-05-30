@@ -1,0 +1,231 @@
+.confirm{
+    width: 87.6%;
+    background-color: rgb(255, 250, 243);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.326);
+    margin: 2rem auto;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    .heading{
+        padding: 1rem;
+        h2{
+            margin-top: 2rem;
+            text-transform: capitalize;
+        }
+    }
+    #div{
+        display: flex;
+        #confirm1{
+            width: 70%;
+            .confirmAread{
+                box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, 0.326);
+                display: flex;
+                gap: 10px;
+                padding: 1rem;
+                flex-direction: column;
+                >div{
+                    width: 50%;
+                    text-align: left;
+                    display: flex;
+                    gap: 10px;
+                    
+                }
+            }
+            .confirmItemContainer{
+                padding: 1rem;
+                h2{
+                    padding: 1rem;
+                    border-radius: 20px;
+                    width: 50%;
+                    margin: 0 auto;
+                }
+                box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, 0.326);
+                .itemContainer{
+                    margin: 0 auto;
+                    padding: 3rem;
+                    width: fit-content;
+                    border-radius: 20px;
+                    display: grid;
+                    gap: 30px;
+                    grid-template-columns: 1fr;
+                  div{
+                    display: flex;
+                    align-items: center;
+                    gap: 30px;
+                    transition: all 0.3s ease-in-out;
+                    &:hover{
+                        transform: scale(1.03);
+                    }
+                    justify-content: space-evenly;
+                    .img{
+                        width: 150px;
+                        border-radius: 100%;
+                        height: 150px;
+                        img{
+                            width: 100%;
+                            border-radius: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    .itemDetails{
+                        display: flex;
+                        gap: 40px;
+                        a{
+                            background-color: tomato;
+                            padding: 1rem;
+                            color: white;
+                            border-radius: 20px
+                        }
+                        span{
+                            gap:10px;
+                            display: flex;
+                        }
+                    }
+                  }
+                }
+            }
+        }
+        .orderSummary{
+            width: 30%;
+            scrollbar-width: none;
+            position: sticky;
+            padding: 1rem;
+            overflow-y: scroll;
+            box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, 0.326);
+            top: 10px;
+            height: 385px;
+            >div:nth-child(1){
+                >div{
+                    display: flex;
+                    gap: 30px;
+                    margin: 2rem auto;
+                    >label{
+                        width: 155px;
+                        border-radius: 20px;
+                        padding:0.2rem 0.5rem;
+                        background-color: rgba(255, 99, 71, 0.327);
+                    }
+                    >span{
+                        border-radius: 20px;
+                        padding:0.2rem 0.5rem;
+                        background-color: rgba(30, 255, 0, 0.327);
+                    }
+                    text-align: left;
+                    justify-content: space-around;
+                }
+            }
+            >div:nth-child(2){
+                display: flex;
+                margin-top: 1rem;
+                gap: 22px;
+                padding-top: 0.9rem;
+                padding-bottom: 0.9rem;
+                border-top: 2px solid rgba(0, 0, 0, 0.326);
+                border-bottom: 2px solid rgba(0, 0, 0, 0.326);
+                justify-content: space-around;
+                >.total{
+                    width: 155px;
+                    border-radius: 20px;
+                    padding:0.2rem 0.5rem;
+                    background-color: rgba(255, 99, 71, 0.8);
+                }
+                >span{
+                    border-radius: 20px;
+                    padding:0.2rem 0.5rem;
+                    background-color: rgba(30, 255, 0, 0.928);
+                }
+            }
+            >div:nth-child(3){
+                margin:2rem auto;
+
+                button{
+                    padding: 0.45vmax 2vmax;
+                    border-radius: 50px;
+                    cursor: pointer;
+                    border: none;
+                    outline: none;
+                    font-size: 1.2vmax;
+                    color: rgba(255, 255, 255, 0.781);
+                    transition: all 0.4s ease;
+                    box-shadow: 1px 1px 4px 4px rgba(54, 54, 54, 0.199);
+                    background-color: tomato;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:833px) {
+    .confirm{
+        #div{
+            flex-direction: column;
+            #confirm1{
+                width: 100%;   
+            }
+            .orderSummary{
+                width: 100%;
+            }
+        }
+    }
+}
+@media screen and (max-width:777px) {
+    .confirm{
+        #div{
+            #confirm1{
+                .confirmItemContainer{
+                    .itemContainer{
+                        display: grid;
+                        grid-template-columns: auto auto;
+                        div{
+                            box-shadow: 1px 1px 2px 4px rgba(0, 0, 0, 0.126);
+                            max-width: fit-content;
+                            padding: 0.5rem;
+                            >.img{
+                                width: 120px;
+                                height: 120px;
+                            }
+                            .itemDetails{
+                                a{
+                                    margin: 1rem 0 0 0;
+                                    padding: 0.2rem 0.5rem !important;
+                                    font-size: 0.9rem;
+                                }
+                                span{
+                                    font-size: 0.8rem;
+                                    gap: 3px;
+                                }
+                            }
+                            flex-direction: column;
+                        }
+                    }
+                }
+            }
+
+            .orderSummary{
+                width: 100%;
+                >div:nth-child(3){
+                    margin:2rem auto;
+    
+                    button{
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }    
+}
+@media screen and (max-width:535px) {
+    .confirm{
+        #div{
+            #confirm1{
+                .confirmItemContainer{
+                    .itemContainer{
+                        grid-template-columns: auto;
+                    }
+                }
+            }
+        }
+    }
+}

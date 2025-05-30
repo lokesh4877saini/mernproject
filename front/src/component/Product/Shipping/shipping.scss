@@ -1,0 +1,66 @@
+.shipping{
+    width: 87.6%;
+    background-color: rgb(255, 250, 243);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.326);
+    margin: 2rem auto;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    .heading{
+        padding: 1rem;
+        h2{
+            margin-top: 2rem;
+            text-transform: capitalize;
+        }
+    }
+    .formContainer{
+        padding:  1rem;
+        form{
+            display: flex;
+            gap: 20px;
+            margin: 0 auto;
+            width: 50%;
+            flex-direction: column;
+            &:hover{
+                color: tomato;
+            }
+            >div{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                justify-content: center;
+                >svg{
+                    color: #f19e39;
+                    }
+                >select,input{
+                    padding: 0.4rem;
+                    width: 100%;
+                }
+            }
+            input[type="submit"] {
+                background-color: tomato; 
+                border: none; 
+                color: white;
+                padding: 10px 32px; 
+                text-align: center; 
+                text-decoration: none; 
+                display: inline-block; 
+                font-size: 16px; 
+                margin: 4px 2px; 
+                cursor: pointer; 
+              }
+        }
+    }
+}
+@media screen and (max-width:659px) {
+    .shipping{
+        .formContainer{
+            padding:  1rem;
+            form{
+                width: 100%;
+               }
+        }
+    }
+}

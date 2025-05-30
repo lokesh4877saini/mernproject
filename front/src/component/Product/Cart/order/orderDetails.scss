@@ -1,0 +1,161 @@
+.orderDetail {
+    width: 87.6%;
+    background-color: rgb(255, 250, 243);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.326);
+    margin: 2rem auto;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    .heading {
+        padding: 1rem;
+        margin: 1rem auto;
+        width: fit-content;
+        font-size: 1.1rem;
+        background: linear-gradient(to right, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
+        border-radius: 20px;
+        box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.326);
+        gap: 20px;
+    }
+    .orderContainer {
+        display: flex;
+        gap: 30px;
+        flex-direction: column;
+        > h3 {
+            margin: auto;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            > span {
+                color: tomato;
+            }
+            background: rgba(0, 0, 0, 0.126);
+            width: fit-content;
+        }
+        .orderContainerBody {
+            box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.126);
+            background: linear-gradient(to right, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
+            padding: 0.4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-end: 1fr;
+            gap: 10px;
+            > div {
+                padding: 0.5rem;
+                box-shadow: inset 1px 1px 5px 1px rgba(0, 0, 0, 0.326);
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                h5 {
+                    margin: 0.5rem auto;
+                    color: tomato;
+                    padding: 0.5rem;
+                    background-color: rgba(119, 214, 255, 0.5);
+                    width: fit-content;
+                }
+                > .special{
+                    justify-content: space-around;
+                    width: 90%;
+                    padding: 1rem;
+                    margin: 1rem auto;
+                    max-width: 100%;
+                    box-shadow: 1px 1px 5px 3px  rgba(1,1,1, 0.1);
+                }
+                > div {
+                    display: flex;
+                    gap: 20px;
+                    margin: 0 auto;
+                    max-width: fit-content;
+                    justify-content: center;
+                    align-items: center;
+                    div {
+                        display: flex;
+                        gap: 20px;
+                        align-items: center;
+                    }
+                    p {
+                        padding: 0.3rem 0.5rem;
+                        font-size: 0.9rem;
+                        background-color: rgba(119, 214, 255, 0.8);
+                        > span {
+                            font-weight: 700;
+                            background-color: rgba(119, 214, 255, 0.4);
+                        }
+                    }
+                }
+                > p {
+                    color: tomato;
+                    background-color: rgba(119, 214, 255, 0.1);
+                }
+            }
+            > div:nth-child(1) {
+                background-color: rgb(227, 248, 255);
+            }
+            > div:nth-child(2) {
+                background-color: rgba(224, 255, 255);
+            }
+            > div:last-child {
+                grid-column: 1/-1;
+                background-color:  #FFFFFF;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 821px) {
+    .orderDetail {
+        font-size: 90%;
+        .orderContainer {
+            display: flex;
+            gap: 30px;
+            flex-direction: column;
+            > h3 {
+                margin: auto;
+                padding: 0.2rem 0.8rem;
+                border-radius: 20px;
+                > span {
+                    color: tomato;
+                }
+                background: rgba(0, 0, 0, 0.126);
+                width: fit-content;
+            }
+            .orderContainerBody {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+@media screen and (max-width: 581px) {
+    .orderDetail {
+        font-size: 80%;
+        .orderContainer {
+            display: flex;
+            gap: 30px;
+            flex-direction: column;
+            > h3 {
+                margin: auto;
+                padding: 0.2rem 0.8rem;
+                border-radius: 20px;
+                > span {
+                    color: tomato;
+                }
+                background: rgba(0, 0, 0, 0.126);
+                width: fit-content;
+            }
+            .orderContainerBody {
+                > div {
+                    > div:last-child {
+                        padding: 2rem;
+                        >div{
+                            flex-direction: column;
+                        }
+                        max-width: fit-content
+                    }
+                    > div {
+                    flex-direction: column;
+                    }                  
+                }
+            }
+        }
+    }
+}

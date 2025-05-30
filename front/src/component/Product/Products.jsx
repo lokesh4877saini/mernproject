@@ -28,6 +28,7 @@ const Products = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const { product: products, loading, error, productsCount, resultPerPage, filteredProductsCount } = useSelector(state => state.products)
+  console.log(products)
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   }

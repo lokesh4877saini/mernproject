@@ -26,6 +26,7 @@ const ProductDetails = () => {
     const {success} = useSelector(state=>state.newReview);
     const alert = useAlert();
     const [quantity, setQuantity] = useState(1)
+    const [count, setCount] = useState(1)
     const [hover, setHover] = React.useState(-1);
     const increaseQuantity = () => {
         if (product.stock <= quantity) return;
@@ -38,9 +39,13 @@ const ProductDetails = () => {
             setQuantity(qty)
         }
     }
-    const handleAddToCart = () => {
-        dispatch(addItemsToCart(id, quantity));
+    const handleAddToCart = ()=>{
+        dispatch(addItemsToCart(id,quantity));
+        if(count === 0){
+            return;
+        }
         alert.success("Item Added to Cart")
+        setCount(count => count -1);
     }
     useEffect(() => {
         if (error) {
@@ -115,9 +120,9 @@ const ProductDetails = () => {
                                         </div>
                                         <button onClick={handleAddToCart}>Add to Cart</button>
                                     </div>
-                                    <p>Status: <b
-                                        className={product.stock < 1 ? "redColor" : "greenColor"}
-                                    >
+                                    <button disabled={product.stock < 1}  onClick={handleAddToCart}>Add to Cart</button>
+
+                                    <p>Status: <b className={product.stock < 1 ? "redColor" : "greenColor"}>
                                         {product.stock < 1 ? "Out Of Stock" : "In Stock"}
                                     </b></p>
                                 </div>

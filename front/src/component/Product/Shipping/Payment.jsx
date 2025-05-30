@@ -88,14 +88,12 @@ const Payment = () => {
             id: result.paymentIntent.id,
             status: result.paymentIntent.status,
           }
-          console.log(result.paymentIntent.id,result.paymentIntent.status);
           dispatch(createOrder(order));
           navigate('/order/success');
         } else {
           alert.error('There was an issue with the payment.');
         }
       }
-      console.log(order);
     } catch (error) {
       payBtn.current.disabled = false;
       alert.error(error?.response?.data?.message || error.message);

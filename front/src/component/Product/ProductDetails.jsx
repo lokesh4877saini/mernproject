@@ -120,8 +120,6 @@ const ProductDetails = () => {
                                         </div>
                                         <button onClick={handleAddToCart}>Add to Cart</button>
                                     </div>
-                                    <button disabled={product.stock < 1}  onClick={handleAddToCart}>Add to Cart</button>
-
                                     <p>Status: <b className={product.stock < 1 ? "redColor" : "greenColor"}>
                                         {product.stock < 1 ? "Out Of Stock" : "In Stock"}
                                     </b></p>

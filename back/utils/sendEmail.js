@@ -3,7 +3,6 @@ const path = require('path');
 const fs= require('fs');
 const ejs = require('ejs');
 const sendEmail = async(options) =>{
-    console.log(options.name);
     const emailTemplatePath = path.join(__dirname,'../views/email_template.ejs');
     const emailTemplate = fs.readFileSync(emailTemplatePath,'utf-8');
     const htmlContent = ejs.render(emailTemplate,{

@@ -10,11 +10,10 @@ import { useNavigate } from 'react-router-dom'
 import MetaData from '../../layout/MetaData';
 import { Country, State } from 'country-state-city';
 import { HomeOutlined } from '@mui/icons-material';
-import { useAlert } from 'react-alert'
+import {toast} from 'react-hot-toast';
 import './shipping.scss';
 import CheckoutSteps from '../Cart/CheckoutSteps';
 const Shipping = () => {
-  const alert = useAlert();
   const history = useNavigate();
   const dispatch = useDispatch();
   const { shippingInfo } = useSelector((state) => state.cart);
@@ -27,7 +26,7 @@ const Shipping = () => {
   const shippingSubmit = (e) => {
     e.preventDefault();
     if (phoneNo.length < 10 || phoneNo.length > 10) {
-      alert.error("Phone number should be 10 digit Long");
+      toast.error("Phone number should be 10 digit Long");
       return;
     }
     dispatch(

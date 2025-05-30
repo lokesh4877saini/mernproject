@@ -1,9 +1,8 @@
-import { Lock, PasswordTwoTone, LocalDrink, LockClockTwoTone, LockOutlined } from '@mui/icons-material'
+import { Lock, PasswordTwoTone,LockOutlined } from '@mui/icons-material'
 import Loader from '../layout/loader/Loader';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAlert } from 'react-alert';
-// import Loader from '../layout/loader/Loader';
+import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../layout/MetaData'
 import { ClearErros, updatePassword } from '../../store/actions/userActions';
@@ -11,7 +10,6 @@ import './EditProfile.scss';
 import { USER_PASSWORD_UPDATE_RESET } from '../../store/constants/userConstants';
 const UpdatePassword = () => {
     const history = useNavigate();
-    const alert = useAlert();
     const { error, loading, isUpdated } = useSelector((state) => state.profile);
     const [user, setUser] = useState({
         OldPassword: "",
@@ -25,19 +23,19 @@ const UpdatePassword = () => {
     }
     useEffect(() => {
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(ClearErros());
         }
         if (isUpdated) {
-            alert.success("Password Updated Successfully !");
+            toast.success("Password Updated Successfully !");
             history('/account');
             dispatch({ type: USER_PASSWORD_UPDATE_RESET, });
         }
-    }, [dispatch, error, alert, history, isUpdated, loading]);
+    }, [dispatch, error, toast, history, isUpdated, loading]);
     const UpdateSubmit = (e) => {
         e.preventDefault();
         if (!OldPassword || !NewPassword || !ConfirmPassword) {
-            alert.error("All fields are required");
+            toast.error("All fields are required");
             return;
         }
 

@@ -2,8 +2,7 @@ import { Lock,LockOutlined } from '@mui/icons-material'
 import Loader from '../layout/loader/Loader';
 import { useState, useEffect } from "react";
 import { useNavigate,useParams } from "react-router-dom";
-import { useAlert } from 'react-alert';
-// import Loader from '../layout/loader/Loader';
+import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../layout/MetaData'
 import { ClearErros, resetPassword } from '../../store/actions/userActions';
@@ -12,7 +11,6 @@ const ResetPassword = () => {
     const dispatch = useDispatch();
     const {token} = useParams();
     const history = useNavigate();
-    const alert = useAlert();
     const { error, loading, success } = useSelector((state) => state.forgotPassword);
     const [user, setUser] = useState({
         Password: "",
@@ -24,18 +22,18 @@ const ResetPassword = () => {
     }
     useEffect(() => {
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(ClearErros());
         }
         if (success) {
-            alert.success("Password Updated Successfully !");
+            toast.success("Password Updated Successfully !");
             history('/login');
         }
-    }, [dispatch, error, alert, history, success, loading]);
+    }, [dispatch, error, toast, history, success, loading]);
     const UpdateSubmit = (e) => {
         e.preventDefault();
          if (!Password || !ConfirmPassword) {
-            alert.error("All fields are required");
+            toast.error("All fields are required");
             return;
         }
         const myForm = new FormData();

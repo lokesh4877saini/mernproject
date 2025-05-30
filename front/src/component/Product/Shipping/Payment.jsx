@@ -9,7 +9,7 @@ import {
   useElements
 } from '@stripe/react-stripe-js';
 import { createOrder, ClearErros } from '../../../store/actions/orderActions'
-import { useAlert } from 'react-alert';
+import { toast } from 'react-hot-toast';
 import './payment.scss';
 import { CreditCardOutlined, VpnKeyOutlined, EventAvailable } from '@mui/icons-material';
 import MetaData from '../../layout/MetaData';
@@ -20,7 +20,6 @@ import axios from 'axios';
 const Payment = () => {
   const preUrl = import.meta.env.VITE_SERVER_URL;
   const [loading, setLoading] = useState(true);
-  const alert = useAlert();
   const stripe = useStripe();
   const dispatch = useDispatch();
   const elements = useElements();
@@ -80,7 +79,7 @@ const Payment = () => {
       });
 
       if (result.error) {
-        alert.error(result.error.message);
+        toast.error(result.error.message);
         payBtn.current.disabled = false;
       } else {
         if (result.paymentIntent.status === 'succeeded') {
@@ -91,24 +90,24 @@ const Payment = () => {
           dispatch(createOrder(order));
           navigate('/order/success');
         } else {
-          alert.error('There was an issue with the payment.');
+          toast.error('There was an issue with the payment.');
         }
       }
     } catch (error) {
       payBtn.current.disabled = false;
-      alert.error(error?.response?.data?.message || error.message);
+      toast.error(error?.response?.data?.message || error.message);
     }
   };
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(ClearErros());
     }
     const time = setTimeout(() => {
       setLoading(false);
     }, 1000)
     return () => clearTimeout(time);
-  }, [dispatch, alert, error])
+  }, [dispatch, toast, error])
   const cardElementOptions = {
     style: {
       base: {

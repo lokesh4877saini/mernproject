@@ -1,23 +1,19 @@
 import React from 'react'
-import ReactStars from 'react-rating-stars-component';
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
 import profilePng from '../../assets/profilepng.png'
-const ReviewCard = ({review}) => {
-    const options = {
-        edit: false,
-        color: "rgba(20,20,20,0.1)",
-        activeColor: "tomato",
-        size: window.innerWidth < 600 ? 20 : 25,
-        value: review.rating,
-        inHalf: true,
-    }
+const ReviewCard = ({ review }) => {
+
   return (
     <>
-        <div className="reviewCard">
-            <img src={profilePng} alt="User" />
-            <p>{review.name}</p>
-            <ReactStars {...options}  />
-            <span>{review.comment}</span>
-        </div>
+      <div className="reviewCard">
+        <img src={profilePng} alt="User" />
+        <p>{review.name}</p>
+        <Rating size="large"
+         icon={<StarIcon style={{ color: 'tomato', fontSize: '1.4rem' }} />}
+          precision={0.5} value={review.rating} readOnly emptyIcon={<StarIcon style={{ opacity: 0.55,fontSize: '1.4rem' }} fontSize="inherit" />} />
+        <span>{review.comment}</span>
+      </div>
     </>
   )
 }

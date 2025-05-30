@@ -6,8 +6,9 @@ import { Home, About, Contact } from './component/Home/index';
 import { Account, EditProfile, ForgotPassword, LoginSignUp, ResetPassword, UpdatePassword, UserOptions } from './component/User/index';
 import { Header, Footer } from './component/layout/index';
 import ProtectedRoute from './component/Route/ProtectedRoute';
-import { Cart, ProductDetails, Products, Search, Shipping, Confirm,StripeComponent,OrderSuccess,MyOrder,OrderDetails} from './component/Product/index';
+import { Cart, ProductDetails, Products, Search, Shipping, Confirm,StripeComponent,OrderSuccess,MyOrder,OrderDetails,Dashboard} from './component/Product/index';
 import store from './store/store';
+import {Toaster} from 'react-hot-toast'
 import { loadUser } from './store/actions/userActions';
 function App() {
     useEffect(() => {
@@ -18,6 +19,7 @@ function App() {
     <Router basename="/mernproject/">
       <Header />
       {isAuthenticated && <UserOptions user={user} />}
+      <Toaster/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/product/:id' element={<ProductDetails />} />
@@ -39,6 +41,7 @@ function App() {
         <Route path='/order/success' element={<ProtectedRoute element={OrderSuccess} />} />
         <Route path='/orders/me' element={<ProtectedRoute element={MyOrder} />} />
         <Route path='/order/:id' element={<ProtectedRoute element={OrderDetails} />} />
+        <Route path='/Admin/dashboard' element={<ProtectedRoute element={Dashboard} />} />
       </Routes>
       <Footer />
     </Router>

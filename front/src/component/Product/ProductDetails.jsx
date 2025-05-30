@@ -7,7 +7,7 @@ import { ClearErros, getProductDetails, newReview } from '../../store/actions/pr
 import ReviewCard from './ReviewCard';
 import Loader from '../layout/loader/Loader';
 import MetaData from '../layout/MetaData'
-import { useAlert } from 'react-alert';
+import { toast } from 'react-hot-toast';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -24,10 +24,9 @@ const ProductDetails = () => {
     const dispatch = useDispatch();
     const { product, loading, error } = useSelector(state => state.productDetails);
     const {success} = useSelector(state=>state.newReview);
-    const alert = useAlert();
     const [quantity, setQuantity] = useState(1)
     const [count, setCount] = useState(1)
-    const [hover, setHover] = React.useState(-1);
+    const [hover, setHover] = useState(-1);
     const increaseQuantity = () => {
         if (product.stock <= quantity) return;
         const qty = quantity + 1;
@@ -44,20 +43,20 @@ const ProductDetails = () => {
         if(count === 0){
             return;
         }
-        alert.success("Item Added to Cart")
+        toast.success("Item Added to Cart")
         setCount(count => count -1);
     }
     useEffect(() => {
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(ClearErros());
         }
         if(success){
-            alert.success("Review Sumbit Successfully")
+            toast.success("Review Sumbit Successfully")
             dispatch({type:NEW_REVIEW_REST})
         }
         dispatch(getProductDetails(id));
-    }, [dispatch, id, error,alert,success])
+    }, [dispatch, id, error,toast,success])
 
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(2);

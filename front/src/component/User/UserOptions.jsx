@@ -1,7 +1,7 @@
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
-import { useState } from 'react';
-import { useAlert } from 'react-alert';
+import { useState } from 'react';;
+import {toast} from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from 'react-redux';
 import { logout } from '../../store/actions/userActions';
@@ -10,7 +10,6 @@ import {Backdrop} from '@mui/material'
 const UserOptions = ({ user }) => {
     const dispatch = useDispatch();
     const history = useNavigate();
-    const alert = useAlert();
     const [open, setOpen] = useState(true);
     const { cartItems } = useSelector((state) => state.cart);
     const options = [
@@ -27,7 +26,7 @@ const UserOptions = ({ user }) => {
         })
     }
     function dashboard() {
-        history('/dashboard');
+        history('/Admin/dashboard');
 
     }
     function orders() {
@@ -42,7 +41,7 @@ const UserOptions = ({ user }) => {
     }
     function logoutUser() {
         dispatch(logout());
-        alert.success("Logout successfully");
+        toast.success("Logout successfully");
     }
     const speedDialStyle = {
         position: 'fixed',

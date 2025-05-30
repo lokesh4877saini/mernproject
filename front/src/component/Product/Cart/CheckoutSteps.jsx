@@ -20,7 +20,7 @@ const CheckoutSteps = ({ activeStep }) => {
 
     return (
         <div>
-            <Stepper alternateLabel activeStep={activeStep} style={{ boxSizing: 'border-box' }}>
+            <Stepper alternatelabel="true" activeStep={activeStep} style={{ boxSizing: 'border-box' }}>
                 {steps.map((item, index) => (
                     <Step
                         key={index}

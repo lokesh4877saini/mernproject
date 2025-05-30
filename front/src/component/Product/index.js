@@ -9,3 +9,4 @@ export { default as Payment } from './Shipping/Payment';
 export { default as OrderSuccess } from './Cart/order/OrderSuccess';
 export { default as MyOrder } from './Cart/order/MyOrder';
 export { default as OrderDetails} from './Cart/order/OrderDetails';
+export { default as Dashboard} from './Admin/Dashboad';

@@ -6,7 +6,7 @@ import Loader from '../layout/loader/Loader';
 import { useParams } from 'react-router-dom'
 import ProductCard from '../Home/ProductCard';
 import Pagination from 'react-js-pagination'
-import {useAlert} from "react-alert"
+import { toast } from 'react-hot-toast';
 import Slider from '@mui/material/Slider';
 import Typography from "@mui/material/Typography";
 import MetaData from '../layout/MetaData'
@@ -21,7 +21,6 @@ const categories = [
 ];
 const Products = () => {
   const { keyword } = useParams();
-  const alert = useAlert();
   const [price, setPrice] = useState([0, 25000]);
   const [category, setCategory] = useState('');
   const [ratings,setRatings] = useState(0);
@@ -36,13 +35,13 @@ const Products = () => {
   }
   useEffect(() => {
     if (error) {
-      alert.error(error)
+      toast.error(error)
       dispatch(ClearErros());
     }
   }, [error, dispatch]);
   useEffect(() => {
     dispatch(getProduct(keyword, currentPage, price,category,ratings));
-  }, [dispatch, keyword, currentPage, price,category,ratings,alert,error]);
+  }, [dispatch, keyword, currentPage, price,category,ratings,toast,error]);
   let count = filteredProductsCount;
   return (
     <>

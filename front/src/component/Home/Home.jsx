@@ -5,7 +5,7 @@ import MetaData from '../layout/MetaData';
 import { useSelector, useDispatch } from 'react-redux'
 import { ClearErros, getProduct } from '../../store/actions/productActions'
 import Loader from '../layout/loader/Loader';
-import {useAlert} from 'react-alert'
+import { toast } from 'react-hot-toast';
 // temporary product
 // const product = {
 //   name:"Blue Tshirt",
@@ -14,12 +14,11 @@ import {useAlert} from 'react-alert'
 //   _id:"ilscodein"
 // }
 const Home = () => {
-  const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, product,error} = useSelector(state => state.products)
   useEffect(() => {
     if(error){
-       alert.error(error)
+       toast.error(error)
       dispatch(ClearErros); 
     }
     dispatch(getProduct());

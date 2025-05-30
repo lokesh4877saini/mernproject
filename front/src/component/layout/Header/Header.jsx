@@ -7,10 +7,9 @@ import { useSelector } from 'react-redux'
 import { LogoutOutlined } from '@mui/icons-material';
 import { logout } from '../../../store/actions/userActions';
 import { loadUser } from '../../../store/actions/userActions';
-import { useAlert } from 'react-alert';
+import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux'
 const Header = () => {
-  const alert = useAlert();
   const dispatch = useDispatch();
   React.useEffect(() => {
     store.dispatch(loadUser());
@@ -40,7 +39,7 @@ const Header = () => {
   }
   const logoutUser = () => {
     dispatch(logout());
-    alert.success("Logout successfully");
+    toast.success("Logout successfully");
   }
   return (
     <>

@@ -7,24 +7,24 @@
     box-sizing: border-box;
     width: 86%;
     background-color: rgb(255, 250, 243);
-    box-shadow:inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
-    >div {
+    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+    > div {
         backdrop-filter: blur(50px);
         width: 100%;
         background-color: white;
         border: 1px solid rgb(105, 105, 105);
-        .img-div{
-            width:  100%;
+        .img-div {
+            width: 100%;
             height: 100%;
             .CarouselImage {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-            }       
+            }
         }
     }
-    
-    >div:last-child {
+
+    > div:last-child {
         backdrop-filter: blur(50px);
         display: flex;
         flex-direction: column;
@@ -32,24 +32,23 @@
         padding: 2vmax;
         box-sizing: border-box;
         align-items: flex-start;
-
     }
 
     .detailsBlock-1 {
-        >h2 {
+        > h2 {
             color: rgb(43, 43, 43);
             font-size: 2.6vmax;
             padding: 1vmax 0;
         }
 
-        >p {
+        > p {
             color: rgba(10, 10, 10);
-            font-size: .9vmax;
+            font-size: 0.9vmax;
             text-decoration: dashed;
 
-            >span {
+            > span {
                 color: rgba(54, 54, 54, 0.575);
-                font-size: .9vmax;
+                font-size: 0.9vmax;
                 text-decoration: dashed;
             }
         }
@@ -65,7 +64,7 @@
         border-bottom: 1px solid rgba(54, 54, 54, 0.199);
         padding: 1vmax 0;
 
-        >span {
+        > span {
             color: rgb(0, 0, 0);
             font-size: 0.8vmax;
             font-weight: 200;
@@ -75,22 +74,22 @@
     .detailsBlock-3 {
         width: 70%;
 
-        >h1 {
+        > h1 {
             color: rgb(54, 54, 54);
             font-size: 2.8vmax;
             font-weight: 400;
         }
 
-        >.detailsBlock-3-1 {
+        > .detailsBlock-3-1 {
             display: flex;
             gap: 5px;
             margin: 2.3vmax 0;
             align-items: center;
 
-            >.detailsBlock-3-1-1 {
+            > .detailsBlock-3-1-1 {
                 width: 50%;
 
-                >button {
+                > button {
                     border: none;
                     padding: 0.3vmax 1.2vmax;
                     border-radius: 3px;
@@ -107,7 +106,7 @@
                     }
                 }
 
-                >input {
+                > input {
                     border: none;
                     outline: none;
                     width: 40%;
@@ -125,7 +124,6 @@
                         box-shadow: 1px 1px 3px 3px rgba(54, 54, 54, 0.5);
                     }
                 }
-
             }
 
             button {
@@ -141,7 +139,6 @@
 
                 &:hover {
                     background-color: rgb(212, 60, 0);
-
                 }
             }
         }
@@ -157,7 +154,7 @@
         color: #242424;
         font-size: 1.5vmax;
 
-        >p {
+        > p {
             color: rgba(43, 43, 43, 0.658);
             font-weight: 300;
             font-size: 1.2vmax;
@@ -179,20 +176,19 @@
         &:hover {
             background-color: rgb(179, 69, 49);
             box-shadow: 1px 1px 4px 8px rgba(54, 54, 54, 0.199);
-            
         }
     }
 }
 
-.review-section{
+.review-section {
     background-color: rgb(255, 250, 243);
     padding: 1vmax;
     width: 86%;
     margin: 4vmax auto;
     border-radius: 10px;
-    box-shadow:inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
     // box-shadow:inset 1px 1px 4px 8px rgba(54, 54, 54, 0.199);
-    .reviewsHeading{
+    .reviewsHeading {
         color: #292929;
         font-size: 1.8vmax;
         text-align: center;
@@ -201,14 +197,14 @@
         width: 20%;
         margin: 1vmax auto;
     }
-    .noReviews{
+    .noReviews {
         text-align: center;
         font-size: 1.2vmax;
-        color:  rgba(54, 54, 54, .499);
+        color: rgba(54, 54, 54, 0.499);
     }
 }
 
-.reviews{
+.reviews {
     width: 100%;
     gap: 50px;
     display: flex;
@@ -217,119 +213,127 @@
     flex-wrap: wrap;
     padding: 2vmax;
 }
-.reviewCard{
-    flex:none;
+.reviewCard {
+    flex: none;
     width: 15vmax;
     display: flex;
     border: 1px solid rgba(39, 39, 39, 0.144);
     transition: all 0.5s ease;
-    animation:ChangeBg 3s alternate linear infinite;
+    animation: ChangeBg 3s alternate linear infinite;
     flex-direction: column;
     align-items: center;
     padding: 2vmax;
-    &:hover{
+    &:hover {
         transform: translateY(-5px);
-        box-shadow:0 0 5px rgba(54, 54, 54, 0.575);
+        box-shadow: 0 0 5px rgba(54, 54, 54, 0.575);
     }
-    img{
+    img {
         width: 80%;
     }
-    p{
+    p {
         color: rgba(0, 0, 0, 0.781);
         font-size: 0.9vmax;
     }
-    span{
+    span {
         color: rgba(54, 54, 54, 0.799);
         font-size: 0.8vmax;
-
     }
 }
 
 // media query
-@media screen and (max-width:609px) {
-    .ProductDetails {
-        flex-direction: column;
-        font-size: 4vmax;
-        height: unset;
-        >div:last-child {
+@media screen and (max-width: 609px) {
+    html {
+        text-align: center;
+        font-size: 70%;
+        .ProductDetails {
+            flex-direction: column;
+            font-size: 2vmax;
+            height: unset;
+            > div:last-child {
+                align-items: center;
+            }
+            .detailsBlock-1 {
+                text-align: center;
+
+                h2 {
+                    font-size: 2vmax;
+                }
+
+                p {
+                    font-size: 1.6vmax;
+
+                    span {
+                        font-size: 1.7vmax;
+                    }
+                }
+            }
+
+            .detailsBlock-2 {
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                .css-1czqjfa-MuiRating-decimal {
+                    font-size: 0.3rem !important;
+                }
+                span {
+                    font-size: 0.9vmax;
+                }
+            }
+
+            .detailsBlock-3 {
+                text-align: center;
+
+                h1 {
+                    text-align: center;
+                    font-size: 3.5vmax;
+                }
+
+                p {
+                    font-size: 2.1vmax;
+                }
+
+                .detailsBlock-3-1 {
+                    flex-direction: column;
+                    gap: 15px;
+
+                    .detailsBlock-3-1-1 {
+                        display: flex;
+                        max-width: fit-content;
+                        gap: 10px;
+                        flex-direction: column;
+                        button {
+                            padding: 0.9vmax 2vmax;
+                            font-size: 2.4vmax;
+                        }
+
+                        input {
+                            width: 100%;
+                            padding: 0.9vmax 2vmax;
+                        }
+                    }
+
+                    button {
+                        padding: 1.6vmax 4vmax;
+                        font-size: 1.3vmax;
+                    }
+                }
+            }
+
+            .detailsBlock-4 {
+                font-size: 3vmax;
+                
+                > p {
+                    font-size: 2vmax;
+                }
+            }
+
+            .submitReview {
+                padding: 1.6vmax 4vmax;
+                font-size: 1.3vmax;
+            }
+        }
+        .ProductDetails > div:last-child {
             align-items: center;
         }
-        .detailsBlock-1 {
-            text-align: center;
-
-            h2 {
-                font-size: 4vmax;
-            }
-
-            p {
-                font-size: 1.5vmax;
-
-                span {
-                    font-size: 1.3vmax;
-                }
-            }
-        }
-
-        .detailsBlock-2 {
-            display: flex;
-            align-content: center;
-            justify-content: center;
-
-            span {
-                font-size: 1.9vmax;
-            }
-        }
-
-        .detailsBlock-3 {
-            text-align: center;
-
-            h1 {
-                font-size: 3vmax;
-                text-align: center;
-                font-size: 4vmax;
-            }
-
-            p {
-                font-size: 2.1vmax;
-            }
-
-            .detailsBlock-3-1 {
-                flex-direction: column;
-                gap: 15px;
-
-                .detailsBlock-3-1-1 {
-                    button {
-                        padding: 1.3vmax 2.2vmax;
-                        font-size: 2vmax;
-                    }
-
-                    input {
-                        width: 45%;
-                        padding: 1vmax 3vmax;
-                    }
-                }
-
-                button {
-                    padding: 1.6vmax 4vmax;
-                    font-size: 1.3vmax;
-                }
-            }
-        }
-
-        .detailsBlock-4 {
-            font-size: 4vmax;
-
-            >p {
-                font-size: 2vmax;
-            }
-        }
-
-        .submitReview {
-            padding: 1.6vmax 4vmax;
-            font-size: 1.3vmax;
-        }
-    }
-    .ProductDetails>div:last-child {
-        align-items: center;
     }
 }

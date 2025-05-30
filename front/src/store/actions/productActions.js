@@ -2,19 +2,23 @@ import {
     ALL_PRODUCT_SUCCESS,
     ALL_PRODUCT_REQUEST,
     CLEAR_ERRORS,
+    NEW_REVIEW_REQUEST,
+    NEW_REVIEW_SUCCESS,
+    NEW_REVIEW_REST,
+    NEW_REVIEW_FAIL,
     ALL_PRODUCT_FAIL,
     PRODUCT_DETAILS_FAIL,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
 } from '../constants/productConstants'
 import axios from 'axios';
-const preUrl  = import.meta.env.VITE_SERVER_URL;
-export const getProduct = (keyword="",currentPage = 1,price=[0,25000],category,ratings=0) => async (dispatch) => {
+const preUrl = import.meta.env.VITE_SERVER_URL;
+export const getProduct = (keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0) => async (dispatch) => {
     try {
         dispatch({ type: ALL_PRODUCT_REQUEST });
         let url = `${preUrl}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
-        if(category){
-            url  =  `${preUrl}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings} `;
+        if (category) {
+            url = `${preUrl}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings} `;
         }
         const { data } = await axios.get(url);
         dispatch({
@@ -46,6 +50,25 @@ export const getProductDetails = (id) => async (dispatch) => {
     }
 }
 
+export const newReview = (reviewData) => async (dispatch) => {
+    try {
+        dispatch({ type: NEW_REVIEW_REQUEST });
+        const config= {
+            headers:{"Content-Type":"application/json"},
+            withCredentials: true,
+        }
+        const { data } = await axios.put(`${preUrl}/api/v1/review`,reviewData,config);
+        dispatch({
+            type: NEW_REVIEW_SUCCESS,
+            payload: data.success,
+        })
+    } catch (e) {
+        dispatch({
+            type: NEW_REVIEW_FAIL,
+            payload: e.response.data.message,
+        })
+    }
+}
 
 
 // Clearing Errors

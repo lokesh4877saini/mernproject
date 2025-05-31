@@ -4,7 +4,13 @@ import {
     CLEAR_ERRORS,
     NEW_REVIEW_REQUEST,
     NEW_REVIEW_SUCCESS,
-    NEW_REVIEW_REST,
+    ADMIN_PRODUCT_REQUEST,
+    ADMIN_PRODUCT_SUCCESS,
+    ADMIN_PRODUCT_FAIL,
+    ADMIN_NEW_PRODUCT_REQUEST,
+    ADMIN_NEW_PRODUCT_SUCCESS,
+    ADMIN_NEW_PRODUCT_REST,
+    ADMIN_NEW_PRODUCT_FAIL,
     NEW_REVIEW_FAIL,
     ALL_PRODUCT_FAIL,
     PRODUCT_DETAILS_FAIL,
@@ -53,11 +59,11 @@ export const getProductDetails = (id) => async (dispatch) => {
 export const newReview = (reviewData) => async (dispatch) => {
     try {
         dispatch({ type: NEW_REVIEW_REQUEST });
-        const config= {
-            headers:{"Content-Type":"application/json"},
+        const config = {
+            headers: { "Content-Type": "application/json" },
             withCredentials: true,
         }
-        const { data } = await axios.put(`${preUrl}/api/v1/review`,reviewData,config);
+        const { data } = await axios.put(`${preUrl}/api/v1/review`, reviewData, config);
         dispatch({
             type: NEW_REVIEW_SUCCESS,
             payload: data.success,
@@ -70,7 +76,49 @@ export const newReview = (reviewData) => async (dispatch) => {
     }
 }
 
+// Admin
 
+export const newProductByAdmin = (prodcutData) => async (dispatch) => {
+    try {
+        dispatch({ type: ADMIN_NEW_PRODUCT_REQUEST });
+        const config = {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+        }
+        const { data } = await axios.post(`${preUrl}/api/v1/admin/product/new`, prodcutData, config);
+        dispatch({
+            type: ADMIN_NEW_PRODUCT_SUCCESS,
+            payload: data,
+        })
+    } catch (e) {
+        dispatch({
+            type: ADMIN_NEW_PRODUCT_FAIL,
+            payload: e.response.data.message,
+        })
+    }
+}
+
+export const getAllProductsForAdmin = () => async (dispatch) => {
+    try {
+        dispatch({ type: ADMIN_PRODUCT_REQUEST });
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            withCredentials: true,
+        };
+        const { data } = await axios.get(`${preUrl}/api/v1/admin/products`, config);
+        dispatch({
+            type: ADMIN_PRODUCT_SUCCESS,
+            payload: data.products,
+        })
+    } catch (e) {
+        dispatch({
+            type: ADMIN_PRODUCT_FAIL,
+            payload: e.response.data.message,
+        })
+    }
+}
 // Clearing Errors
 
 

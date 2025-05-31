@@ -6,7 +6,7 @@ import { Home, About, Contact } from './component/Home/index';
 import { Account, EditProfile, ForgotPassword, LoginSignUp, ResetPassword, UpdatePassword, UserOptions } from './component/User/index';
 import { Header, Footer } from './component/layout/index';
 import ProtectedRoute from './component/Route/ProtectedRoute';
-import { Cart, ProductDetails, Products, Search, Shipping, Confirm,StripeComponent,OrderSuccess,MyOrder,OrderDetails,Dashboard} from './component/Product/index';
+import { Cart, ProductDetails, Products, Search, Shipping, Confirm,StripeComponent,OrderSuccess,MyOrder,OrderDetails,Dashboard,ProductList,UserList,OrderList,NewProduct} from './component/Product/index';
 import store from './store/store';
 import {Toaster} from 'react-hot-toast'
 import { loadUser } from './store/actions/userActions';
@@ -41,7 +41,12 @@ function App() {
         <Route path='/order/success' element={<ProtectedRoute element={OrderSuccess} />} />
         <Route path='/orders/me' element={<ProtectedRoute element={MyOrder} />} />
         <Route path='/order/:id' element={<ProtectedRoute element={OrderDetails} />} />
-        <Route path='/Admin/dashboard' element={<ProtectedRoute element={Dashboard} />} />
+        <Route path='/admin/dashboard' element={<ProtectedRoute isAdmin={true} element={Dashboard} />} />
+        <Route path='/admin/products' element={<ProtectedRoute isAdmin={true} element={ProductList} />} />
+        <Route path='/admin/users' element={<ProtectedRoute isAdmin={true} element={UserList} />} />
+        <Route path='/admin/orders' element={<ProtectedRoute isAdmin={true} element={OrderList} />} />
+        <Route path='/admin/new/product' element={<ProtectedRoute isAdmin={true} element={NewProduct} />} />
+        
       </Routes>
       <Footer />
     </Router>

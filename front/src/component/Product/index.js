@@ -10,3 +10,7 @@ export { default as OrderSuccess } from './Cart/order/OrderSuccess';
 export { default as MyOrder } from './Cart/order/MyOrder';
 export { default as OrderDetails} from './Cart/order/OrderDetails';
 export { default as Dashboard} from './Admin/Dashboad';
+export { default as ProductList} from './Admin/ProductList';
+export { default as OrderList} from './Admin/OrderList';
+export { default as UserList} from './Admin/UserList';
+export {default as NewProduct} from './Admin/NewProduct';

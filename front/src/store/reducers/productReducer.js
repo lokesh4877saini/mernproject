@@ -4,6 +4,13 @@ import {
     ALL_PRODUCT_REQUEST,
     CLEAR_ERRORS,
     NEW_REVIEW_REQUEST,
+    ADMIN_PRODUCT_REQUEST,
+    ADMIN_PRODUCT_SUCCESS,
+    ADMIN_PRODUCT_FAIL,
+    ADMIN_NEW_PRODUCT_REQUEST,
+    ADMIN_NEW_PRODUCT_SUCCESS,
+    ADMIN_NEW_PRODUCT_REST,
+    ADMIN_NEW_PRODUCT_FAIL,
     NEW_REVIEW_SUCCESS,
     NEW_REVIEW_REST,
     NEW_REVIEW_FAIL,
@@ -14,6 +21,7 @@ import {
 export const productReducer = (state = { products: [] }, action) => {
     switch (action.type) {
         case ALL_PRODUCT_REQUEST:
+        case ADMIN_PRODUCT_REQUEST:
             return {
                 loading: true,
                 product: []
@@ -26,7 +34,14 @@ export const productReducer = (state = { products: [] }, action) => {
                 resultPerPage: action.payload.resultPerPage,
                 filteredProductsCount: action.payload.filteredProductsCount,
             }
+        case ADMIN_PRODUCT_SUCCESS:
+            return {
+                loading: false,
+                product: action.payload,
+            }
+
         case ALL_PRODUCT_FAIL:
+        case ADMIN_PRODUCT_FAIL:
             return {
                 loading: false,
                 error: action.payload,
@@ -88,7 +103,41 @@ export const newReviewReducer = (state = {}, action) => {
             return {
                 ...state,
                 success: false,
-                loading:false,
+                loading: false,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
+        default:
+            return state;
+    }
+}
+export const newProductByAdminReducer = (state = {newProduct:{}}, action) => {
+    switch (action.type) {
+        case ADMIN_NEW_PRODUCT_REQUEST:
+            return {
+                loading: true,
+                ...state,
+            }
+        case ADMIN_NEW_PRODUCT_SUCCESS:
+            return {
+                loading: false,
+                success: action.payload.success,
+                newProduct:action.payload.product,
+            }
+        case ADMIN_NEW_PRODUCT_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
+        case ADMIN_NEW_PRODUCT_REST:
+            return {
+                ...state,
+                success: false,
+                loading: false,
             };
         case CLEAR_ERRORS:
             return {

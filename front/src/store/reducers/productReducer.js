@@ -7,6 +7,14 @@ import {
     ADMIN_PRODUCT_REQUEST,
     ADMIN_PRODUCT_SUCCESS,
     ADMIN_PRODUCT_FAIL,
+    ADMIN_DELETE_PRODUCT_REQUEST,
+    ADMIN_DELETE_PRODUCT_SUCCESS,
+    ADMIN_DELETE_PRODUCT_REST,
+    ADMIN_DELETE_PRODUCT_FAIL,
+    ADMIN_UPDATE_PRODUCT_REQUEST,
+    ADMIN_UPDATE_PRODUCT_SUCCESS,
+    ADMIN_UPDATE_PRODUCT_REST,
+    ADMIN_UPDATE_PRODUCT_FAIL,
     ADMIN_NEW_PRODUCT_REQUEST,
     ADMIN_NEW_PRODUCT_SUCCESS,
     ADMIN_NEW_PRODUCT_REST,
@@ -114,7 +122,7 @@ export const newReviewReducer = (state = {}, action) => {
             return state;
     }
 }
-export const newProductByAdminReducer = (state = {newProduct:{}}, action) => {
+export const newProductByAdminReducer = (state = { newProduct: {} }, action) => {
     switch (action.type) {
         case ADMIN_NEW_PRODUCT_REQUEST:
             return {
@@ -125,7 +133,7 @@ export const newProductByAdminReducer = (state = {newProduct:{}}, action) => {
             return {
                 loading: false,
                 success: action.payload.success,
-                newProduct:action.payload.product,
+                newProduct: action.payload.product,
             }
         case ADMIN_NEW_PRODUCT_FAIL:
             return {
@@ -137,6 +145,54 @@ export const newProductByAdminReducer = (state = {newProduct:{}}, action) => {
             return {
                 ...state,
                 success: false,
+                loading: false,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
+        default:
+            return state;
+    }
+}
+export const deleteProductByAdminReducer = (state = {}, action) => {
+    switch (action.type) {
+        case ADMIN_DELETE_PRODUCT_REQUEST:
+        case ADMIN_UPDATE_PRODUCT_REQUEST:
+            return {
+                loading: true,
+                ...state,
+            }
+        case ADMIN_DELETE_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isDeleted: action.payload,
+            }
+        case ADMIN_UPDATE_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isUpdated: action.payload,
+            }
+        case ADMIN_DELETE_PRODUCT_FAIL:
+        case ADMIN_UPDATE_PRODUCT_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
+        case ADMIN_DELETE_PRODUCT_REST:
+            return {
+                ...state,
+                isDeleted: false,
+                loading: false,
+            };
+        case ADMIN_UPDATE_PRODUCT_REST:
+            return {
+                ...state,
+                isUpdated: false,
                 loading: false,
             };
         case CLEAR_ERRORS:

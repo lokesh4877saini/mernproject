@@ -100,7 +100,7 @@
         .DashboardSlider {
             width: 100% !important;
             .stickySidebar {
-                position: relative;
+                transform: translateY(0) !important;
                 padding: 2rem;
                 div {
                     margin: 0 auto;

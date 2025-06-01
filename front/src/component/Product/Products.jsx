@@ -76,7 +76,7 @@ const Products = () => {
                   <div className="filterBox">
                     <div className="priceBox">
                       <Typography> Price </Typography>
-                      <Slider value={price} onChange={priceHandler} valueLabelDisplay='auto' aria-labelledby='range-slider' min={0} max={25000} > </Slider>
+                      <Slider value={price} onChange={priceHandler} valueLabelDisplay='auto' aria-labelledby='range-slider' min={0} max={250000} > </Slider>
                     </div>
                     <div className="categoryBox">
                       <Typography> Categories</Typography>

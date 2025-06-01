@@ -72,6 +72,11 @@
                         display: flex;
                         gap: 20px;
                         align-items: center;
+                        >img{
+                            width:  70px;
+                            aspect-ratio: 1/1;
+                            border-radius: 100%;
+                        }
                     }
                     p {
                         padding: 0.3rem 0.5rem;

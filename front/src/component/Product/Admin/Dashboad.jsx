@@ -10,6 +10,7 @@ import './dashboard.scss';
 const Dashboad = () => {
   const dispatch = useDispatch();
   const { product: products, loading } = useSelector((state) => state.products);
+  const sum = products.reduce((val, productprice) =>val+productprice.price, 0);
   useEffect(() => {
 
     dispatch(getAllProductsForAdmin());
@@ -61,7 +62,7 @@ const Dashboad = () => {
                     Total Ammount :
                   </p>
                   <span>
-                    200000000
+                    {sum}
                   </span>
                 </div>
               </div>
@@ -70,14 +71,14 @@ const Dashboad = () => {
                   <p>Product</p>
                   <p>{products && products.length}</p>
                 </Link>
-                <Link to="/Admin/orders" >
+                {/* <Link to="/Admin/orders" >
                   <p>Order</p>
                   <p>50</p>
                 </Link>
                 <Link to="/Admin/users" >
                   <p>User</p>
                   <p>50</p>
-                </Link>
+                </Link> */}
               </div>
               <div className="lineChart">
                 <Line data={lineState} />

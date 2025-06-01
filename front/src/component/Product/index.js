@@ -14,3 +14,4 @@ export { default as ProductList} from './Admin/ProductList';
 export { default as OrderList} from './Admin/OrderList';
 export { default as UserList} from './Admin/UserList';
 export {default as NewProduct} from './Admin/NewProduct';
+export {default as UpdateProduct} from './Admin/UpdateProduct';

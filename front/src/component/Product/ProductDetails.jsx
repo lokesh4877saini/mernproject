@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Carousel from 'react-material-ui-carousel'
+// import Carousel from 'react-material-ui-carousel'
 import './productDetails.scss';
 import { useSelector, useDispatch } from 'react-redux'
 import { ClearErros, getProductDetails, newReview } from '../../store/actions/productActions';
@@ -11,6 +11,7 @@ import { toast } from 'react-hot-toast';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
+import defaultImg from '../../assets/default.jpg';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -23,10 +24,12 @@ const ProductDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { product, loading, error } = useSelector(state => state.productDetails);
-    const {success} = useSelector(state=>state.newReview);
+    const { success } = useSelector(state => state.newReview);
     const [quantity, setQuantity] = useState(1)
-    const [count, setCount] = useState(1)
     const [hover, setHover] = useState(-1);
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(2);
+    const [comment, setComment] = useState('');
     const increaseQuantity = () => {
         if (product.stock <= quantity) return;
         const qty = quantity + 1;
@@ -38,29 +41,21 @@ const ProductDetails = () => {
             setQuantity(qty)
         }
     }
-    const handleAddToCart = ()=>{
-        dispatch(addItemsToCart(id,quantity));
-        if(count === 0){
-            return;
-        }
+    const handleAddToCart = () => {
+        dispatch(addItemsToCart(id, quantity));
         toast.success("Item Added to Cart")
-        setCount(count => count -1);
     }
     useEffect(() => {
         if (error) {
             toast.error(error);
             dispatch(ClearErros());
         }
-        if(success){
+        if (success) {
             toast.success("Review Sumbit Successfully")
-            dispatch({type:NEW_REVIEW_REST})
+            dispatch({ type: NEW_REVIEW_REST })
         }
         dispatch(getProductDetails(id));
-    }, [dispatch, id, error,toast,success])
-
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(2);
-    const [comment, setComment] = useState('');
+    }, [dispatch, id, error, toast, success])
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -87,15 +82,15 @@ const ProductDetails = () => {
                         <div className="ProductDetails">
                             <div>
                                 <div className="img-div">
-                                    <Carousel>
-                                        {product.image && product.image.map((item, i) => (
+                                    {/* <Carousel> */}
+                                        {/* {product.image && product.image.map((item, i) => ( */}
                                             <img className='CarouselImage'
-                                                key={item.url}
-                                                src={item.url}
-                                                alt={`${i} Slide`}
+                                                // key={item.url}
+                                                src={defaultImg}
+                                                // alt={`${i} Slide`}
                                             />
-                                        ))}
-                                    </Carousel>
+                                        {/* ))} */}
+                                    {/* </Carousel> */}
                                 </div>
                             </div>
                             <div>
@@ -105,8 +100,8 @@ const ProductDetails = () => {
                                 </div>
                                 <div className="detailsBlock-2">
                                     <Rating name="rating" precision={0.5} value={product.ratings} size="large"
-                                   className='rating' icon={<StarIcon style={{ color: 'tomato', fontSize: '1.4rem' }} />}
-                                    readOnly emptyIcon={<StarIcon style={{ opacity: 0.55,color: 'grey' ,fontSize:"1.4rem"}} fontSize="inherit" />}  />
+                                        className='rating' icon={<StarIcon style={{ color: 'tomato', fontSize: '1.4rem' }} />}
+                                        readOnly emptyIcon={<StarIcon style={{ opacity: 0.55, color: 'grey', fontSize: "1.4rem" }} fontSize="inherit" />} />
                                     <span>{product.numOfReviews} Reviews</span>
                                 </div>
                                 <div className="detailsBlock-3">
@@ -126,64 +121,72 @@ const ProductDetails = () => {
                                 <div className="detailsBlock-4">
                                     Desription: <p>{product.description}</p>
                                 </div>
-                                <button className='submitReview' onClick={handleClickOpen}> Submit Review</button>
+                                <button className='submitReview'
+                                onClick={handleClickOpen}
+                                >
+                                    Submit Review</button>
                             </div>
                         </div>
 
                         <div className="review-section">
                             <h3 className="reviewsHeading">Reviews</h3>
                             {
-                                product.reviews && product.reviews[0] ? (
+                                product.reviews && product.reviews.length > 0 ? (
                                     <div className="reviews">
                                         {
                                             product.reviews && product.reviews.map((review, index) => <ReviewCard review={review} key={index} />)
                                         }
-                                        <Dialog
-                                            open={open}
-                                            style={{
-                                                textAlign: "center"
-                                            }}
-                                        >
-                                            <DialogTitle>Submit Review</DialogTitle>
-                                            <DialogContent>
-                                                <DialogContentText>
-                                                    To subscribe to this product, please enter your message here.
-                                                </DialogContentText><br />
-                                                <Rating
-                                                    name="rating"
-                                                    value={value}
-                                                    precision={0.5}
-                                                    onChange={(event, newValue) => {
-                                                        setValue(newValue);
-                                                    }}
-                                                    onChangeActive={(event, newHover) => {
-                                                        setHover(newHover);
-                                                    }}
-                                                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                                                />
-                                                <TextField
-                                                    autoFocus
-                                                    required
-                                                    margin="dense"
-                                                    id="name"
-                                                    onChange={(e) => { setComment(e.target.value) }}
-                                                    name="comment"
-                                                    label="Message"
-                                                    type="text"
-                                                    fullWidth
-                                                    variant="standard"
-                                                />
-                                            </DialogContent>
-                                            <DialogActions>
-                                                <Button onClick={handleClose}>Cancel</Button>
-                                                <Button type="submit" onClick={handleReviewSubmit} variant="contained" color="primary">Submit</Button>
-                                            </DialogActions>
-                                        </Dialog>
+
                                     </div>
                                 ) : (
                                     <p className="noReviews">No Reviews Yet</p>
                                 )
                             }
+                            <Dialog
+                                open={open}
+                                style={{
+                                    textAlign: "center"
+                                }}
+                            >
+                                <DialogTitle>Submit Review</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        To subscribe to this product, please enter your message here.
+                                    </DialogContentText><br />
+                                    <Rating
+                                        name="rating"
+                                        value={value}
+                                        precision={0.5}
+                                        onChange={(event, newValue) => {
+                                            setValue(newValue);
+                                        }}
+                                        onChangeActive={(event, newHover) => {
+                                            setHover(newHover);
+                                        }}
+                                        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                    />
+                                    <TextField
+                                        autoFocus
+                                        required
+                                        margin="dense"
+                                        id="name"
+                                        onChange={(e) => { setComment(e.target.value) }}
+                                        name="comment"
+                                        label="Message"
+                                        type="text"
+                                        fullWidth
+                                        variant="standard"
+                                    />
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button
+                                        onClick={handleClose}
+                                    >Cancel</Button>
+                                    <Button type="submit"
+                                        onClick={handleReviewSubmit}
+                                        variant="contained" color="primary">Submit</Button>
+                                </DialogActions>
+                            </Dialog>
                         </div>
                     </>)
             }

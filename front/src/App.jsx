@@ -6,14 +6,16 @@ import { Home, About, Contact } from './component/Home/index';
 import { Account, EditProfile, ForgotPassword, LoginSignUp, ResetPassword, UpdatePassword, UserOptions } from './component/User/index';
 import { Header, Footer } from './component/layout/index';
 import ProtectedRoute from './component/Route/ProtectedRoute';
-import { Cart, ProductDetails, Products, Search, Shipping, Confirm,StripeComponent,OrderSuccess,MyOrder,OrderDetails,Dashboard,ProductList,UserList,OrderList,NewProduct} from './component/Product/index';
+import { Cart, ProductDetails, Products, Search, Shipping, Confirm,StripeComponent,OrderSuccess,MyOrder,OrderDetails,Dashboard,ProductList,UserList,OrderList,NewProduct, UpdateProduct} from './component/Product/index';
 import store from './store/store';
 import {Toaster} from 'react-hot-toast'
 import { loadUser } from './store/actions/userActions';
 function App() {
-    useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
+  useEffect(() => {
+    if (!store.getState().user.isAuthenticated) {
+      store.dispatch(loadUser());
+    }
+  }, []);  
   const { isAuthenticated, user } = useSelector(state => state.user);
   return (
     <Router basename="/mernproject/">
@@ -28,7 +30,7 @@ function App() {
         <Route path='/search' Component={Search} />
         <Route path='/about' Component={About} />
         <Route path='/contact' Component={Contact} />
-        <Route path='/orders' Component={Cart} />
+        <Route path='/cart' Component={Cart} />
         <Route path='/me/update' element={<ProtectedRoute element={EditProfile} />} />
         <Route path='/account' element={<ProtectedRoute element={Account} />} />
         <Route path='/login' Component={LoginSignUp} />
@@ -46,6 +48,7 @@ function App() {
         <Route path='/admin/users' element={<ProtectedRoute isAdmin={true} element={UserList} />} />
         <Route path='/admin/orders' element={<ProtectedRoute isAdmin={true} element={OrderList} />} />
         <Route path='/admin/new/product' element={<ProtectedRoute isAdmin={true} element={NewProduct} />} />
+        <Route path='/admin/edit/product/:id' element={<ProtectedRoute isAdmin={true} element={UpdateProduct} />} />
         
       </Routes>
       <Footer />

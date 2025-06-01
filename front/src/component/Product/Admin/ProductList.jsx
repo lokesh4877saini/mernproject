@@ -1,15 +1,19 @@
 import { DataGrid } from '@mui/x-data-grid';
-import React, { useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import React, { useEffect,useState } from 'react';
+import {Link,useNavigate} from 'react-router-dom';
 import {toast} from 'react-hot-toast'
 import Loader from '../../layout/loader/Loader';
 import MetaData from '../../layout/MetaData';
-import {getAllProductsForAdmin} from '../../../store/actions/productActions';
-import {OpenInNewTwoTone} from '@mui/icons-material'
+import {getAllProductsForAdmin,deleteProductByAdmin} from '../../../store/actions/productActions';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import './productlist.scss';
 const ProductList = () => {
   const { product:products, error, loading } = useSelector((state) => state.products);
+  const {isDeleted}  = useSelector((state)=>state.deleteProduct)
+  const [isDisable, setIsDisable] = useState(false);
+  const history = useNavigate();
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const rows=[];
@@ -42,19 +46,33 @@ const ProductList = () => {
       flex: 0.3,
       sortable: false,
       renderCell: (params) => (
-        <Link to={`/admin/product/${params.row.id}`}>
-          <OpenInNewTwoTone style={{fill:"tomato"}}/>
+        <>
+        <Link to={`/admin/edit/product/${params.row.id}`}>
+          <EditIcon style={{fill:"yellow"}}/>
         </Link>
+        <button disabled={isDisable} style={{padding:"0.1rem",background:"transparent",outline:"none",border:"none",cursor:"pointer"}} onClick={()=>{deleteProductHandler(params.row.id)}}>
+          <DeleteIcon style={{fill:"red"}}/>
+        </button>
+        </>
       ),
     },
   ];
+  const deleteProductHandler=(id)=>{
+    setIsDisable(true);
+    window.location.reload();
+    dispatch(deleteProductByAdmin(id))
+  }
   useEffect(() => {
     if (error) {
       toast.error(error);
       dispatch(ClearErros());
     }
+    if(isDeleted){
+      toast.success("Product Deleted Successfully");
+      history("/admin/products")
+    }
     dispatch(getAllProductsForAdmin());
-  }, [dispatch, toast, error])
+  }, [dispatch,error,isDeleted])
   return (
     <>
       {loading ? (
@@ -67,7 +85,7 @@ const ProductList = () => {
           <div className="heading">
             <h2>All Products</h2>
           </div>
-          <div style={{ height: 300, width: '100%' }}>
+          <div style={{  width: '100%'  }}>
             <DataGrid rows={rows} columns={columns} 
               sx={{
                 '& .MuiDataGrid-row:hover': {
@@ -77,6 +95,9 @@ const ProductList = () => {
                 },
                 '& .MuiDataGrid-row': {
                   transition: 'background 0.7s ease', // Ensures smooth out too
+                  display:"flex",
+                  alignItems:"center",
+                  justifyContent:"center",
                   background: 'linear-gradient(to right, rgba(0, 255, 0, 0.1), rgb(0, 225, 255), rgb(255, 217, 0))'
                 }
               }}

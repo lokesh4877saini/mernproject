@@ -4,6 +4,7 @@ import { orderDetail } from '../../../../store/actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
 import {toast} from 'react-hot-toast'
 import Loader from '../../../layout/loader/Loader';
+import defaultImage from '../../../../assets/default.jpg';
 import MetaData from '../../../../component/layout/MetaData';
 import './orderDetails.scss';
 const OrderDetails = () => {
@@ -62,7 +63,7 @@ const OrderDetails = () => {
                                             <div key={item._id} className="special">
                                                 <div>
                                                     <div className="img">
-                                                        <img src={item.image.public_id} />
+                                                        <img src={defaultImage} />
                                                     </div>
                                                     <p>{item.name}</p>
 

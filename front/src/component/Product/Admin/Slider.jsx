@@ -34,7 +34,7 @@ const Slider = () => {
                     <PostAddIcon /> <p> All Products</p>
                 </Link>
             </div>
-            <div>
+            {/* <div>
                 <Link to="/admin/orders" >
                     <ListAltIcon /><p>Orders</p>
                 </Link>
@@ -49,7 +49,7 @@ const Slider = () => {
                 <Link to="/admin/reviews" >
                     <RateReviewIcon /><p> Reviews</p>
                 </Link>
-            </div>
+            </div> */}
             </div>
         </div>
     )

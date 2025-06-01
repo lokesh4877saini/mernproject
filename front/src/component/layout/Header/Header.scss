@@ -3,7 +3,7 @@
 nav {
     padding: 0.5rem;
     background-color: #000000af;
-    z-index: 2;
+    z-index: 1;
     box-shadow: 1px 1px 15px 5px rgba(1, 1, 1, 0.2);
 }
 
@@ -39,15 +39,12 @@ nav {
 .logo::after {
     content: "";
     width: 75px;
-    border: 1px solid red;
     left: 0px;
     position: absolute;
     top: 43px;
-    background-color: red;
 }
 
 nav {
-    position: relative;
     > .w900 > button {
         border: none;
         outline: none;
@@ -194,10 +191,14 @@ nav .MenuModel {
 
             > a {
                 transition: all 0.4s ease;
-
                 &:hover {
-                    border-bottom: 1px solid red;
                     transform: scale(1.29);
+                }
+                > span {
+                    color: #f06700;
+                    padding: 0.3rem 0.2rem;
+                    border-radius: 20px;
+                    background: #fffffffb;
                 }
             }
         }
@@ -232,12 +233,26 @@ nav .action {
         > a {
             color: #ffff;
             font-weight: 500;
+            position: relative;
             border-width: 0%;
             border: 1px solid transparent;
             transition: all 0.3s ease-in;
             &:hover {
                 color: #ff1ff1;
                 border-bottom: 1px solid red;
+            }
+            > span {
+                position: absolute;
+                right: -30px;
+                padding: 0.1rem 0.3rem;
+                top: -14px;
+                font-size: 0.8rem;
+                color: #f06700;
+                background: #00110038;
+                height: 21px;
+                border-radius: 20px;
+                text-align: center;
+                min-width: 30px;
             }
         }
 

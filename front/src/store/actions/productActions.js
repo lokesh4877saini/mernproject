@@ -9,7 +9,12 @@ import {
     ADMIN_PRODUCT_FAIL,
     ADMIN_NEW_PRODUCT_REQUEST,
     ADMIN_NEW_PRODUCT_SUCCESS,
-    ADMIN_NEW_PRODUCT_REST,
+    ADMIN_DELETE_PRODUCT_REQUEST,
+    ADMIN_DELETE_PRODUCT_SUCCESS,
+    ADMIN_DELETE_PRODUCT_FAIL,
+    ADMIN_UPDATE_PRODUCT_REQUEST,
+    ADMIN_UPDATE_PRODUCT_SUCCESS,
+    ADMIN_UPDATE_PRODUCT_FAIL,
     ADMIN_NEW_PRODUCT_FAIL,
     NEW_REVIEW_FAIL,
     ALL_PRODUCT_FAIL,
@@ -19,7 +24,7 @@ import {
 } from '../constants/productConstants'
 import axios from 'axios';
 const preUrl = import.meta.env.VITE_SERVER_URL;
-export const getProduct = (keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0) => async (dispatch) => {
+export const getProduct = (keyword = "", currentPage = 1, price = [0, 250000], category, ratings = 0) => async (dispatch) => {
     try {
         dispatch({ type: ALL_PRODUCT_REQUEST });
         let url = `${preUrl}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
@@ -82,9 +87,11 @@ export const newProductByAdmin = (prodcutData) => async (dispatch) => {
     try {
         dispatch({ type: ADMIN_NEW_PRODUCT_REQUEST });
         const config = {
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                headers: { "Content-Type": "multipart/form-data" }
+            },
             withCredentials: true,
-        }
+        };
         const { data } = await axios.post(`${preUrl}/api/v1/admin/product/new`, prodcutData, config);
         dispatch({
             type: ADMIN_NEW_PRODUCT_SUCCESS,
@@ -93,6 +100,27 @@ export const newProductByAdmin = (prodcutData) => async (dispatch) => {
     } catch (e) {
         dispatch({
             type: ADMIN_NEW_PRODUCT_FAIL,
+            payload: e.response.data.message,
+        })
+    }
+}
+export const updateProductByAdmin = (id,prodcutData) => async (dispatch) => {
+    try {
+        dispatch({ type: ADMIN_UPDATE_PRODUCT_REQUEST});
+        const config = {
+            headers: {
+                headers: { "Content-Type": "multipart/form-data" }
+            },
+            withCredentials: true,
+        };
+        const { data } = await axios.put(`${preUrl}/api/v1/admin/product/${id}`, prodcutData, config);
+        dispatch({
+            type: ADMIN_UPDATE_PRODUCT_SUCCESS,
+            payload: data.success,
+        })
+    } catch (e) {
+        dispatch({
+            type: ADMIN_UPDATE_PRODUCT_FAIL,
             payload: e.response.data.message,
         })
     }
@@ -115,6 +143,27 @@ export const getAllProductsForAdmin = () => async (dispatch) => {
     } catch (e) {
         dispatch({
             type: ADMIN_PRODUCT_FAIL,
+            payload: e.response.data.message,
+        })
+    }
+}
+export const deleteProductByAdmin = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: ADMIN_DELETE_PRODUCT_REQUEST });
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            withCredentials: true,
+        };
+        const { data } = await axios.delete(`${preUrl}/api/v1/admin/product/${id}`, config);
+        dispatch({
+            type: ADMIN_DELETE_PRODUCT_SUCCESS,
+            payload: data.success,
+        })
+    } catch (e) {
+        dispatch({
+            type: ADMIN_DELETE_PRODUCT_FAIL,
             payload: e.response.data.message,
         })
     }

@@ -3,7 +3,7 @@ services:
     name: backend
     env: node
     plan: free
-    buildCommand: cd back && npm install
-    startCommand: cd back && npm start
     rootDir: back
+    buildCommand: npm install
+    startCommand: npm start
     autoDeploy: true

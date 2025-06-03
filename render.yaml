@@ -6,6 +6,4 @@ services:
     buildCommand: cd back && npm install
     startCommand: cd back && npm start
     rootDir: back
-    envVars:
-      - fromDotEnv: true
     autoDeploy: true

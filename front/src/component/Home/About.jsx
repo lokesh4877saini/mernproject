@@ -1,6 +1,8 @@
 import './about.scss';
+import MetaData from '../layout/MetaData';
 const About = () => {
     return (<>
+    <MetaData title={"About Us"}/>
         <div className="Aboutcontainer" style={{ padding: "5rem" }}>
             <div className="Aboutheading1" style={{ textAlign: "center" }}>
                 <h3>Welcome to About page</h3>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Slider from './Slider.jsx';
 import { toast } from 'react-hot-toast'
+import MetaData from '../../layout/MetaData.jsx';
 import { Button } from '@mui/material';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -86,6 +87,7 @@ const NewProduct = () => {
       
     return (
         <>
+        <MetaData title={"New Product"}/>
             <>
                 {loading ? (<Loader />)
                     :

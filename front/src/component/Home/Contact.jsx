@@ -1,6 +1,8 @@
 import './Contact.scss';
+import MetaData from '../layout/MetaData';
 const Contact = () => {
     return (<>
+    <MetaData title={"Contact Us"}/>
     <form action="" id='contact'>
         <div className="Contactcontainer">
             <div className="Contactheader"> <h2>Contact Us</h2></div>

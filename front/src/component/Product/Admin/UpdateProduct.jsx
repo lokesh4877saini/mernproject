@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Slider from './Slider.jsx';
 import { toast } from 'react-hot-toast'
 import { Button } from '@mui/material';
+import MetaData from '../../layout/MetaData.jsx';
 import { useParams } from 'react-router-dom'
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -25,7 +26,6 @@ const UpdateProduct = () => {
       toast.error(updateError);
     }
     const foundProduct = productsArray.find((p) => p._id === id);
-    // console.log(foundProduct)
     if (foundProduct) {
       setItem({
         name: foundProduct.name,
@@ -102,6 +102,7 @@ const UpdateProduct = () => {
 
   return (
     <>
+    <MetaData title={"Update Product"}/>
       <>
         {loading ? (<Loader />)
           :

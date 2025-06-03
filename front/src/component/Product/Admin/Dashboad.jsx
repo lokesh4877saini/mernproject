@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom';
+import MetaData from '../../layout/MetaData.jsx';
 import Slider from './Slider.jsx';
 import { toast } from 'react-hot-toast'
 import Loader from '../../layout/loader/Loader';
@@ -9,6 +10,7 @@ import {getAllProductsForAdmin} from '../../../store/actions/productActions';
 import './dashboard.scss';
 const Dashboad = () => {
   const dispatch = useDispatch();
+  const {user} = useSelector((state)=>state.user)
   const { product: products, loading } = useSelector((state) => state.products);
   const sum = products?.reduce((val, productprice) =>val+productprice.price, 0);
   useEffect(() => {
@@ -49,6 +51,7 @@ const Dashboad = () => {
   }
   return (
     <>
+    <MetaData title={`Dashboard ${user.name}'s`} />
       {loading ? (<Loader />)
         :
         (<>

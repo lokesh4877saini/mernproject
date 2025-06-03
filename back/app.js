@@ -10,7 +10,7 @@ dotenv.config({path:"back/config/config.env"});
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:["http://localhost:5173","https://lokesh4877saini.github.io"],
     credentials:true,
 }))
 app.use(bodyParser.urlencoded({extended:true}));

@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: ec-backend
+    name: backend
     env: node
     plan: free
     buildCommand: cd back && npm install

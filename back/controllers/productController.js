@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Product = require('../models/productModel');
-const ErrorHandler = require('../utils/errorHandler');
+const ErrorHandler = require('../utils/ErrorHandler');
 const catchAsyncErrors = require('../middleware/catchAsyncError');
 const ApiFeatures = require('../utils/apifeatures');
 

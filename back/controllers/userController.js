@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const ErrorHandler = require('../utils/errorHandler');
+const ErrorHandler = require('../utils/ErrorHandler');
 require('dotenv').config({path:"back/config/config.env"})
 const path = require('path');
 const fs= require('fs');

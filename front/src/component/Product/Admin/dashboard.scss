@@ -1,0 +1,157 @@
+.Dashboard {
+    display: flex;
+    border-left: 1px solid grey;
+    .mainContainer {
+        padding: 2rem;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        h2 {
+            color: #111;
+            margin-bottom: 2rem;
+        }
+        .dashboardSummaryBox1 {
+            background: linear-gradient(to right, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
+            padding: 2rem 0;
+            border-radius: 20px;
+            > div {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                > p {
+                    font-weight: 800;
+                }
+                justify-content: center;
+            }
+        }
+        .dashboardSummaryBox2 {
+            display: flex;
+            margin: 1rem auto;
+            gap: 20px;
+            a {
+                border-radius: 100%;
+                margin: 0 auto;
+                background-color: #111;
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                &:hover {
+                    transform: scale(0.9);
+                    background-color: #43434343;
+                    color: black;
+                }
+                &:nth-child(even) {
+                    color: red;
+                }
+                &:nth-child(odd) {
+                    color: blueviolet;
+                }
+                p {
+                    font-size: 1.5rem;
+                }
+                span {
+                    color: white;
+                }
+                width: 20%;
+                aspect-ratio: 1/1;
+            }
+        }
+        .lineChart {
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media screen and (max-width: 1480px) {
+    .Dashboard {
+        .mainContainer {
+            width: 80%;
+        }
+    }
+}
+@media screen and (max-width: 711px) {
+    .Dashboard {
+        .mainContainer {
+            width: 80%;
+            .dashboardSummaryBox2 {
+                display: flex;
+                margin: 1rem auto;
+                gap: 10px;
+                a {
+                    p {
+                        font-size: 1rem;
+                    }
+                }
+            }
+            .lineChart {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
+@media screen and (max-width: 655px) {
+    .Dashboard {
+        flex-direction: column;
+        .DashboardSlider {
+            width: 100% !important;
+            .stickySidebar {
+                transform: translateY(0) !important;
+                padding: 2rem;
+                div {
+                    margin: 0 auto;
+                    width: 50%;
+                    align-items: center;
+                }
+                div:nth-child(even) {
+                    border-radius: 20px;
+                }
+                div:nth-child(odd) {
+                    border-radius: 20px;
+                    border-left: 2px solid tomato;
+                }
+            }
+        }
+        .mainContainer {
+            width: 80%;
+            h2{
+                font-size: 2.5rem;
+            }
+            .dashboardSummaryBox2 {
+                display: flex;
+                margin: 1rem auto;
+                gap: 10px;
+                a {
+                    p {
+                        font-size: 1rem;
+                    }
+                }
+            }
+            .lineChart {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
+@media (max-width:355px)and (min-width: 655px) {
+    .Dashboard {
+        flex-direction: column;
+        .DashboardSlider {
+            width: 100% !important;
+            .stickySidebar {
+                position: relative;
+                padding: 2rem;
+                div {
+                    margin: 0 auto;
+                    width: 50%;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}

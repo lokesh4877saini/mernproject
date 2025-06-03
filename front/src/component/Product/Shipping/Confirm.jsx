@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom'
+import defaultImage  from '../../../assets/default.jpg'
 import './confirm.scss';
 import CheckoutSteps from '../Cart/CheckoutSteps';
 const Confirm = () => {
@@ -49,7 +50,8 @@ const Confirm = () => {
                                     <div key={i}>
                                         <div className="img">
                                         <img
-                                         src={item.image}
+                                        src={defaultImage}
+                                        //  src={item.image}
                                          alt={item.product} />
                                         </div>
                                         <div className="itemDetails">

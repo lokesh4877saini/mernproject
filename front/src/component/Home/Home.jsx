@@ -5,21 +5,20 @@ import MetaData from '../layout/MetaData';
 import { useSelector, useDispatch } from 'react-redux'
 import { ClearErros, getProduct } from '../../store/actions/productActions'
 import Loader from '../layout/loader/Loader';
-import {useAlert} from 'react-alert'
+import { toast } from 'react-hot-toast';
 // temporary product
 // const product = {
 //   name:"Blue Tshirt",
-//   price:"₹3000",
+//   price:"$3000",
 //   imges:[{url:"https://cms.cloudinary.vpsvc.com/image/upload/c_scale,dpr_auto,f_auto,q_auto:good,w_700/India%20LOB/Clothing%20and%20Bags/Men's%20Embroidered%20Polo%20T-Shirts/IN_Men_s-Embroidered-Polo-T-Shirts_Overview"}],
 //   _id:"ilscodein"
 // }
 const Home = () => {
-  const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, product,error} = useSelector(state => state.products)
   useEffect(() => {
     if(error){
-       alert.error(error)
+       toast.error(error)
       dispatch(ClearErros); 
     }
     dispatch(getProduct());

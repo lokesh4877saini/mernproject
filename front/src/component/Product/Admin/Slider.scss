@@ -1,0 +1,84 @@
+.DashboardSlider {
+    width: 7.5%;
+    .stickySidebar {
+        top:50%;
+        transform: translateY(-50%);
+        position: sticky;
+        > div {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            a {
+                padding: 0.1rem;
+                width: 100%;
+                display: flex;
+                font-size: 0.8rem;
+                gap: 5px;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                color: tomato;
+                width: 80px;
+                height: 80px;
+                > p {
+                    font-size: 10px;
+                    color: rgb(180, 57, 35);
+                }
+                > img {
+                    width: 60%;
+                    height: 60%;
+                    object-fit: fill;
+                    border-radius: 100%;
+                }
+                > div {
+                    width: 50%;
+                }
+            }
+            &:nth-child(even) {
+                background-color: #434343;
+                border-radius: 0 20px 20px 0;
+                a {
+                    p {
+                        color: white;
+                    }
+                }
+            }
+            &:nth-child(odd) {
+                background-color: white;
+                border-right: 3px solid tomato;
+                border-radius: 0 20px 20px 0;
+                a {
+                    p {
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 581px) {
+    .DashboardSlider {
+        font-size: 50%;
+        > div {
+            display: flex;
+            flex-direction: column;
+            a {
+                padding: 0.05rem;
+                font-size: 0.8rem;
+                gap: 2px;
+                width: 50px;
+                height: 50px;
+                > p {
+                    font-size: 8px;
+                }
+            }
+            &:nth-child(even) {
+                border-radius: 0 10px 10px 0;
+            }
+            &:nth-child(odd) {
+                border-right: 2px solid tomato;
+                border-radius: 0 10px 10px 0;
+            }
+        }
+    }
+}

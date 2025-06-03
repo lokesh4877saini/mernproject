@@ -1,6 +1,7 @@
 import './cart.scss';
 import React,{ useState, useEffect } from 'react';
 import CartItemCard from './CartItemCard';
+import MetaData from '../../layout/MetaData';
 import { Add, Remove, AddShoppingCart } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -48,10 +49,13 @@ const Cart = () => {
         dispatch(addItemsToCart(id, newQuntity));
     }
     return (<>
+    <MetaData title={"Cart"} />
         {
             (cartItems.length === 0) ? (<>
                 <section className="cart">
+                    <div style={{height:"50vh",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.2rem"}}>
                     <p style={{ textAlign: "center" }}>No Items Added Yet <br /> <Link to='/products' style={{ color: "tomato" }}><AddShoppingCart /> Add Some item to Cart</Link></p>
+                    </div>
 
                 </section>
             </>)

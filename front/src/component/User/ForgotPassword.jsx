@@ -1,38 +1,38 @@
 import {MarkEmailReadSharp } from '@mui/icons-material'
-import Loader from '../layout/loader/Loader';
+// import Loader from '../layout/loader/Loader';
 import { useState, useEffect } from "react";
 import { useNavigate} from "react-router-dom";
-import { useAlert } from 'react-alert';
-// import Loader from '../layout/loader/Loader';
+import {toast} from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../layout/MetaData'
 import { ClearErros, forgotPassword } from '../../store/actions/userActions';
 import './EditProfile.scss';
 const ForgotPassword = () => {
     const history = useNavigate();
-    const alert = useAlert();
     const  [email,setEmail] = useState("");
     const {message,error,loading} = useSelector((state)=>state.forgotPassword);
     const dispatch = useDispatch();
     useEffect(() => {
         if(message){
-            alert.success(message);
+            toast.success(message);
         }
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(ClearErros());
         }
-    }, [dispatch, error, alert,message, history]);
+    }, [dispatch, error, toast,message, history]);
     const ForgotPasswordSubmit = (e) => {
         e.preventDefault();
         const myForm = new FormData();
         myForm.set("email",email);
         dispatch(forgotPassword(myForm))
     }
-    return (<>
-        {loading ?
-            (<Loader />) : (
-                <>
+    return (
+    <>
+        {/* {loading ?
+            (<Loader />)
+             : (
+                <> */}
                     <MetaData title={"Reset Password"} />
                     <div className="container">
                         <div className="updateContainer">
@@ -48,8 +48,10 @@ const ForgotPassword = () => {
                             </div>
                         </div>
                     </div>
-                </>
-            )}
-    </>)
+                {/* </>
+            )
+            } */}
+    </>
+    )
 }
 export default ForgotPassword;

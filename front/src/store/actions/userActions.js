@@ -40,7 +40,7 @@ export const login = (email, password) => async (dispatch) => {
         );
         dispatch({ type: LOGIN_SUCCESS, payload: data.user });
     } catch (error) {
-        dispatch({ type: LOGIN_FAIL, payload: error.response.data.message })
+        dispatch({ type: LOGIN_FAIL, payload: error?.response?.data?.message })
     }
 }
 // signup
@@ -70,7 +70,8 @@ export const loadUser = () => async (dispatch) => {
 // logout user
 export const logout = () => async (dispatch) => {
     try {
-        await axios.get(`${preUrl}/api/v1/logout`);
+       const {data} = await axios.get(`${preUrl}/api/v1/logout`);
+       console.log(data.message);
         dispatch({ type: LOGOUT_USER_SUCCESS });
     } catch (error) {
         dispatch({ type: LOGOUT_USER_FAIL, payload: error.message })

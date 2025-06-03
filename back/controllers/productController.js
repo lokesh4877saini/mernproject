@@ -93,31 +93,13 @@ exports.getAllproducts = catchAsyncErrors(async (req, res,next) => {
    })
 })
 
-// exports.getAllproducts = catchAsyncErrors(async (req, res, next) => {
-//    const resultPerPage = 8;
-//    const productCount = await Product.countDocuments(); // Total product count
-
-//    // Initialize ApiFeatures with the base query
-//    const apifeature = new ApiFeatures(Product.find(), req.query)
-//        .search()
-//        .filter()
-//        .pagination(resultPerPage)
-//        .buildQuery(); // Apply filters before executing the query
-
-//    // Pagination is applied after building the query
-//    // apifeature.pagination(resultPerPage);
-
-//    // Execute the query only once
-//    const products = await apifeature.query;
-//    filteredProductsCount = products.length;
-//    res.status(200).json({
-//        success: true,
-//        products,
-//        productCount,
-//        resultPerPage,
-//        filteredProductsCount
-//    });
-// });
+exports.getAdminAllproducts = catchAsyncErrors(async (req, res, next) => {
+   const products = await Product.find();
+   res.status(200).json({
+       success: true,
+       products,
+   });
+});
 
 
 // Get Product Details

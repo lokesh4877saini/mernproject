@@ -102,7 +102,6 @@
 
                     &:hover {
                         background-color: rgba(22, 22, 22, 0.575);
-                        // box-shadow:1px 1px 3px 3px rgba(54, 54, 54, 0.247);
                     }
                 }
 
@@ -215,7 +214,7 @@
 }
 .reviewCard {
     flex: none;
-    width: 15vmax;
+    min-width: fit-content;
     display: flex;
     border: 1px solid rgba(39, 39, 39, 0.144);
     transition: all 0.5s ease;
@@ -228,7 +227,9 @@
         box-shadow: 0 0 5px rgba(54, 54, 54, 0.575);
     }
     img {
-        width: 80%;
+        width: 50px;
+        border-radius: 100%;
+        aspect-ratio: 1/1;
     }
     p {
         color: rgba(0, 0, 0, 0.781);
@@ -243,8 +244,6 @@
 // media query
 @media screen and (max-width: 609px) {
     html {
-        text-align: center;
-        font-size: 70%;
         .ProductDetails {
             flex-direction: column;
             font-size: 2vmax;
@@ -326,7 +325,6 @@
                     font-size: 2vmax;
                 }
             }
-
             .submitReview {
                 padding: 1.6vmax 4vmax;
                 font-size: 1.3vmax;

@@ -2,8 +2,7 @@ import { Mail, Face4Sharp} from '@mui/icons-material'
 import Loader from '../layout/loader/Loader';
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {useAlert} from 'react-alert';
-// import Loader from '../layout/loader/Loader';
+import { toast } from 'react-hot-toast';
 import MetaData from '../layout/MetaData'
 import {useDispatch,useSelector} from 'react-redux';
 import {ClearErros,loadUser,updateProfile} from '../../store/actions/userActions';
@@ -12,7 +11,6 @@ import { UPDATE_USER_RESET } from '../../store/constants/userConstants';
 const EditProfile = () => {
     const history = useNavigate();
     const dispatch = useDispatch();
-    const alert = useAlert();
     const {user} = useSelector((state) => state.user); 
     const {isUpdated,loading,error} = useSelector((state)=>state.profile);
     const [name,setName] = useState("");
@@ -36,17 +34,17 @@ const EditProfile = () => {
             setAvatarPreview(user.avatar.url);
         }
         if(error){
-           alert.error(error);
+           toast.error(error);
            dispatch(ClearErros());
         }
         if(isUpdated){
-            alert.success("Profile Upated Successfully !");
+            toast.success("Profile Upated Successfully !");
             history('/account');
             dispatch({
                 type:UPDATE_USER_RESET,
             });
         }
-   },[dispatch,error,alert,history,user,isUpdated]);
+   },[dispatch,error,toast,history,user,isUpdated]);
     const UpdateSubmit = (e) =>{
         e.preventDefault();
         const myForm = new FormData();

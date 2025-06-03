@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { orderDetail } from '../../../../store/actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
+import {toast} from 'react-hot-toast'
 import Loader from '../../../layout/loader/Loader';
+import defaultImage from '../../../../assets/default.jpg';
 import MetaData from '../../../../component/layout/MetaData';
 import './orderDetails.scss';
 const OrderDetails = () => {
@@ -14,10 +16,10 @@ const OrderDetails = () => {
     }, [dispatch, id]);
     useEffect(() => {
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(ClearErros());
         }
-    }, [alert, error, id])
+    }, [toast, error, id])
     if (loading) return <Loader />;
     if (error) return <p className="error">Error: {error}</p>;
     if (!order || !order.user || !order.shippingInfo || !order.paymentInfo || !order.orderItems) {
@@ -61,7 +63,7 @@ const OrderDetails = () => {
                                             <div key={item._id} className="special">
                                                 <div>
                                                     <div className="img">
-                                                        <img src={item.image.public_id} />
+                                                        <img src={defaultImage} />
                                                     </div>
                                                     <p>{item.name}</p>
 

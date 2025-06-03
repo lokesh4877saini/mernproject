@@ -1,7 +1,7 @@
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
-import { useState } from 'react';
-import { useAlert } from 'react-alert';
+import { useState,useEffect } from 'react';;
+import {toast} from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from 'react-redux';
 import { logout } from '../../store/actions/userActions';
@@ -10,8 +10,7 @@ import {Backdrop} from '@mui/material'
 const UserOptions = ({ user }) => {
     const dispatch = useDispatch();
     const history = useNavigate();
-    const alert = useAlert();
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const { cartItems } = useSelector((state) => state.cart);
     const options = [
         { icon: <ListAltRounded />, name: "Orders", func: orders },
@@ -27,11 +26,11 @@ const UserOptions = ({ user }) => {
         })
     }
     function dashboard() {
-        history('/dashboard');
+        history('/Admin/dashboard');
 
     }
     function orders() {
-        history('/orders');
+        history('/orders/me');
     }
     function cart() {
         history('/cart');
@@ -42,18 +41,20 @@ const UserOptions = ({ user }) => {
     }
     function logoutUser() {
         dispatch(logout());
-        alert.success("Logout successfully");
+        toast.success("Logout successfully");
     }
+    useEffect(()=>{
+        
+    },[open])
     const speedDialStyle = {
         position: 'fixed',
         left: "94%",
-        zIndex: "100",
-        top: "14%"
-
+        top: "17%"
     }
     return (<>
         <Backdrop 
-        open={open} style={{zIndex:"1",visibility:open?"":"visible", background:open?"":"transparent",opacity:"1",position:open?"fixed":"relative"}}>
+        open={open} style={{zIndex:"2"
+        ,visibility:open?"":"visible", background:open?"":"transparent",opacity:"1",position:open?"fixed":"relative"}}>
         <SpeedDial
             ariaLabel='SpeedDial tooltip'
             onClose={() => setOpen(false)}

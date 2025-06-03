@@ -10,7 +10,7 @@ import './dashboard.scss';
 const Dashboad = () => {
   const dispatch = useDispatch();
   const { product: products, loading } = useSelector((state) => state.products);
-  const sum = products.reduce((val, productprice) =>val+productprice.price, 0);
+  const sum = products?.reduce((val, productprice) =>val+productprice.price, 0);
   useEffect(() => {
 
     dispatch(getAllProductsForAdmin());

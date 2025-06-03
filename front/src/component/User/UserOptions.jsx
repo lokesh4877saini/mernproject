@@ -1,6 +1,6 @@
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
-import { useState } from 'react';;
+import { useState,useEffect } from 'react';;
 import {toast} from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from 'react-redux';
@@ -43,6 +43,9 @@ const UserOptions = ({ user }) => {
         dispatch(logout());
         toast.success("Logout successfully");
     }
+    useEffect(()=>{
+        
+    },[open])
     const speedDialStyle = {
         position: 'fixed',
         left: "94%",

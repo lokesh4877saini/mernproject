@@ -44,7 +44,7 @@ const Shipping = () => {
           <h2>Shippnig Details</h2>
         </div>
         <div className="formContainer">
-          <form action="" encType='multipart/form-data' onSubmit={shippingSubmit}>
+          <form  encType='multipart/form-data' onSubmit={shippingSubmit}>
             <div>
               <HomeOutlined />
               <input type="text" placeholder='Address' required value={address} onChange={(e) => setAddress(e.target.value)} />
@@ -76,6 +76,7 @@ const Shipping = () => {
                   <TransferWithinAStationIcon />
                   <select
                     required
+                    value={country}
                     onChange={(e) => setState(e.target.value)}
                   >
                     <option value="" >State</option>

@@ -1,0 +1,40 @@
+.Aboutcontainer {
+    display: grid;
+    width: 87%;
+    background-color: rgb(255, 250, 243);
+    box-shadow: inset 1px 1px 12px 3px rgba(0, 0, 0, 0.336);
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 3rem auto;
+    .Aboutheading1 {
+        background-image: linear-gradient(to left, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
+        padding: 1px;
+        border-radius: 20px 100px 100px 20px/10px 3px 100px;
+        padding: 2rem;
+        h3{
+            margin: 2rem;
+        }
+        ul>li{
+            text-transform: uppercase;
+        }
+    }
+    .Aboutheading2 {
+        background-image: linear-gradient(to right, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
+        padding: 1px;
+        h3{
+            margin: 2rem;
+        }
+        ul>li{
+            text-transform: uppercase;
+        }
+        border-radius: 100px 20px 20px 100px/10px 10px 30px;
+    }
+}
+
+@media screen and (max-width:679px) {
+    .Aboutcontainer{
+        grid-template-columns: 1fr;
+    }
+}

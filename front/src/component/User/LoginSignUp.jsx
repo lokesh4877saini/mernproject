@@ -85,6 +85,7 @@ const LoginSignUp = () => {
     return (<>
        {loading ? (<Loader/>):(
          <div className="LSContainer">
+            <MetaData title={"Login or Signup"} />
             <div className="LSBox">
                 <div>
                     <div className="login_singUp_toggle">

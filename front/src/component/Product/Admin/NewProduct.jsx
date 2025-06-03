@@ -132,7 +132,7 @@ const NewProduct = () => {
 
                         <div className="previewImage">
                             {ImagePreview.map((image, index) => (
-                                <img key={index} src={image} alt={`Preview ${index}`} width={100} />
+                                <img key={index} src={image} alt={`Preview ₹{index}`} width={100} />
                             ))}
                         </div>
 

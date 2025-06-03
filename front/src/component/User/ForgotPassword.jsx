@@ -1,9 +1,8 @@
 import {MarkEmailReadSharp } from '@mui/icons-material'
-import Loader from '../layout/loader/Loader';
+// import Loader from '../layout/loader/Loader';
 import { useState, useEffect } from "react";
 import { useNavigate} from "react-router-dom";
 import {toast} from 'react-hot-toast';
-// import Loader from '../layout/loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../layout/MetaData'
 import { ClearErros, forgotPassword } from '../../store/actions/userActions';
@@ -28,10 +27,12 @@ const ForgotPassword = () => {
         myForm.set("email",email);
         dispatch(forgotPassword(myForm))
     }
-    return (<>
-        {loading ?
-            (<Loader />) : (
-                <>
+    return (
+    <>
+        {/* {loading ?
+            (<Loader />)
+             : (
+                <> */}
                     <MetaData title={"Reset Password"} />
                     <div className="container">
                         <div className="updateContainer">
@@ -47,8 +48,10 @@ const ForgotPassword = () => {
                             </div>
                         </div>
                     </div>
-                </>
-            )}
-    </>)
+                {/* </>
+            )
+            } */}
+    </>
+    )
 }
 export default ForgotPassword;

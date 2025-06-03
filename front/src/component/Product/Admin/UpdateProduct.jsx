@@ -96,7 +96,7 @@ const UpdateProduct = () => {
       };
 
       reader.readAsDataURL(file);
-      setImgs((prev) => [...prev, file]); // ✅ Save File object
+      setImgs((prev) => [...prev, file]); 
     });
   };
 

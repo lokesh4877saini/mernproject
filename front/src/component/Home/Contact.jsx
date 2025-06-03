@@ -2,8 +2,8 @@ import './Contact.scss';
 const Contact = () => {
     return (<>
     <form action="" id='contact'>
-        <div className="container">
-            <div className="header"> <h2>Contact Us</h2></div>
+        <div className="Contactcontainer">
+            <div className="Contactheader"> <h2>Contact Us</h2></div>
             <div className="Conactmenu">
                 <div className="Email">
                     <label htmlFor="Email">Email</label>

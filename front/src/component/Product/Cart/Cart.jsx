@@ -51,7 +51,9 @@ const Cart = () => {
         {
             (cartItems.length === 0) ? (<>
                 <section className="cart">
+                    <div style={{height:"50vh",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.2rem"}}>
                     <p style={{ textAlign: "center" }}>No Items Added Yet <br /> <Link to='/products' style={{ color: "tomato" }}><AddShoppingCart /> Add Some item to Cart</Link></p>
+                    </div>
 
                 </section>
             </>)

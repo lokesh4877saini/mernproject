@@ -6,13 +6,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ClearErros, getProduct } from '../../store/actions/productActions'
 import Loader from '../layout/loader/Loader';
 import { toast } from 'react-hot-toast';
-// temporary product
-// const product = {
-//   name:"Blue Tshirt",
-//   price:"$3000",
-//   imges:[{url:"https://cms.cloudinary.vpsvc.com/image/upload/c_scale,dpr_auto,f_auto,q_auto:good,w_700/India%20LOB/Clothing%20and%20Bags/Men's%20Embroidered%20Polo%20T-Shirts/IN_Men_s-Embroidered-Polo-T-Shirts_Overview"}],
-//   _id:"ilscodein"
-// }
 const Home = () => {
   const dispatch = useDispatch();
   const { loading, product,error} = useSelector(state => state.products)

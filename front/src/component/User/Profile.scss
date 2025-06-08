@@ -115,12 +115,20 @@
         >div:first-child{
             border: none;
             a{
-                width: 100%;
+                // width: 100%;
                 text-align: center;
             }
         }
         >div:last-child{
             width: 100%;
+            >div{
+                h4,p{
+                    width: auto;
+                }
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
             .order_updatepass { 
                 button{
                     width: 100%;

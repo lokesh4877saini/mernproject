@@ -24,6 +24,7 @@ import {
 } from '../constants/productConstants'
 import axios from 'axios';
 const preUrl = import.meta.env.VITE_SERVER_URL;
+axios.defaults.withCredentials = true
 export const getProduct = (keyword = "", currentPage = 1, price = [0, 250000], category, ratings = 0) => async (dispatch) => {
     try {
         dispatch({ type: ALL_PRODUCT_REQUEST });

@@ -5,15 +5,11 @@ const sendToken = (user,statusCode,res)=>{
     const options = {
         httpOnly:true,
         secure:process.env.NODE_ENV === "production",
-        sameSite:"lax", // Helps with CSRF protection
+        sameSite:"none", 
+        // sameSite:"lax",
         maxAge:new Date(
             Date.now() + process.env.COOKIE_EXPIRE*24*60*60*1000),
     }
-    // res.status(statusCode).cookie("token",token,options).json({
-    //     success:true,
-    //     user,
-    //     token,
-    // })
     res.cookie("token",token,options).status(statusCode).json({
         success:true,
         user,

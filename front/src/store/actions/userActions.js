@@ -26,6 +26,8 @@ import
     FORGOT_PASSWORD_FAIL
 } from "../constants/userConstants";
 import axios from 'axios';
+axios.defaults.withCredentials = true;
+
 const preUrl = import.meta.env.VITE_SERVER_URL;
 
 // login
@@ -64,14 +66,13 @@ export const loadUser = () => async (dispatch) => {
         });
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (error) {
-        dispatch({ type: LOAD_USER_FAIL, payload: error.message })
+        dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message })
     }
 }
 // logout user
 export const logout = () => async (dispatch) => {
     try {
        const {data} = await axios.get(`${preUrl}/api/v1/logout`);
-       console.log(data.message);
         dispatch({ type: LOGOUT_USER_SUCCESS });
     } catch (error) {
         dispatch({ type: LOGOUT_USER_FAIL, payload: error.message })

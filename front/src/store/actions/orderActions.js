@@ -11,6 +11,7 @@ import {
 } from "../constants/orderConstants";
 import axios from "axios";
 const preUrl = import.meta.env.VITE_SERVER_URL;
+axios.defaults.withCredentials = true
 export const createOrder = (order) => async (dispatch) => {
     try {
         dispatch({ type: CREATE_ORDER_REQUEST });

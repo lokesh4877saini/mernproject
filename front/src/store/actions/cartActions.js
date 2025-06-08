@@ -1,6 +1,7 @@
 import { ADD_TO_CART, REMOVE_TO_CART,SAVE_SHIPPING_INFO } from '../constants/CartConstants';
 import axios from 'axios';
 const preUrl = import.meta.env.VITE_SERVER_URL;
+axios.defaults.withCredentials = true
 // Add to cart
 export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
     const { data } = await axios.get(`${preUrl}/api/v1/product/${id}`);

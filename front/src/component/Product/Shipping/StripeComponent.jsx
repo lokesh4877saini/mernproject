@@ -14,7 +14,7 @@ const StripeContainer = () => {
         const response = await axios.get(`${preUrl}/api/v1/stripeapikey`, {
           withCredentials: true
         });
-        const key = response.data.stripeApiKey; // Ensure backend returns { stripeApiKey: 'pk_test_...' }
+        const key = response.data.stripeApiKey; 
         if (key) {
           setStripePromise(loadStripe(key));
         } else {

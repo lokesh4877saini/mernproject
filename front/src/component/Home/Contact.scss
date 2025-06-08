@@ -143,6 +143,7 @@ div.Email {
 @media screen and (max-width: 900px) {
     .Contactcontainer {
         display: flex;
+        flex-direction: column;
         height: auto;
         h2 {
             padding: 1rem;

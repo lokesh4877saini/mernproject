@@ -1,8 +1,9 @@
 import './cart.scss';
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CartItemCard from './CartItemCard';
 import MetaData from '../../layout/MetaData';
 import { Add, Remove, AddShoppingCart } from '@mui/icons-material';
+import Loader from '../../layout/loader/Loader';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemsToCart, removeItemToCart } from "../../../store/actions/cartActions";
@@ -11,6 +12,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.cart);
     const [GrossTotal, setGrossTotal] = useState();
+    const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
     useEffect(() => {
         if (cartItems) {
             const total = cartItems.reduce((acc, item) => acc + (item.quantity * item.price), 0);
@@ -18,8 +20,12 @@ const Cart = () => {
         }
     }, [cartItems]);
     const checkouthandler = () => {
-        const redirectUrl = "/login?redirect=/shipping";
-        history(redirectUrl);
+        setIsLoadingCheckout(true);
+        setTimeout(() => {
+            const redirectUrl = "/login?redirect=/shipping";
+            history(redirectUrl);
+        }, 500);
+
     };
     const [isAnimated, setIsAnimated] = useState(true)
     const removeAnimation = (e) => {
@@ -48,13 +54,16 @@ const Cart = () => {
         }
         dispatch(addItemsToCart(id, newQuntity));
     }
+    if (isLoadingCheckout) {
+        return <Loader />; // You can replace with your own styled spinner
+    }
     return (<>
-    <MetaData title={"Cart"} />
+        <MetaData title={"Cart"} />
         {
             (cartItems.length === 0) ? (<>
                 <section className="cart">
-                    <div style={{height:"50vh",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.2rem"}}>
-                    <p style={{ textAlign: "center" }}>No Items Added Yet <br /> <Link to='/products' style={{ color: "tomato" }}><AddShoppingCart /> Add Some item to Cart</Link></p>
+                    <div style={{ height: "80vh", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.7rem" }}>
+                        <p style={{ textAlign: "center" }}>No Items Added Yet <br /> <Link to='/products' style={{ color: "tomato" }}><AddShoppingCart /> Add Some item to Cart</Link></p>
                     </div>
 
                 </section>

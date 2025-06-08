@@ -5,7 +5,7 @@ import Loader from '../../../layout/loader/Loader';
 import MetaData from '../../../../component/layout/MetaData';
 import {toast} from 'react-hot-toast'
 import { Chip } from '@mui/material';
-import {myOrder} from '../../../../store/actions/orderActions';
+import {myOrder,ClearErros} from '../../../../store/actions/orderActions';
 import {OpenInNewTwoTone} from '@mui/icons-material'
 import { useDispatch, useSelector } from 'react-redux';
 import './myorder.scss';
@@ -67,12 +67,15 @@ const MyOrder = () => {
     },
   ];
   useEffect(() => {
+    dispatch(myOrder());
+  }, [dispatch]);
+  
+  useEffect(() => {
     if (error) {
       toast.error(error);
       dispatch(ClearErros());
     }
-    dispatch(myOrder());
-  }, [dispatch, toast, error])
+  }, [dispatch, error]);
   return (
     <>
       {loading ? (

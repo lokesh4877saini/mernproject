@@ -76,7 +76,6 @@ const Shipping = () => {
                   <TransferWithinAStationIcon />
                   <select
                     required
-                    value={country}
                     onChange={(e) => setState(e.target.value)}
                   >
                     <option value="" >State</option>

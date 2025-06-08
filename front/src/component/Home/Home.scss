@@ -1,18 +1,27 @@
 .banner {
     background-image: linear-gradient(to right, rgba(0, 255, 0, 0.8), rgb(0, 225, 255), rgb(255, 217, 0));
-    height: 88vmin;
+    // height: 100vmin;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
-
     > h1 {
         margin: 5vmax;
         color: black;
     }
-
+    .clipped-element {
+        width: 100%;
+        background-color: #505050;
+        > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        clip-path: polygon(0 0, 100% 0, 0 99%, 0 100%);
+    }
     > p {
+        margin: 1rem 0;
         font-size: 1.9vmax;
         color: black;
     }

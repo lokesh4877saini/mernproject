@@ -121,30 +121,29 @@ nav .production {
 
 nav .MenuModel {
     background-color: rgba(0, 0, 0, 0.733);
-    backdrop-filter: blur(13px);
+    backdrop-filter: blur(3px);
     position: absolute;
     padding: 2rem;
     display: flex;
     z-index: 1000;
     text-align: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
     align-items: center;
-    top: 73px;
-    left: 35px;
     transition: all 0.3s ease-in-out;
     color: white;
     margin: 0 1rem;
     border-radius: 5px;
-    width: 50%;
 
     &:hover {
         transform: scale(1.01);
     }
 
     > .Model_logo {
-        font-size: 3rem;
-        width: 100%;
+        font-size: 1.5rem;
+        width: 80%;
+        padding: 1rem 0;
+        background-color:coral;
         cursor: pointer;
         font-family: "Style Script", cursive;
     }
@@ -157,13 +156,17 @@ nav .MenuModel {
             justify-content: center;
             gap: 50px;
             border-radius: 10px;
-            font-size: 1.2rem;
+            font-size: 1rem;
             flex-wrap: wrap;
             transition: all 0.1s ease-in;
-            padding: 3rem;
+            padding: 1rem;
 
             > a {
                 color: #ffff;
+                width: 80%;
+                border-radius: 20px 10px 20px 30px/100px 100px 100px 20px;
+                padding: 1rem 0;
+                background-color:coral;
                 border: 1px solid transparent;
                 font-weight: 700;
                 transition: all 0.3s ease-in;

@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ClearErros, getProduct } from '../../store/actions/productActions'
 import Loader from '../layout/loader/Loader';
 import { toast } from 'react-hot-toast';
+import bannerImg from '../../assets/ecommBannerImg.png'
 const Home = () => {
   const dispatch = useDispatch();
   const { loading, product,error} = useSelector(state => state.products)
@@ -22,8 +23,11 @@ const Home = () => {
         <Loader/>
       ) : 
       (<>
-        <MetaData title={"Home Page is working"} />
+        <MetaData title={"Home Page"} />
         <div className="banner">
+          <div className="clipped-element">
+            <img src={bannerImg} alt="banner image" />
+          </div>
           <p>Welcome to Ecomm</p>
           <h1>Find Amazing Products Below</h1>
           <a href="#container">

@@ -46,5 +46,3 @@ This project is an e-commerce web application built with React for the frontend,
 |      └───views
 └── README.md
 ```
-## Status
-This project is still a work in progress. More features and improvements are coming soon!
